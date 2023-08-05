@@ -12,38 +12,17 @@ import ControlledCarousel from './components/Carousel';
 import NavBar2 from './components/NavBar2';
 import Review from './pages/Review';
 import MyPageDetail from './pages/ReviewDetail';
+import Main from './pages/Main';
 
 
 function App() {
-  let [shoes, setShoes] = useState(data);
-  let [재고] = useState([10,11,12]);
-  let navigate = useNavigate();
+
   return (
     <div className="App">
       
       <NavBar2></NavBar2>
-      <div className='Wrapper'>
-      <Routes>
-        <Route path='/' element={
-        <div>
-            <div className="container">
-              <ControlledCarousel></ControlledCarousel>
-              </div>
-          </div>
-          }>
-        </Route>
-
-        <Route path='/mypage/:id' element={<MyPage shoes={shoes}/>}></Route>
-        <Route path="/info" element={<Info></Info>}></Route>
-        <Route path="/mypage/detail" element={ <MyPageDetail shoes={shoes}/> }/>
-        <Route path='/review' element={<Review/>}>
-          <Route path='member' element={<div>멤버들</div>}></Route>
-          <Route path='location' element={<div>회사위치</div>}></Route>
-        </Route>
-
-
-      </Routes>
-      </div>
+      <Main></Main>
+      
     </div>
   );
 }
