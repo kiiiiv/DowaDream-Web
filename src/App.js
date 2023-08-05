@@ -11,7 +11,7 @@ import Info from './pages/Info'
 import ControlledCarousel from './components/Carousel';
 import NavBar2 from './components/NavBar2';
 import Review from './pages/Review';
-import MyPageDetail from './pages/후기세부';
+import MyPageDetail from './pages/ReviewDetail';
 
 
 function App() {
@@ -40,38 +40,13 @@ function App() {
           <Route path='member' element={<div>멤버들</div>}></Route>
           <Route path='location' element={<div>회사위치</div>}></Route>
         </Route>
-        <Route path='/event' element={<Event/>}>
-          <Route path='one' element={<div>첫 주문시 양배추즙 서비스</div>}></Route>
-          <Route path='two' element={<div>생일기념 쿠폰받기</div>}></Route>
-        </Route>
+
+
       </Routes>
       </div>
     </div>
   );
 }
-function About(){
-  return(
-    <div>
-      <h4>회사정보임</h4>
-      <Outlet></Outlet>
-    </div>
-  )
-}
-function Event(){
-  return(
-    <>
-    <h4>오늘의 이벤트</h4>
-    <Outlet></Outlet>
-    </>
-  )
-}
-function Card(props){
-  return (
-    <div className="col-md-4">
-      <img src={'https://codingapple1.github.io/shop/shoes'+(props.i+1)+'.jpg'} width="80%" />
-      <h4>{props.shoes.title}</h4>
-      <p>{props.shoes.price}</p>
-    </div>
-  )
-}
+
+
 export default App;
