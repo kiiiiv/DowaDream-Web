@@ -11,7 +11,7 @@ function LoginButton(props) {
       style={{
         backgroundImage: `url(${ButtonPic})`,
         backgroundRepeat: 'no-repeat',
-        width: '330px',
+        width: '189px',
         height: '40px',
         border: 'none',
       }}
