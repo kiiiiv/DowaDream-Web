@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 let YellowBtn = styled.button`
@@ -12,8 +12,9 @@ let Box = styled.div`
 `
 function MyPage(props){
   useEffect(()=>{
-    
+
   })
+  let [count, setCount] = useState(0)
   let {id} = useParams();
   let 찾은상품 = props.shoes.find(function(x){
     return x.id == id
