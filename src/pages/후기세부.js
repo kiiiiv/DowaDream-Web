@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 let YellowBtn = styled.button`
@@ -10,10 +9,7 @@ let Box = styled.div`
   padding: 20px;
   background: grey;
 `
-function MyPage(props){
-  useEffect(()=>{
-    
-  })
+function MyPageDetail(props){
   let {id} = useParams();
   let 찾은상품 = props.shoes.find(function(x){
     return x.id == id
@@ -37,4 +33,4 @@ function MyPage(props){
     </div> 
     );
 }
-export default MyPage;
+export default MyPageDetail;
