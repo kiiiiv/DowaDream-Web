@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 function TagButton({text, to}) {
   return (
     <>
-      <StyledButton>
-      <Link to={to}>{text}</Link>
+      <StyledButton to={to}>
+      <span>{text}</span>
       </StyledButton>
     </>
   );
@@ -29,7 +29,8 @@ const StyledButton = styled.div`
   flex: none;
   order: 0;
   flex-grow: 0;
-  fontSize: 14, 
-  fontWeight: 'normal'
+  fontSize: 20;
+  fontWeight: 'normal';
+  cursor: pointer;
 `;
 

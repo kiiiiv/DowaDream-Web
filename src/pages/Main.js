@@ -24,9 +24,9 @@ function Main(){
           <h3>  님! 어떤 봉사정보 추천을 원하시나요?{'\n'}</h3>
         </HeaderWrapper>
         <ButtonWrapper>
-        <TagButton text="관심 태그 & 지역" to="/interest-tags"></TagButton>
+        <TagButton text="관심 태그 & 지역" to="/tagregionAll"></TagButton>
         <TagButton text="신규" to="/new"></TagButton>
-        <TagButton text="인기" to="/popular"></TagButton>
+        <TagButton text="인기" to="/famousAll"></TagButton>
         </ButtonWrapper>
       
 
