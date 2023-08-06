@@ -13,15 +13,28 @@ import NavBar2 from './components/NavBar2';
 import Review from './pages/Review';
 import MyPageDetail from './pages/ReviewDetail';
 import Main from './pages/Main';
+import AllFamous from './pages/AllFamous';
+import AllNew from './pages/AllNew';
+import AllTagRegion from './pages/AllTagRegion';
 
 
 function App() {
-
+  let [shoes, setShoes] = useState(data);
   return (
     <div className="App">
       
       <NavBar2></NavBar2>
-      <Main></Main>
+      <Routes>
+        <Route path='/' element={<Main/>}></Route>
+        <Route path='/mypage' element={<MyPage shoes={shoes}/>}></Route>
+        <Route path="/info" element={<Info></Info>}></Route>
+        <Route path="/mypage/detail" element={ <MyPageDetail shoes={shoes}/> }/>
+        <Route path='/review' element={<Review/>}></Route>
+        <Route path="/newAll" exact component={<AllNew></AllNew>} />
+        <Route path="/famousAll" component={<AllFamous></AllFamous>} />
+        <Route path="/tagregionAll" component={<AllTagRegion></AllTagRegion>} />
+      </Routes>
+
       
     </div>
   );
