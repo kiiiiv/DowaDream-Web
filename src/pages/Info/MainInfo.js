@@ -24,7 +24,6 @@ const Area = [
     ["제주",],
 ];
 
-const name = "정렬순"
 const Array= [
     "신규순",
     "인기순",
@@ -33,6 +32,7 @@ const Array= [
 
 const MainInfo = () => {
 
+    const [name,setName] = useState("정렬순");
     const [view, setView] = useState(false); 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -40,6 +40,12 @@ const MainInfo = () => {
     
     const onOptionClicked = (value, i) => () => {
       console.log(value);
+      if(value==="없음"){
+        setName("정렬순");
+        
+      }else{
+      setName(value);
+      }
       setIsOpen(false);
     };
 
@@ -51,10 +57,10 @@ const MainInfo = () => {
         <InfoSummary>
             <SummaryText>총 {<SummaryNum>35</SummaryNum>}건의 봉사 목록이 있습니다.</SummaryText>
             <CategoryMenuBox onClick={onToggle}>
-                <>카테고리 ^</>
+                <>{`${name} ∨`}</>
+                { isOpen && <DropDown name={name} array={Array} onOptionClicked={onOptionClicked}></DropDown>}
             </CategoryMenuBox>
         </InfoSummary>
-        { isOpen && <DropDown name={name} array={Array} onOptionClicked={onOptionClicked}></DropDown>}
 
 
     </Wrapper>
