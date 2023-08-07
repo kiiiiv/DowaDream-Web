@@ -11,33 +11,41 @@ import ControlledCarousel from '../components/Carousel';
 import NavBar2 from '../components/NavBar2';
 import Review from './Review';
 import MyPageDetail from './ReviewDetail';
-function Main(props){
+import TagButton from '../components/TagButton.js';
+import styled from 'styled-components';
+function Main(){
     let [shoes, setShoes] = useState(data);
     let [재고] = useState([10,11,12]);
     let navigate = useNavigate();
     return(
     <div className='Wrapper'>
-    <Routes>
-      <Route path='/' element={
-      <div>
-          <div className="container">
-            <ControlledCarousel></ControlledCarousel>
-            </div>
-        </div>
-        }>
-      </Route>
+      <ControlledCarousel/>
+        <HeaderWrapper>
+          <h3>  님! 어떤 봉사정보 추천을 원하시나요?{'\n'}</h3>
+        </HeaderWrapper>
+        <ButtonWrapper>
+        <TagButton text="관심 태그 & 지역" to="/tagregionAll"></TagButton>
+        <TagButton text="신규" to="/new"></TagButton>
+        <TagButton text="인기" to="/famousAll"></TagButton>
+        </ButtonWrapper>
+      
 
-      <Route path='/mypage' element={<MyPage shoes={shoes}/>}></Route>
-      <Route path="/info" element={<Info></Info>}></Route>
-      <Route path="/mypage/detail" element={ <MyPageDetail shoes={shoes}/> }/>
-      <Route path='/review' element={<Review/>}>
-        <Route path='member' element={<div>멤버들</div>}></Route>
-        <Route path='location' element={<div>회사위치</div>}></Route>
-      </Route>
-
-
-    </Routes>
     </div>
     );
   }
   export default Main;
+
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: 20px 0px 16px;
+  gap: 10px;
+`;
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+
