@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Wrapper } from '../../styles/Common'
 import styled from 'styled-components'
 import DropDown from '../../components/DropDown';
+import MainInfoVol from '../../components/MainInfoVol';
 
 const Area = [
     ["전국",],
@@ -24,10 +25,16 @@ const Area = [
     ["제주",],
 ];
 
-const Array= [
+const StArray= [
     "신규순",
     "인기순",
     "없음",
+]
+
+const InfoArray = [
+    {},
+    {},
+
 ]
 
 const MainInfo = () => {
@@ -58,9 +65,27 @@ const MainInfo = () => {
             <SummaryText>총 {<SummaryNum>35</SummaryNum>}건의 봉사 목록이 있습니다.</SummaryText>
             <CategoryMenuBox onClick={onToggle}>
                 <>{`${name} ∨`}</>
-                { isOpen && <DropDown name={name} array={Array} onOptionClicked={onOptionClicked}></DropDown>}
+                { isOpen && <DropDown name={name} array={StArray} onOptionClicked={onOptionClicked}></DropDown>}
             </CategoryMenuBox>
         </InfoSummary>
+
+        <InfoAllWrapper>
+            <InfoTypesWrapper>
+                <InfoAcText>등록기관</InfoAcText>
+                <InfoTitleText>제목</InfoTitleText>
+                <InfoTimeText>봉사 기간</InfoTimeText>
+                <InfoTimeText>모집기간</InfoTimeText>
+            </InfoTypesWrapper>
+            <MainInfoVol ac={1} title={1} time1={1} time2={1} ></MainInfoVol>
+
+            {
+                Array.from({ length: 20 }).map((_, index) => (
+                    <MainInfoVol key={index} ac={1} title={1} time1={1} time2={1} ></MainInfoVol>
+                ))
+            }
+
+            
+        </InfoAllWrapper>
 
 
     </Wrapper>
@@ -135,3 +160,60 @@ const CategoryMenuBox = styled.button`
   margin-top: 0.8em;
 
 `;
+
+const InfoAllWrapper = styled.div`
+
+    width : 100%;
+    height : auto;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+`;
+
+const InfoTypesWrapper = styled.div`
+
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    align-items: flex-start;
+
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    
+
+`
+const InfoAcText = styled.span`
+
+    width: 20%;
+    height : auto;
+    font-size: 18px;
+
+    text-align : center;
+    flex-shrink: 0;
+
+`
+
+const InfoTitleText = styled.span`
+
+    width: 60%;
+    height : auto;
+    font-size: 18px;
+
+    
+    text-align : center;
+    flex-shrink: 0;
+    
+`
+
+const InfoTimeText = styled.span`
+
+    width: 10%;
+    height : auto;
+    font-size: 18px;
+
+    text-align : center;
+    flex-shrink: 0;
+    
+`
