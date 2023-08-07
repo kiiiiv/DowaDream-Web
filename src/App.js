@@ -16,7 +16,7 @@ import Main from './pages/Main';
 import AllFamous from './pages/AllFamous';
 import AllNew from './pages/AllNew';
 import AllTagRegion from './pages/AllTagRegion';
-import ReviewDetail from './pages/ReviewDetail';
+import MainInfo from './pages/Info/MainInfo';
 
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Main/>}></Route>
         <Route path='/mypage' element={<MyPage shoes={shoes}/>}></Route>
-        <Route path="/info" element={<Info></Info>}></Route>
+        <Route path="/info" element={<MainInfo></MainInfo>}></Route>
         <Route path="/mypage/detail" element={ <MyPageDetail shoes={shoes}/> }/>
         <Route path='/review' element={<ReviewDetail/>}></Route>
         <Route path="/newAll" exact component={<AllNew></AllNew>} />
