@@ -17,6 +17,7 @@ import AllFamous from './pages/AllFamous';
 import AllNew from './pages/AllNew';
 import AllTagRegion from './pages/AllTagRegion';
 import MainInfo from './pages/Info/MainInfo';
+import ReviewDetail from './pages/ReviewDetail';
 
 
 function App() {

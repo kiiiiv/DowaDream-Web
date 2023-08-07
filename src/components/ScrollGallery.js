@@ -4,17 +4,18 @@ import pic from '../봉사.jpg';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import image1 from '../봉사.jpg';
-import image2 from '../봉사.jpg';
+import image2 from '../배경.jpg';
 import image3 from '../봉사.jpg';
-import image4 from '../봉사.jpg';
+import image4 from '../배경.jpg';
+import image5 from '../봉사.jpg';
 
 const Gallery = styled.div`
   display: flex;
   align-items: center;
   overflow-x: scroll;
   scroll-behavior: smooth;
-  height: 300px;
-  width: 80%;
+  height: 365px;
+  width: 100%;
   margin: 0 auto;
 
   &::-webkit-scrollbar {
@@ -30,11 +31,10 @@ const Gallery = styled.div`
 
 const Image = styled.img`
   height: 100%;
-  margin-right: 50px;
   object-fit: cover;
 `;
 
-const images = [image1, image2, image3, image4];
+const images = [image1, image2, image3, image4, image5];
 
 function ScrollGallery() {
   const galleryRef = useRef(null);

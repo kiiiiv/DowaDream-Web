@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import HashTag from '../components/HashTag';
 import pic2 from '../프로필.jpg';
 import ScrollGallery from '../components/ScrollGallery';
+import GoogleProfilePic from '../components/GoogleProfilePic';
+import UserComments from '../components/UserComments';
 
 function MyPageDetail(){
     return (
@@ -25,15 +27,14 @@ function MyPageDetail(){
           <Container4>
             <CommentsLikes>
               <Comments>
-                <CommentsText>댓글</CommentsText>
-                <CommentsTextNum>15</CommentsTextNum>
-                
+                <CommentsInfo>댓글</CommentsInfo>
+                <CommentsInfoNum>15</CommentsInfoNum>                
               </Comments>
               <DivideBar></DivideBar>
-              <Likes>
-                <LikesText>응원 수</LikesText>
-                <LikesTextNum>5</LikesTextNum>
-              </Likes>
+              <Comments>
+                <CommentsInfo>응원 수</CommentsInfo>
+                <CommentsInfoNum>5</CommentsInfoNum>
+              </Comments>
 
             </CommentsLikes>
           </Container4>
@@ -41,6 +42,41 @@ function MyPageDetail(){
             <ScrollGallery></ScrollGallery>
           </Container5>
           <Container6>ㅇㄹㅇㅁㄹ ㅁ ㅇㅁㄹㅇㄹㅁ ㅁㅇㄹㅁㅇㄹ ㅁㅇㄹㄹㅇㅁㄹㅇㅁㄹㅁ ㅇㅁㄹㅁ ㅇㅇㄴㅁㅌㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ ㅇㄹㅇㅁ ㅇ ㅇ ㅇ ㅇ ㅇ ㅇ ㅇ ㅇ 텍스트 이러쿵 저러쿵 뭐시기 저시기 어쩔 저쩔</Container6> 
+          <Container7>
+            <CommentsHeader>
+            <Comments>
+                <CommentsInfo>댓글</CommentsInfo>
+                <CommentsInfoNum>15</CommentsInfoNum>
+                <CommentsInfo>개</CommentsInfo>
+              </Comments>
+              <DivideBar></DivideBar>
+              <Comments>
+                <CommentsInfo>응원 수</CommentsInfo>
+                <CommentsInfoNum>5</CommentsInfoNum>
+                <CommentsInfo>회</CommentsInfo>
+              </Comments>
+              <CommentLink></CommentLink>
+            </CommentsHeader>
+          </Container7>
+          <Container8>
+            <CommentsWrite>
+              <CommentsWriteContainer>
+                <GoogleProfilePic size={48}></GoogleProfilePic>
+              </CommentsWriteContainer>
+              <CommentsWriteContainer2>
+                <CommentsWriteContainer3>
+                  <CommentsInput></CommentsInput>
+                </CommentsWriteContainer3>
+                <CommentsButton>
+                  <CommentsButton color="#F79999"></CommentsButton>
+                  <CommentsButton color="#2A2A2A"></CommentsButton>
+                </CommentsButton>
+              </CommentsWriteContainer2>
+            </CommentsWrite>
+          </Container8>
+          <Container9>
+            <UserComments></UserComments>
+          </Container9>
         </div>
     );
 }
@@ -177,7 +213,7 @@ let Comments = styled.div`
   width: 72px;
   height: 37px;
 `;
-let CommentsText = styled.div`
+let CommentsInfo = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: center;
@@ -193,7 +229,7 @@ font-size: 14px;
 line-height: 17px;
 color: #000000;
 `;
-let CommentsTextNum= styled.div`
+let CommentsInfoNum= styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -280,28 +316,130 @@ line-height: 24px;
 color: #000000;
 
 `;
+/* 댓글 container */
+let Container7= styled.div`
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+height: 1561px;
+`;
+let CommentsHeader= styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-start;
+padding: 20px 0px 0px;
+gap: 10px;
+height: 61px;
+`;
+let CommentLink = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px 0px 10px 10px;
+gap: 10px;
+margin: 0 auto;
+width: 73px;
+height: 41px;
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 21px;
+color: #000000;
+`;
+let Container8 = styled.div`
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 0px 16px;
+height: 255px;
+`;
+/* Frame 126 */
+let CommentsWrite = styled.div`
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+height: 239px;
+background: #FFFAC9;
+border-top: 2px #024959;
+border-bottom: 2px #024959;
+`;
+let CommentsWriteContainer = styled.div`
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 16px 0px 16px 20px;
+width: 95%;
+height: 235px;
+`;
+let CommentsWriteContainer2 = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: flex-end;
+padding: 0px;
+height: 203px;
+`;
+/* Frame 127 */
+let CommentsWriteContainer3 = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: flex-end;
+padding: 0px 0px 12px 20px;
+height: 162px;
+`;
+/* Rectangle 96 */
+let CommentsInput = styled.div`
+box-sizing: border-box;
+width: 1372px;
+height: 150px;
+background: #FCFCFC;
+/* Light Gray Color */
+border: 1px solid #D9D9D9;
+border-radius: 10px;
+`
+/* Frame 129 */
+let CommentsButton = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: flex-end;
+align-items: flex-end;
+padding: 0px;
+gap: 10px;
+width: 228px;
+height: 41px;
+`
+/* Frame 91 */
+let CommentsButton1 = styled.button`
+background-color: ${props => props.color || '#ffffff'};
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px 23px;
+gap: 10px;
+width: 109px;
+height: 41px;
+border-radius: 10px;
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+font-color: #FCFCFC;
+line-height: 21px;
+`
+/* Frame 110 */
+let Container9 = styled.button`
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+width: 1536px;
+height: 1245px;
+`
