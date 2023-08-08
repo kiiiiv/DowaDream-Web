@@ -2,59 +2,95 @@ import React, { useState } from 'react'
 import { Wrapper } from '../../styles/Common'
 import styled from 'styled-components'
 import DropDown from '../../components/DropDown';
+import MainInfoVol from '../../components/MainInfoVol';
+import InfoSelectionList from '../../components/Maininfo/InfoSelectionList';
 
-const Area = [
-    ["전국",],
-    ["서울",],
-    ["경기",],
-    ["인천",],
-    ["부산",],
-    ["대구",],
-    ["광주",],
-    ["대전",],
-    ["울산",],
-    ["세종",],
-    ["강원",],
-    ["경남",],
-    ["경북",],
-    ["전남",],
-    ["전북",],
-    ["충남",],
-    ["충북",],
-    ["제주",],
-];
 
-const name = "정렬순"
-const Array= [
+const StArray= [
     "신규순",
     "인기순",
     "없음",
 ]
 
+const arr = new Array(30).fill(false); 
+
+
+const InfoArray = [
+    {},
+    {},
+
+]
+
 const MainInfo = () => {
 
-    const [view, setView] = useState(false); 
+    
+    const [name,setName] = useState("정렬순");
     const [isOpen, setIsOpen] = useState(false);
-
+    const [isTag, setIsTag] = useState("Loc");
+    //지역 및 세부 주소
+    const [isSelectLoc,setIsSelectLoc] = useState("서울");
+    const [isSelectDetail,setIsSelectDetail] = useState(arr);
     const onToggle = () => setIsOpen(!isOpen);
     
     const onOptionClicked = (value, i) => () => {
       console.log(value);
+      if(value==="없음"){
+        setName("정렬순");
+        
+      }else{
+      setName(value);
+      }
       setIsOpen(false);
     };
+
+    const onLocDetailClicked = (i) =>{
+        arr[i] = !arr[i];
+        setIsSelectDetail(arr);
+        console.log(arr);
+    }
+
+    const onLocListClicked = (name) =>{
+        console.log(name);
+        setIsSelectLoc(name);
+    }
 
   return (
     <Wrapper>
         
         <Title>봉사정보</Title>
-        <div>봉사정보선택</div>
+        
+        <InfoSelection>
+            <SeloectTag onClick={() => setIsTag("Loc")} color={("Loc" === isTag).toString()}>지역</SeloectTag>
+            <SeloectTag onClick={() => setIsTag("Tag")} color={("Tag" === isTag).toString()}>태그</SeloectTag>
+            <InfoSelectionList  isSelectLoc={isSelectLoc} SetIsSelectLoc={onLocListClicked} arr={arr} onLocDetailClicked={onLocDetailClicked}></InfoSelectionList>
+        
+        </InfoSelection>
+
         <InfoSummary>
             <SummaryText>총 {<SummaryNum>35</SummaryNum>}건의 봉사 목록이 있습니다.</SummaryText>
             <CategoryMenuBox onClick={onToggle}>
-                <>카테고리 ^</>
+                <>{`${name} ∨`}</>
+                { isOpen && <DropDown name={name} array={StArray} onOptionClicked={onOptionClicked}></DropDown>}
             </CategoryMenuBox>
         </InfoSummary>
-        { isOpen && <DropDown name={name} array={Array} onOptionClicked={onOptionClicked}></DropDown>}
+
+        <InfoAllWrapper>
+            <InfoTypesWrapper>
+                <InfoAcText>등록기관</InfoAcText>
+                <InfoTitleText>제목</InfoTitleText>
+                <InfoTimeText>봉사 기간</InfoTimeText>
+                <InfoTimeText>모집기간</InfoTimeText>
+            </InfoTypesWrapper>
+            <MainInfoVol ac={1} title={1} time1={1} time2={1} ></MainInfoVol>
+
+            {
+                Array.from({ length: 20 }).map((_, index) => (
+                    <MainInfoVol key={index} ac={1} title={1} time1={1} time2={1} ></MainInfoVol>
+                ))
+            }
+
+            
+        </InfoAllWrapper>
 
 
     </Wrapper>
@@ -66,7 +102,7 @@ export default MainInfo
 const Title = styled.h3`
 
     margin-top : 1.67em;
-
+    margin-bottom : 0.47em;
     display: flex;
     align-items: flex-start;
 
@@ -129,3 +165,96 @@ const CategoryMenuBox = styled.button`
   margin-top: 0.8em;
 
 `;
+
+const InfoAllWrapper = styled.div`
+
+    width : 100%;
+    height : auto;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+`;
+
+const InfoTypesWrapper = styled.div`
+
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    align-items: flex-start;
+
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    
+
+`
+const InfoAcText = styled.span`
+
+    width: 20%;
+    height : auto;
+    font-size: 18px;
+
+    text-align : center;
+    flex-shrink: 0;
+
+`
+
+const InfoTitleText = styled.span`
+
+    width: 60%;
+    height : auto;
+    font-size: 18px;
+
+    
+    text-align : center;
+    flex-shrink: 0;
+    
+`
+
+const InfoTimeText = styled.span`
+
+    width: 10%;
+    height : auto;
+    font-size: 18px;
+
+    text-align : center;
+    flex-shrink: 0;
+    
+`
+
+const InfoSelection = styled.div`
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+	flex-wrap: wrap; 
+
+
+`;
+
+
+const SeloectTag = styled.div`
+
+    border: 1px solid var(--dark-gray-color, #7E8181);
+
+    display: flex;
+    width: 50%;
+    height: auto;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    color: ${(props) => (props.color==="true") ? 'var(--dark-color, #024959)' : 'var(--light-gray-color, #D9D9D9)'};
+    transition: 0.2s; 
+    
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+
+
+`;
+
