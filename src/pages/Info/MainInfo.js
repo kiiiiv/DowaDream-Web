@@ -40,8 +40,8 @@ const InfoArray = [
 const MainInfo = () => {
 
     const [name,setName] = useState("정렬순");
-    const [view, setView] = useState(false); 
     const [isOpen, setIsOpen] = useState(false);
+    const [isTag, setIsTag] = useState("Loc");
 
     const onToggle = () => setIsOpen(!isOpen);
     
@@ -60,7 +60,13 @@ const MainInfo = () => {
     <Wrapper>
         
         <Title>봉사정보</Title>
-        <div>봉사정보선택</div>
+        
+        <InfoSelection>
+        <SeloectTag onClick={() => setIsTag("Loc")} color={("Loc" === isTag).toString()}>지역</SeloectTag>
+        <SeloectTag onClick={() => setIsTag("Tag")} color={Boolean("Tag" === isTag).toString()}>태그</SeloectTag>
+        <div>안녕하세요</div>
+        </InfoSelection>
+
         <InfoSummary>
             <SummaryText>총 {<SummaryNum>35</SummaryNum>}건의 봉사 목록이 있습니다.</SummaryText>
             <CategoryMenuBox onClick={onToggle}>
@@ -97,7 +103,7 @@ export default MainInfo
 const Title = styled.h3`
 
     margin-top : 1.67em;
-
+    margin-bottom : 0.47em;
     display: flex;
     align-items: flex-start;
 
@@ -217,3 +223,39 @@ const InfoTimeText = styled.span`
     flex-shrink: 0;
     
 `
+
+const InfoSelection = styled.div`
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+	flex-wrap: wrap; 
+
+
+`;
+
+
+const SeloectTag = styled.div`
+
+    border: 1px solid var(--dark-gray-color, #7E8181);
+
+    display: flex;
+    width: 50%;
+    height: auto;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    color: ${(props) => (props.color==="true") ? 'var(--dark-color, #024959)' : 'var(--light-gray-color, #D9D9D9)'};
+    transition: 0.2s; 
+    
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+
+
+`;
+
