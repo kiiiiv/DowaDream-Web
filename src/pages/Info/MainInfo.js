@@ -3,33 +3,17 @@ import { Wrapper } from '../../styles/Common'
 import styled from 'styled-components'
 import DropDown from '../../components/DropDown';
 import MainInfoVol from '../../components/MainInfoVol';
+import InfoSelectionList from '../../components/Maininfo/InfoSelectionList';
 
-const Area = [
-    ["전국",],
-    ["서울",],
-    ["경기",],
-    ["인천",],
-    ["부산",],
-    ["대구",],
-    ["광주",],
-    ["대전",],
-    ["울산",],
-    ["세종",],
-    ["강원",],
-    ["경남",],
-    ["경북",],
-    ["전남",],
-    ["전북",],
-    ["충남",],
-    ["충북",],
-    ["제주",],
-];
 
 const StArray= [
     "신규순",
     "인기순",
     "없음",
 ]
+
+const arr = new Array(30).fill(false); 
+
 
 const InfoArray = [
     {},
@@ -39,10 +23,13 @@ const InfoArray = [
 
 const MainInfo = () => {
 
+    
     const [name,setName] = useState("정렬순");
     const [isOpen, setIsOpen] = useState(false);
     const [isTag, setIsTag] = useState("Loc");
-
+    //지역 및 세부 주소
+    const [isSelectLoc,setIsSelectLoc] = useState("서울");
+    const [isSelectDetail,setIsSelectDetail] = useState(arr);
     const onToggle = () => setIsOpen(!isOpen);
     
     const onOptionClicked = (value, i) => () => {
@@ -56,15 +43,27 @@ const MainInfo = () => {
       setIsOpen(false);
     };
 
+    const onLocDetailClicked = (i) =>{
+        arr[i] = !arr[i];
+        setIsSelectDetail(arr);
+        console.log(arr);
+    }
+
+    const onLocListClicked = (name) =>{
+        console.log(name);
+        setIsSelectLoc(name);
+    }
+
   return (
     <Wrapper>
         
         <Title>봉사정보</Title>
         
         <InfoSelection>
-        <SeloectTag onClick={() => setIsTag("Loc")} color={("Loc" === isTag).toString()}>지역</SeloectTag>
-        <SeloectTag onClick={() => setIsTag("Tag")} color={Boolean("Tag" === isTag).toString()}>태그</SeloectTag>
-        <div>안녕하세요</div>
+            <SeloectTag onClick={() => setIsTag("Loc")} color={("Loc" === isTag).toString()}>지역</SeloectTag>
+            <SeloectTag onClick={() => setIsTag("Tag")} color={("Tag" === isTag).toString()}>태그</SeloectTag>
+            <InfoSelectionList  isSelectLoc={isSelectLoc} SetIsSelectLoc={onLocListClicked} arr={arr} onLocDetailClicked={onLocDetailClicked}></InfoSelectionList>
+        
         </InfoSelection>
 
         <InfoSummary>
