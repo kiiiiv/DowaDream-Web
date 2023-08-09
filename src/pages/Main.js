@@ -29,12 +29,7 @@ function Main(){
         <TagButton text="신규" to="/new"></TagButton>
         <TagButton text="인기" to="/famousAll"></TagButton>
         </ButtonWrapper>
-      
-
-
-
-
-
+  
     </div>
     );
   }
