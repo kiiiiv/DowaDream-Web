@@ -5,6 +5,7 @@ import DropDown from '../../components/DropDown';
 import MainInfoVol from '../../components/MainInfoVol';
 import InfoSelectionList from '../../components/Maininfo/InfoSelectionList';
 
+import Search from '../../assets/Search.svg';
 
 const StArray= [
     "신규순",
@@ -12,7 +13,7 @@ const StArray= [
     "없음",
 ]
 
-const arr = new Array(30).fill(false); 
+const arr =[];
 
 
 const InfoArray = [
@@ -62,7 +63,8 @@ const MainInfo = () => {
         <InfoSelection>
             <SeloectTag onClick={() => setIsTag("Loc")} color={("Loc" === isTag).toString()}>지역</SeloectTag>
             <SeloectTag onClick={() => setIsTag("Tag")} color={("Tag" === isTag).toString()}>태그</SeloectTag>
-            <InfoSelectionList  isSelectLoc={isSelectLoc} SetIsSelectLoc={onLocListClicked} arr={arr} onLocDetailClicked={onLocDetailClicked}></InfoSelectionList>
+            <InfoSelectionList  isSelectLoc={isSelectLoc} SetIsSelectLoc={onLocListClicked} arr={arr}></InfoSelectionList>
+            <SearchInfo> <img src={Search}/><div>선택 조건으로 검색하기</div></SearchInfo>
         
         </InfoSelection>
 
@@ -84,13 +86,18 @@ const MainInfo = () => {
             <MainInfoVol ac={1} title={1} time1={1} time2={1} ></MainInfoVol>
 
             {
+                // 배열 크기에 따른 변환 필요
                 Array.from({ length: 20 }).map((_, index) => (
                     <MainInfoVol key={index} ac={1} title={1} time1={1} time2={1} ></MainInfoVol>
                 ))
             }
 
+
             
         </InfoAllWrapper>
+
+        {/*배열 크기에 따른 생성 여부 결정 필요*/}
+        <SearchMore>더보기 ∨</SearchMore>
 
 
     </Wrapper>
@@ -258,3 +265,52 @@ const SeloectTag = styled.div`
 
 `;
 
+const SearchInfo = styled.div`
+
+    display: flex;
+    padding: 0px 10px;
+    align-items: center;
+    gap: 10px;
+
+    margin: 10px 0px;
+    width : 13%;
+    height : 37px;
+    border-radius: 20px 20px 20px 20px;
+    background: var(--yellow-color, #FFE34F);
+
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: 550;
+    line-height: normal;
+    color: #000;
+
+
+
+`
+
+const SearchMore = styled.div`
+
+    width : 131px;
+    height : 49px;    
+
+    border-radius: 30px;
+    background: var(--yellow-color, #FFE34F);
+
+
+    margin: 16px auto;
+
+
+    display: flex;
+    padding: 14px 10px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    color: #000;
+    text-align: center;
+    font-size: 1.6em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+`
