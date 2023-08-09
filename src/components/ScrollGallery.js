@@ -14,18 +14,19 @@ const Gallery = styled.div`
   align-items: center;
   overflow-x: scroll;
   scroll-behavior: smooth;
-  height: 365px;
+  height: 390px;
   width: 100%;
   margin: 0 auto;
 
   &::-webkit-scrollbar {
-    height: 8px;
-    width: 8px;
+    height: 19px;
+    width: 12px;
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: #ccc;
+    height: 6px;
   }
 `;
 

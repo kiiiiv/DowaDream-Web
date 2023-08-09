@@ -3,11 +3,9 @@ import Carousel from 'react-bootstrap/Carousel';
 import pic from '../봉사.jpg';
 import styled from 'styled-components';
 
-function HashTag() {
-
-
+function HashTag({text}) {
   return (
-    <HashtagButton></HashtagButton>
+    <HashtagButton>{text}</HashtagButton>
   );
 }
 
@@ -18,12 +16,13 @@ const HashtagButton = styled.button`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 4px 10px;
-
-    width: 76px;
-    height: 37px;
+    border: none;
+    height: 50px;
     background: #FFFAC9;
-    border-radius: 10px;
-
- 
+    border-radius: 10px; 
+    font-family: 'Pretendard Variable';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 29px;
 `;
