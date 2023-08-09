@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
 import styled from 'styled-components';
+import pic from '../프로필.jpg'
 
 const GoogleProfilePic = (props) => {
     const { size } = props;
@@ -18,6 +19,6 @@ display: flex;
 flex-direction: row;
 align-items: flex-start;
 padding: 0px;
-background: url(image.png);
-border-radius: 20px;
+background: url(${pic});
+border-radius: 50%;
 `;

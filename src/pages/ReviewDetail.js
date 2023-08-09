@@ -1,17 +1,41 @@
-import { useParams } from 'react-router-dom';
+import { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import HashTag from '../components/HashTag';
 import pic2 from '../프로필.jpg';
 import ScrollGallery from '../components/ScrollGallery';
 import GoogleProfilePic from '../components/GoogleProfilePic';
 import UserComments from '../components/UserComments';
+import CommentsWrite from '../components/CommentsWrite';
+import { Link } from "react-router-dom";
 
 function MyPageDetail(){
+  const [numLikes, setNumLikes] = useState(0);
+  const [numComments, setNumComments] = useState(0);
+   // 상단 이동 버튼 생성을 위한 useRef
+  const topButtonRef = useRef(null);
+
+   // 페이지 상단으로 이동시키는 함수
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  const [userComments, setUserComments] = useState([]);
+
+  const addComment = (comment) => {
+    setUserComments([...userComments, comment]);
+  }
+  useEffect(() => {
+    setNumComments(userComments.length);
+  }, [userComments]);
+  const handleLikeSubmit = (likes) => {
+    setNumLikes(likes);
+  }
     return (
         <div className='Wrapper'>
           <Container1>
-            <HashTag></HashTag>
-            <ViewInfoButton>봉사 정보 보러가기</ViewInfoButton>
+            <HashTag text={'#해시태그'}></HashTag>
+            <Link to="/info">
+              <ViewInfoButton>봉사 정보 보러가기</ViewInfoButton>
+            </Link>
           </Container1>
           <Container2>
               <h2>어쩌구 저쩌구 우당탕탕 봉사 후기</h2>
@@ -27,15 +51,14 @@ function MyPageDetail(){
           <Container4>
             <CommentsLikes>
               <Comments>
-                <CommentsInfo>댓글</CommentsInfo>
-                <CommentsInfoNum>15</CommentsInfoNum>                
+                <CommentsInfo>전체 댓글</CommentsInfo>
+                <CommentsInfoNum1>{numComments}</CommentsInfoNum1>                
               </Comments>
               <DivideBar></DivideBar>
               <Comments>
-                <CommentsInfo>응원 수</CommentsInfo>
-                <CommentsInfoNum>5</CommentsInfoNum>
+                <CommentsInfo>전체 응원수</CommentsInfo>
+                <CommentsInfoNum2>{numLikes}</CommentsInfoNum2>
               </Comments>
-
             </CommentsLikes>
           </Container4>
           <Container5>
@@ -44,39 +67,29 @@ function MyPageDetail(){
           <Container6>ㅇㄹㅇㅁㄹ ㅁ ㅇㅁㄹㅇㄹㅁ ㅁㅇㄹㅁㅇㄹ ㅁㅇㄹㄹㅇㅁㄹㅇㅁㄹㅁ ㅇㅁㄹㅁ ㅇㅇㄴㅁㅌㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ ㅇㄹㅇㅁ ㅇ ㅇ ㅇ ㅇ ㅇ ㅇ ㅇ ㅇ 텍스트 이러쿵 저러쿵 뭐시기 저시기 어쩔 저쩔</Container6> 
           <Container7>
             <CommentsHeader>
-            <Comments>
-                <CommentsInfo>댓글</CommentsInfo>
-                <CommentsInfoNum>15</CommentsInfoNum>
-                <CommentsInfo>개</CommentsInfo>
+              <Comments>
+                <CommentsInfo>전체 댓글</CommentsInfo>
+                <CommentsInfoNum1>{numComments}</CommentsInfoNum1>
+                <CommentsInfo2>개</CommentsInfo2>
               </Comments>
               <DivideBar></DivideBar>
               <Comments>
-                <CommentsInfo>응원 수</CommentsInfo>
-                <CommentsInfoNum>5</CommentsInfoNum>
-                <CommentsInfo>회</CommentsInfo>
+                <CommentsInfo>전체 응원수</CommentsInfo>
+                <CommentsInfoNum2>{numLikes}</CommentsInfoNum2>
+                <CommentsInfo2>회</CommentsInfo2>
               </Comments>
-              <CommentLink></CommentLink>
+              <CommentLink onClick={scrollToTop} ref={topButtonRef}>본문보기</CommentLink>
             </CommentsHeader>
-          </Container7>
-          <Container8>
-            <CommentsWrite>
-              <CommentsWriteContainer>
-                <GoogleProfilePic size={48}></GoogleProfilePic>
-              </CommentsWriteContainer>
-              <CommentsWriteContainer2>
-                <CommentsWriteContainer3>
-                  <CommentsInput></CommentsInput>
-                </CommentsWriteContainer3>
-                <CommentsButton>
-                  <CommentsButton color="#F79999"></CommentsButton>
-                  <CommentsButton color="#2A2A2A"></CommentsButton>
-                </CommentsButton>
-              </CommentsWriteContainer2>
-            </CommentsWrite>
+            <Container8>
+            <CommentsWrite onCommentSubmit={addComment} onLikeSubmit={handleLikeSubmit} 
+       numLikes={numLikes} numComments={numComments} ></CommentsWrite>
           </Container8>
           <Container9>
-            <UserComments></UserComments>
+            {userComments.map((comment, index) => (
+              <UserComments key={index} text={comment} to='./'></UserComments>
+            ))}
           </Container9>
+          </Container7>          
         </div>
     );
 }
@@ -85,7 +98,7 @@ let Container1 = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px;
+  padding: 20px;
   gap: 40px;
 `;
 let ViewInfoButton = styled.button`  
@@ -96,6 +109,7 @@ let ViewInfoButton = styled.button`
   height: 49px;
   background: #FFE34F;
   border-radius: 10px;
+  border: none;
   &:hover {
     text-decoration: underline;
     cursor: pointer;
@@ -105,8 +119,6 @@ let ViewInfoButton = styled.button`
   font-weight: 600;
   font-size: 19px;
   line-height: 29px;
-
-
 `;
 let Box = styled.div`
   padding: 20px;
@@ -152,15 +164,14 @@ let ProfileInfo = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  width: 223px;
   height: 85px;
 `;
 let ProfileName = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 8px 0px;
+  padding: 8px 20px;
   gap: 10px;
   width: 100px;
   height: 45px;
@@ -173,9 +184,9 @@ let ProfileName = styled.div`
 let ProfileRegion = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
-  padding: 8px 0px;
+  padding: 8px 20px;
   gap: 4px;
   width: 223px;
   height: 40px;
@@ -185,7 +196,6 @@ let ProfileRegion = styled.div`
   font-size: 20px;
   font-color: #7E8181;
   line-height: 24px;
-
 `;
 let Container4 = styled.div`
   display: flex;
@@ -202,25 +212,36 @@ let CommentsLikes = styled.div`
   padding: 0px;
   width: 100%;
   height: 37px;
-  border-bottom: 1px solid #000000;
+  border-bottom: 2px solid #000000;
+  gap: 13px;
 `;
 let Comments = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   padding: 0px;
-
-  width: 72px;
   height: 37px;
 `;
+/*padding-top, padding-right, padding-bottom, padding-left*/ 
 let CommentsInfo = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-padding: 10px;
-gap: 10px;
-width: 45px;
+height: 37px;
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px;
+color: #000000;
+padding-right: 10px;
+`;
+let CommentsInfo2 = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
 height: 37px;
 font-family: 'Pretendard Variable';
 font-style: normal;
@@ -229,68 +250,36 @@ font-size: 14px;
 line-height: 17px;
 color: #000000;
 `;
-let CommentsInfoNum= styled.div`
+let CommentsInfoNum1= styled.div`
 display: flex;
-flex-direction: column;
+flex-direction: row;
 justify-content: center;
 align-items: center;
-padding: 10px 12px 10px 0px;
-gap: 10px;
-
-width: 27px;
 height: 37px;
 font-family: 'Pretendard Variable';
 font-style: normal;
 font-weight: 400;
-font-size: 14px;
+font-size: 15px;
 line-height: 17px;
-
+color: #F74E43;
+`;
+let CommentsInfoNum2= styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+height: 37px;
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 17px;
 color: #F74E43;
 `;
 let DivideBar= styled.div`
   width: 1px;
-  height: 11px;
-  background: #A0A0A0;
-`;
-let Likes= styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-
-  width: 69px;
-  height: 37px;
-`;
-let LikesText= styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  width: 60px;
-  height: 37px;
-  font-family: 'Pretendard Variable';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #000000;
-`;
-let LikesTextNum= styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0px;
-  width: 9px;
-  height: 37px;
-  font-family: 'Pretendard Variable';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #F74E43;
-
+  height: 60%;
+  background: black;
 `;
 /* Frame 87 */
 let Container5= styled.div`
@@ -305,9 +294,8 @@ let Container6= styled.div`
 display: flex;
 flex-direction: row;
 align-items: flex-start;
-padding: 0px 0px 20px;
+padding: 50px 0px 100px;
 gap: 10px;
-height: 452px;
 font-family: 'Pretendard Variable';
 font-style: normal;
 font-weight: 400;
@@ -322,26 +310,26 @@ display: flex;
 flex-direction: column;
 align-items: flex-start;
 padding: 0px;
-height: 1561px;
+width: 100%
 `;
 let CommentsHeader= styled.div`
 display: flex;
 flex-direction: row;
 justify-content: space-between;
-align-items: flex-start;
+align-items: center;
 padding: 20px 0px 0px;
 gap: 10px;
 height: 61px;
+width: 100%;
 `;
-let CommentLink = styled.div`
+let CommentLink = styled.button`
 display: flex;
 flex-direction: row;
-justify-content: center;
-align-items: center;
+justify-content: flex-end;
+align-items: flex-end;
 padding: 10px 0px 10px 10px;
 gap: 10px;
-margin: 0 auto;
-width: 73px;
+margin-left: auto;
 height: 41px;
 font-family: 'Pretendard Variable';
 font-style: normal;
@@ -349,97 +337,24 @@ font-weight: 700;
 font-size: 18px;
 line-height: 21px;
 color: #000000;
+&:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+border: none;
+background-color: white;
 `;
 let Container8 = styled.div`
 display: flex;
 flex-direction: column;
 align-items: flex-start;
 padding: 0px 0px 16px;
-height: 255px;
 `;
-/* Frame 126 */
-let CommentsWrite = styled.div`
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-height: 239px;
-background: #FFFAC9;
-border-top: 2px #024959;
-border-bottom: 2px #024959;
-`;
-let CommentsWriteContainer = styled.div`
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 16px 0px 16px 20px;
-width: 95%;
-height: 235px;
-`;
-let CommentsWriteContainer2 = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
-align-items: flex-end;
-padding: 0px;
-height: 203px;
-`;
-/* Frame 127 */
-let CommentsWriteContainer3 = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
-align-items: flex-end;
-padding: 0px 0px 12px 20px;
-height: 162px;
-`;
-/* Rectangle 96 */
-let CommentsInput = styled.div`
-box-sizing: border-box;
-width: 1372px;
-height: 150px;
-background: #FCFCFC;
-/* Light Gray Color */
-border: 1px solid #D9D9D9;
-border-radius: 10px;
-`
-/* Frame 129 */
-let CommentsButton = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: flex-end;
-align-items: flex-end;
-padding: 0px;
-gap: 10px;
-width: 228px;
-height: 41px;
-`
-/* Frame 91 */
-let CommentsButton1 = styled.button`
-background-color: ${props => props.color || '#ffffff'};
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 10px 23px;
-gap: 10px;
-width: 109px;
-height: 41px;
-border-radius: 10px;
-font-family: 'Pretendard Variable';
-font-style: normal;
-font-weight: 700;
-font-size: 18px;
-font-color: #FCFCFC;
-line-height: 21px;
-`
-/* Frame 110 */
+/*padding-top, padding-right, padding-bottom, padding-left*/ 
 let Container9 = styled.button`
 display: flex;
 flex-direction: column;
 align-items: flex-start;
-padding: 0px;
-
-width: 1536px;
-height: 1245px;
-`
+padding: 30px 0px 100px 0px;
+background-color: transparent;
+`;
