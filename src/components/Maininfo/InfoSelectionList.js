@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components'
 
 const Area = [
@@ -28,7 +28,17 @@ const InfoSelectionList = (props) => {
 
   
 
-  const { isSelectLoc, SetIsSelectLoc,arr,onLocDetailClicked } = props;  // 수정된 부분
+  const { isSelectLoc, SetIsSelectLoc,arr } = props;  // 수정된 부분
+
+  const [detailButtonStates, setDetailButtonStates] = useState(Array.from({ length: 30 }).fill(false));
+
+  const toggleDetailButtonState = (index) => {
+    const updatedStates = [...detailButtonStates];
+    updatedStates[index] = !updatedStates[index];
+    setDetailButtonStates(updatedStates);
+  };
+
+
 
   return (
     <Wrapper>
@@ -48,9 +58,9 @@ const InfoSelectionList = (props) => {
       <LocDetailWrapper>
         {
           Array.from({ length: 28 }).map((_, index) => (
-            <LocDetailDiv onClick={onLocDetailClicked(index)}>
+            <LocDetailDiv onClick={() => toggleDetailButtonState(index)}>
 
-              <LocDetailButton states={arr[index]==="false"}></LocDetailButton>
+              <LocDetailButton states={detailButtonStates[index].toString()} ></LocDetailButton>
               <LocDetailText>강남구</LocDetailText>
 
             </LocDetailDiv>
@@ -113,6 +123,7 @@ const LocText = styled.div`
   font-weight: 400;
   line-height: normal;
 
+  
   transition: 0.2s; 
   background-color: ${(props) => (props.states==="false") ? 'white' : 'var(--secondary-yellow-color, #FFFAC9)'};
   font-weight: ${(props) => (props.states==="false") ? '400' : '700'};
@@ -136,10 +147,8 @@ const LocDetailWrapper = styled.div`
 `
 
 const LocDetailDiv = styled.div`
-
-  width : 22%;
-  heigth : 14%;
-
+  width: 22%;
+  height: 14%;
 
   display: flex;
   padding: 10px 10px 10px 0px;
@@ -147,17 +156,26 @@ const LocDetailDiv = styled.div`
   align-items: center;
   gap: 10px;
 
+  transition: 0.2s; 
 
-
-`
+  &:hover {
+    background-color: var(--secondary-yellow-color, #FFFAC9);
+    cursor: pointer;
+  }
+`;
 
 const LocDetailText = styled.div`
 
   color: #000;
   font-size: 14px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: normal;
+
+  
+  &:hover {
+    background-color : var(--secondary-yellow-color, ##FFFAC9);
+  }
 
 `
 

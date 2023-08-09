@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Dropdown = ({ name, array, onOptionClicked }) => {
+const Dropdown = ({ name, array, onOptionClicked}) => {
 
 
   return (
