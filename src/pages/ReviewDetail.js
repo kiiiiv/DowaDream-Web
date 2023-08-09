@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import HashTag from '../components/HashTag';
 import pic2 from '../프로필.jpg';
 import ScrollGallery from '../components/ScrollGallery';
-import GoogleProfilePic from '../components/GoogleProfilePic';
 import UserComments from '../components/UserComments';
 import CommentsWrite from '../components/CommentsWrite';
 import { Link } from "react-router-dom";
@@ -120,10 +119,7 @@ let ViewInfoButton = styled.button`
   font-size: 19px;
   line-height: 29px;
 `;
-let Box = styled.div`
-  padding: 20px;
-  background: grey;
-`
+
 let Container2 = styled.div`
   box-sizing: border-box;
   display: flex;

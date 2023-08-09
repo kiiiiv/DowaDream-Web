@@ -16,11 +16,6 @@ const StArray= [
 const arr =[];
 
 
-const InfoArray = [
-    {},
-    {},
-
-]
 
 const MainInfo = () => {
 
@@ -30,7 +25,6 @@ const MainInfo = () => {
     const [isTag, setIsTag] = useState("Loc");
     //지역 및 세부 주소
     const [isSelectLoc,setIsSelectLoc] = useState("서울");
-    const [isSelectDetail,setIsSelectDetail] = useState(arr);
     const onToggle = () => setIsOpen(!isOpen);
     
     const onOptionClicked = (value, i) => () => {
@@ -44,11 +38,6 @@ const MainInfo = () => {
       setIsOpen(false);
     };
 
-    const onLocDetailClicked = (i) =>{
-        arr[i] = !arr[i];
-        setIsSelectDetail(arr);
-        console.log(arr);
-    }
 
     const onLocListClicked = (name) =>{
         console.log(name);
@@ -64,7 +53,7 @@ const MainInfo = () => {
             <SeloectTag onClick={() => setIsTag("Loc")} color={("Loc" === isTag).toString()}>지역</SeloectTag>
             <SeloectTag onClick={() => setIsTag("Tag")} color={("Tag" === isTag).toString()}>태그</SeloectTag>
             <InfoSelectionList  isSelectLoc={isSelectLoc} SetIsSelectLoc={onLocListClicked} arr={arr}></InfoSelectionList>
-            <SearchInfo> <img src={Search}/><div>선택 조건으로 검색하기</div></SearchInfo>
+            <SearchInfo> <img alt={name} src={Search}/><div>선택 조건으로 검색하기</div></SearchInfo>
         
         </InfoSelection>
 
