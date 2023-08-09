@@ -64,6 +64,7 @@ const MainInfo = () => {
                 { isOpen && <DropDown name={name} array={StArray} onOptionClicked={onOptionClicked}></DropDown>}
             </CategoryMenuBox>
         </InfoSummary>
+        
 
         <InfoAllWrapper>
             <InfoTypesWrapper>
