@@ -6,8 +6,10 @@ import ScrollGallery from '../components/ScrollGallery';
 import UserComments from '../components/UserComments';
 import CommentsWrite from '../components/CommentsWrite';
 import { Link } from "react-router-dom";
+import { Wrapper } from '../styles/Common';
 
 function MyPageDetail(){
+  
   const [numLikes, setNumLikes] = useState(0);
   const [numComments, setNumComments] = useState(0);
    // 상단 이동 버튼 생성을 위한 useRef
@@ -29,7 +31,8 @@ function MyPageDetail(){
     setNumLikes(likes);
   }
     return (
-        <div className='Wrapper'>
+      <Wrapper>
+        
           <Container1>
             <HashTag text={'#해시태그'}></HashTag>
             <Link to="/info">
@@ -89,8 +92,10 @@ function MyPageDetail(){
             ))}
           </Container9>
           </Container7>          
-        </div>
+        
+        </Wrapper>
     );
+    
 }
 export default MyPageDetail;
 let Container1 = styled.div`

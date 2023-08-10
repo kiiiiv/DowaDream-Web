@@ -18,6 +18,7 @@ import AllNew from './pages/AllNew';
 import AllTagRegion from './pages/AllTagRegion';
 import MainInfo from './pages/Info/MainInfo';
 import ReviewDetail from './pages/ReviewDetail';
+import ReviewWrite2 from './pages/ReviewWrite2';
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
       <NavBar2></NavBar2>
       <Routes>
         <Route path='/' element={<Main/>}></Route>
-        <Route path='/mypage' element={<MyPage shoes={shoes}/>}></Route>
+        <Route path='/mypage' element={<ReviewWrite2 shoes={shoes}/>}></Route>
         <Route path="/info" element={<MainInfo></MainInfo>}></Route>
         <Route path="/mypage/detail" element={ <MyPageDetail shoes={shoes}/> }/>
         <Route path='/review' element={<ReviewDetail/>}></Route>
