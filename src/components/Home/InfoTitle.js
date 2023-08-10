@@ -1,6 +1,5 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import viewall from '../../assets/전체보기.png';
 
 
 const text = [
@@ -43,7 +42,7 @@ const TiteViewAll = styled.span`
     font-size: 2.8em;
 
     display: inline-block;
-    vertical-align: baseline ; /* 수정된 부분 */
+    vertical-align: baseline; /* 수정된 부분 */
 
     font-style: normal;
     font-weight: 700;
