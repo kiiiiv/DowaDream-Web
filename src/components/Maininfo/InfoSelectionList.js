@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
 
 const Area = [
@@ -29,10 +29,7 @@ const InfoSelectionList = (props) => {
 
 
 
-  const { isSelectLoc, SetIsSelectLoc } = props;  // 수정된 부분
-  const [detailButtonStates, setDetailButtonStates] = useState(Array.from({ length: 33 }).fill(false));
-  console.log(Area[isSelectLoc]);
-
+  const { isSelectLoc, SetIsSelectLoc, detailButtonStates, setDetailButtonStates } = props;  // 수정된 부분
   const x = (Area[isSelectLoc].length % 4);
 
   useEffect(() => {
@@ -106,8 +103,6 @@ const Wrapper = styled.div`
   border-left: 1px solid var(--dark-color, #024959);
   border-right: 1px solid var(--dark-color, #024959);
   border-bottom: 1px solid var(--dark-color, #024959);
-
-
 
 `
 
