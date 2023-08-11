@@ -24,7 +24,7 @@ const MainInfo = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isTag, setIsTag] = useState("Loc");
     //지역 및 세부 주소
-    const [isSelectLoc,setIsSelectLoc] = useState("서울");
+    const [isSelectLoc,setIsSelectLoc] = useState("1");
     const onToggle = () => setIsOpen(!isOpen);
     
     const onOptionClicked = (value, i) => () => {
@@ -40,8 +40,7 @@ const MainInfo = () => {
 
 
     const onLocListClicked = (name) =>{
-        console.log(name);
-        setIsSelectLoc(name);
+        setIsSelectLoc(`${name}`);
     }
 
   return (
