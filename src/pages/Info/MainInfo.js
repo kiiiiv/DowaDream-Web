@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import DropDown from '../../components/DropDown';
 import MainInfoVol from '../../components/MainInfoVol';
 import InfoSelectionList from '../../components/Maininfo/InfoSelectionList';
+import InfoSelectionTagList from '../../components/Maininfo/InfoSelectionTagList';
 
 import Search from '../../assets/Search.svg';
 
@@ -13,18 +14,24 @@ const StArray= [
     "없음",
 ]
 
-const arr =[];
+const arr = Array.from({ length: 19 }).fill(false);
 
 
 
 const MainInfo = () => {
 
+    const x = 1;
     
     const [name,setName] = useState("정렬순");
     const [isOpen, setIsOpen] = useState(false);
     const [isTag, setIsTag] = useState("Loc");
+
     //지역 및 세부 주소
     const [isSelectLoc,setIsSelectLoc] = useState("1");
+    const [detailButtonStates, setDetailButtonStates] = useState(Array.from({ length: 33 }).fill(false));
+    
+    const [isSelectTag, setIsSelectTag] = useState(Array.from({ length: 22 }).fill(false));
+
     const onToggle = () => setIsOpen(!isOpen);
     
     const onOptionClicked = (value, i) => () => {
@@ -51,7 +58,16 @@ const MainInfo = () => {
         <InfoSelection>
             <SeloectTag onClick={() => setIsTag("Loc")} color={("Loc" === isTag).toString()}>지역</SeloectTag>
             <SeloectTag onClick={() => setIsTag("Tag")} color={("Tag" === isTag).toString()}>태그</SeloectTag>
-            <InfoSelectionList  isSelectLoc={isSelectLoc} SetIsSelectLoc={onLocListClicked} arr={arr}></InfoSelectionList>
+            {
+               (isTag==="Loc") ? 
+                <InfoSelectionList
+                isSelectLoc={isSelectLoc}
+                SetIsSelectLoc={onLocListClicked}
+                detailButtonStates={detailButtonStates}
+                setDetailButtonStates={setDetailButtonStates} // 수정된 부분: setdetailButtonStates가 아니라 setDetailButtonStates
+                />
+                : <InfoSelectionTagList isSelectTag={isSelectTag} setIsSelectTag={setIsSelectTag}></InfoSelectionTagList>
+            }            
             <SearchInfo> <img alt={name} src={Search}/><div>선택 조건으로 검색하기</div></SearchInfo>
         
         </InfoSelection>
@@ -85,8 +101,9 @@ const MainInfo = () => {
             
         </InfoAllWrapper>
 
-        {/*배열 크기에 따른 생성 여부 결정 필요*/}
-        <SearchMore>더보기 ∨</SearchMore>
+        {/*배열 크기에 따른 생성 여부 결정 필요*/
+                (arr.length>20*x) ?<SearchMore>더보기 ∨</SearchMore> : <Margindiv></Margindiv>
+        }
 
 
     </Wrapper>
@@ -301,5 +318,11 @@ const SearchMore = styled.div`
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+
+`
+
+const Margindiv = styled.div`
+
+    margin-bottom : 100px;
 
 `
