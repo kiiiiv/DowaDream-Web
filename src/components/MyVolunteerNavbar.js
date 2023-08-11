@@ -2,14 +2,28 @@ import { useEffect, useState } from 'react';
 import { Wrapper } from '../styles/Common';
 import React from 'react';
 import styled from 'styled-components';
+import MyVolunteerMy from './MyVolunteerMy';
+import MyVolunteerScrap from './MyVolunteerScrap';
 
-const MyVolunteerNavbar = () => {
+function MyVolunteerNavbar() {
+  const [showVolunteerMy, setShowVolunteerMy] = useState(false);
+  const [showVolunteerScrap, setShowVolunteerScrap] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    if (category === 'myvolunteer') {
+      setShowVolunteerMy(true);
+      setShowVolunteerScrap(false);
+    } else if (category === 'myscrap') {
+      setShowVolunteerMy(false);
+      setShowVolunteerScrap(true);
+    } else {
+      setShowVolunteerMy(false);
+      setShowVolunteerScrap(false);
+    }
   };
-  return (
-    
+
+  return (   
     <Wrapper>
       <Container40>
         <Category
@@ -24,7 +38,10 @@ const MyVolunteerNavbar = () => {
         >
           스크랩한 봉사
         </Category>
+
         </Container40>
+        {showVolunteerMy && <MyVolunteerMy />}
+        {showVolunteerScrap && <MyVolunteerScrap />}
     </Wrapper>
   )
 }
@@ -39,16 +56,16 @@ padding: 0px;
 width: 100%;
 height: 69px;
 border-bottom: 2px solid #A0A0A0;
+background-color: pink;
 `;
 
 const Category = styled.button`
 
 /* Auto layout */
 display: flex;
-flex-direction: row;
+flex-direction: column;
 justify-content: center;
 align-items: center;
-padding: 0px;
 height: 69px;
 flex-grow: 1;
 /* Gray Color */
@@ -61,7 +78,6 @@ font-style: normal;
 font-weight: 600;
 font-size: 24px;
 line-height: 29px;
-width: 50%;
 color: #A0A0A0;
 &:hover {
   cursor: pointer;
