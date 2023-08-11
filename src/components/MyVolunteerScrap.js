@@ -1,19 +1,72 @@
+import { Wrapper } from "../styles/Common";
+import InfoItem from './Home/InfoItem';
+import { styled } from 'styled-components';
 function MyVolunteerScrap(){
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
-          </div>
-          <div className="col-md-6">
-            <h4 className="pt-5">상품명</h4>
-            <p>상품설명</p>
-            <p>120000원</p>
-            <button className="btn btn-danger">주문하기</button> 
-          </div>
-        </div>
-      </div> 
+      <Wrapper>
+        <Infoitem>
+            <Iteminfo>
+              <InfoItem></InfoItem>
+              <InfoItem></InfoItem>
+              <InfoItem></InfoItem>
+              <InfoItem></InfoItem>
+            </Iteminfo>
+          </Infoitem>
+          <Infoitem>
+            <Iteminfo>
+              <InfoItem></InfoItem>
+              <InfoItem></InfoItem>
+              <InfoItem></InfoItem>
+              <InfoItem></InfoItem>
+            </Iteminfo>
+          </Infoitem>
+          <Infoitem>
+            <Iteminfo>
+              <InfoItem></InfoItem>
+              <InfoItem></InfoItem>
+              <InfoItem></InfoItem>
+              <InfoItem></InfoItem>
+            </Iteminfo>
+          </Infoitem>
+        
+      </Wrapper>
     );
   }
   
   export default MyVolunteerScrap;
+  const Infoitem = styled.div`
+
+
+  display : flex;
+
+  flex-direction: column;
+  justify-content : space-between;
+  align-items : flex-start;
+
+  width : 100%;
+  height : 59.5em;
+
+`
+
+const Itemtitle = styled.div`
+
+  display: flex;
+  justify-content: space-between;
+  align-items: bottom;
+  
+  width: 100%;
+  height: 5.3em;
+  margin: 10px 0px;
+
+`
+
+const Iteminfo = styled.div`
+
+
+  width: 100%;
+  flex : 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 2em;
+
+`

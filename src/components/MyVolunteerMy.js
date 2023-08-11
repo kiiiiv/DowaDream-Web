@@ -5,24 +5,31 @@ import { styled } from 'styled-components';
 function MyVolunteerMy(){
     return (
       <Wrapper>
-        <Iteminfo>
+        <Infoitem>
+            <Iteminfo>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
-        </Iteminfo>
-        <Iteminfo>
+            </Iteminfo>
+          </Infoitem>
+          <Infoitem>
+            <Iteminfo>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
-        </Iteminfo>
-        <Iteminfo>
+            </Iteminfo>
+          </Infoitem>
+          <Infoitem>
+            <Iteminfo>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
-        </Iteminfo>
+            </Iteminfo>
+          </Infoitem>
+        
       </Wrapper> 
     );
   }
