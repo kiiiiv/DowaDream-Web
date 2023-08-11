@@ -3,7 +3,7 @@ import ReviewItem from './Review/ReviewItem';
 import { ReviewInfoWrapper, ReviewItemWrapper} from '../styles/Review/MainReview';
 function MyReview(){
     return (
-      <Wrapper>
+      <>
         <ReviewInfoWrapper>
 
           <ReviewItemWrapper>
@@ -41,7 +41,7 @@ function MyReview(){
           </ReviewItemWrapper>
 
           </ReviewInfoWrapper>
-      </Wrapper> 
+      </> 
     );
   }
 export default MyReview;

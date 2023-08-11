@@ -23,8 +23,7 @@ function MyVolunteerNavbar() {
     }
   };
 
-  return (   
-    <Wrapper>
+  return (  <>
       <Container40>
         <Category
           style={selectedCategory === 'myvolunteer' ? { backgroundColor: '#FFE34F' } : {}}
@@ -42,7 +41,7 @@ function MyVolunteerNavbar() {
         </Container40>
         {showVolunteerMy && <MyVolunteerMy />}
         {showVolunteerScrap && <MyVolunteerScrap />}
-    </Wrapper>
+        </> 
   )
 }
 
