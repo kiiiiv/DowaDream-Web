@@ -324,4 +324,6 @@ const ImgMain = styled.div`
     cursor: pointer;
     background-color: #D9D9D9;
   }
+  background-size: cover;
+  background-position: center;
 `;

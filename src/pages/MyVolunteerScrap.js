@@ -1,4 +1,4 @@
-function MyPage2(){
+function MyVolunteerScrap(){
     return (
       <div className="container">
         <div className="row">
@@ -16,4 +16,4 @@ function MyPage2(){
     );
   }
   
-  export default Review;
+  export default MyVolunteerScrap;
