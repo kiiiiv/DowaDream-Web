@@ -5,7 +5,11 @@ import GoogleProfilePic from '../components/GoogleProfilePic';
 import EmojiPic from '../assets/Emoji.png';
 import { Wrapper } from '../styles/Common'
 import MyVolunteerNavbar from '../components/MyVolunteerNavbar';
+import MyReview from '../components/MyReview';
+import MyTags from '../components/MyTags';
 function MyPage(){
+  const [showReview, setShowReview] = useState(false);
+  const [showTags, setShowTags] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [showVolunteerNavbar, setShowVolunteerNavbar] = useState(false);
 
@@ -13,24 +17,36 @@ function MyPage(){
     setSelectedCategory(category);
     if (category === 'volunteer') {
       setShowVolunteerNavbar(true);
+      setShowReview(false);
+      setShowTags(false);
+    } else if (category === 'review') {
+      setShowVolunteerNavbar(false);
+      setShowReview(true);
+      setShowTags(false);
+    } else if (category === 'tags') {
+      setShowVolunteerNavbar(false);
+      setShowReview(false);
+      setShowTags(true);
     } else {
       setShowVolunteerNavbar(false);
+      setShowReview(false);
+      setShowTags(false);
     }
   };
   const [isEditing, setIsEditing] = useState(false); //<ProfileMemo1>이 클릭되었을 때 input 태그를 보여줌
-const [memoText, setMemoText] = useState(''); //입력된 텍스트를 저장
-//isEditing을 true로 설정하여 input 태그가 보여줌
-const handleMemoClick = () => {
-  setIsEditing(true);
-};
-//handleInputChange에서는 memoText를 입력한 텍스트로 설정
-const handleInputChange = (e) => {
-  setMemoText(e.target.value);
-};
-//handleInputBlur에서는 isEditing을 false로 설정하여 input 태그를 다시 div태그로 변환
-const handleInputBlur = () => {
-  setIsEditing(false);
-};
+  const [memoText, setMemoText] = useState(''); //입력된 텍스트를 저장
+  //isEditing을 true로 설정하여 input 태그가 보여줌
+  const handleMemoClick = () => {
+    setIsEditing(true);
+  };
+  //handleInputChange에서는 memoText를 입력한 텍스트로 설정
+  const handleInputChange = (e) => {
+    setMemoText(e.target.value);
+  };
+  //handleInputBlur에서는 isEditing을 false로 설정하여 input 태그를 다시 div태그로 변환
+  const handleInputBlur = () => {
+    setIsEditing(false);
+  };
     return (
       <Wrapper>
         <Profile>
@@ -40,16 +56,16 @@ const handleInputBlur = () => {
             <ProfileEmail>sungin633236@gmail.com</ProfileEmail>
             <Container91>
             <ProfileMemo1>
-  {isEditing ? (
-    <MemoInput
-      value={memoText}
-      onChange={handleInputChange}
-      onBlur={handleInputBlur}
-    />
-  ) : (
-    memoText || '봉사 다짐을 입력해보세요!'
-  )}
-</ProfileMemo1>
+              {isEditing ? (
+                <MemoInput
+                  value={memoText}
+                  onChange={handleInputChange}
+                  onBlur={handleInputBlur}
+                />
+              ) : (
+                memoText || '봉사 다짐을 입력해보세요!'
+              )}
+            </ProfileMemo1>
             <Emoji onClick={handleMemoClick}></Emoji>
             </Container91>
           </ProfilePrivate>
@@ -57,31 +73,29 @@ const handleInputBlur = () => {
         </Profile>
         <Container90>
           <MypageCategory
-          style={selectedCategory === 'volunteer' ? { backgroundColor: '#FFE34F' } : {}}
-          onClick={() => handleCategoryClick('volunteer')}
-        >
-          나의 봉사
-        </MypageCategory>
-        <MypageCategory
-          style={selectedCategory === 'review' ? { backgroundColor: '#FFE34F' } : {}}
-          onClick={() => handleCategoryClick('review')}
-        >
-          나의 후기
-        </MypageCategory>
-        <MypageCategory
-          style={selectedCategory === 'tags' ? { backgroundColor: '#FFE34F' } : {}}
-          onClick={() => handleCategoryClick('tags')}
-        >
-          관심 태그 및 지역
-        </MypageCategory>
+            style={selectedCategory === 'volunteer' ? { backgroundColor: '#FFE34F' } : {}}
+            onClick={() => handleCategoryClick('volunteer')}
+          >
+            나의 봉사
+          </MypageCategory>
+          <MypageCategory
+            style={selectedCategory === 'review' ? { backgroundColor: '#FFE34F' } : {}}
+            onClick={() => handleCategoryClick('review')}
+          >
+            나의 후기
+          </MypageCategory>
+          <MypageCategory
+            style={selectedCategory === 'tags' ? { backgroundColor: '#FFE34F' } : {}}
+            onClick={() => handleCategoryClick('tags')}
+          >
+            관심 태그 및 지역
+          </MypageCategory>
 
         </Container90>
         {showVolunteerNavbar && <MyVolunteerNavbar />}
-        <MyVolunteerNavbar></MyVolunteerNavbar>
-        
-      </Wrapper>
-
-    
+        {showReview && <MyReview />}
+        {showTags && <MyTags />}
+      </Wrapper>    
     );
 }
 
