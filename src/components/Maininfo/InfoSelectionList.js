@@ -100,6 +100,8 @@ const Wrapper = styled.div`
 
   font-size: 10px;
 
+  border-top: 1px solid var(--dark-color, #024959);
+
   border-left: 1px solid var(--dark-color, #024959);
   border-right: 1px solid var(--dark-color, #024959);
   border-bottom: 1px solid var(--dark-color, #024959);
