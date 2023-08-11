@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import GoogleProfilePic from './GoogleProfilePic';
 
 
-function UserComments({text, to}) {
+function UserComments({text}) {
   return (
     <div className='Wrapper'>
       <Container60>  
