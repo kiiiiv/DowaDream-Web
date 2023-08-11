@@ -61,7 +61,7 @@ const MainInfo = () => {
             <SummaryText>총 {<SummaryNum>35</SummaryNum>}건의 봉사 목록이 있습니다.</SummaryText>
             <CategoryMenuBox onClick={onToggle}>
                 <>{`${name} ∨`}</>
-                { isOpen && <DropDown name={name} array={StArray} onOptionClicked={onOptionClicked}></DropDown>}
+                { isOpen && <DropDown width={100} array={StArray} onOptionClicked={onOptionClicked}></DropDown>}
             </CategoryMenuBox>
         </InfoSummary>
         
