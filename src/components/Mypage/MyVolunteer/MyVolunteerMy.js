@@ -21,13 +21,14 @@ function MyVolunteerMy(){
               <InfoItem></InfoItem>
             </Iteminfo>
           </Infoitem>
-
-            <Iteminfo>
+          <Infoitem>
+          <Iteminfo>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
               <InfoItem></InfoItem>
             </Iteminfo>
+            </Infoitem>
 
       </>
     );
@@ -38,10 +39,9 @@ function MyVolunteerMy(){
 
 
   display : flex;
-
   flex-direction: column;
   justify-content : space-between;
-  align-items : flex-start;
+  align-items : center;
   width : 100%;
   height : 59.5em;
 
@@ -50,11 +50,11 @@ function MyVolunteerMy(){
 
 const Iteminfo = styled.div`
 
-
+justify-content : center;
   width: 100%;
   flex : 1;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 2em;
 
 `
