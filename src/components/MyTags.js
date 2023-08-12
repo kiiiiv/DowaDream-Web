@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import InfoSelectionList from "./Maininfo/InfoSelectionList";
+import InfoSelectionList from "../components/Maininfo/InfoSelectionList"
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 

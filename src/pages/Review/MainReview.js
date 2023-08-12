@@ -33,7 +33,7 @@ const MainReview = () => {
     <Wrapper>
         
         <Reviewdiv>
-            <ReviewTitle>봉사 후기</ReviewTitle>
+            <ReviewTitle>봉사후기</ReviewTitle>
         </Reviewdiv>
 
         <ReviewSortdiv>
