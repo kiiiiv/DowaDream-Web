@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import ButtonPic2 from '../assets/로그인후버튼.png';
+import ButtonPic2 from '../../assets/로그인후버튼.png';
 
 function LoginedButton(props) {
   const { backgroundImg, userName, onLogoutClick } = props;

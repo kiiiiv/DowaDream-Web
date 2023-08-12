@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import GoogleProfilePic from './GoogleProfilePic';
-import ReviewDetail from '../pages/ReviewDetail';
+import GoogleProfilePic from '../Mypage/GoogleProfilePic';
 
 function CommentsWrite({ onCommentSubmit, onLikeSubmit, numLikes, numComments }){
   const [inputText, setInputText] = useState('');

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Wrapper } from '../styles/Common';
+import { Wrapper } from '../../styles/Common';
 import React from 'react';
 import styled from 'styled-components';
-import MyVolunteerMy from './MyVolunteerMy';
-import MyVolunteerScrap from './MyVolunteerScrap';
+import MyVolunteerMy from './MyVolunteer/MyVolunteerMy';
+import MyVolunteerScrap from './MyVolunteer/MyVolunteerScrap';
 
 function MyVolunteerNavbar() {
   const [showVolunteerMy, setShowVolunteerMy] = useState(false);

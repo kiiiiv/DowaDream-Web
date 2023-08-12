@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import ButtonPic from '../assets/로그인버튼2.png';
+import ButtonPic from '../../assets/로그인버튼2.png';
 
 function LoginButton(props) {
   const { backgroundImg, onClick } = props;

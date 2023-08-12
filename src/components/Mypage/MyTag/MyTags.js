@@ -1,7 +1,8 @@
 import { styled } from "styled-components";
-import { Wrapper } from "../styles/Common";
-import InfoSelectionList from "./Maininfo/InfoSelectionList";
+import { Wrapper } from "../../../styles/Common";
+import InfoSelectionList from "../../Maininfo/InfoSelectionList";
 import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 const Tag = [
   "공익, 인권","교육","국제행사","국제협력, 해외봉사","농어촌 봉사", "문화행사", "멘토링", "보건의료","상담","생활편의지원","안전, 예방","자원봉사교육","재해, 재난","주거환경","행정보조","환경보호","기타"
@@ -54,7 +55,9 @@ const toggleTagDetailButtonState = (index) => {
                 <LocDeleteAll></LocDeleteAll>
               </LocDeletediv>
           </LocWrapper>
-
+          <Link to="/mypage/save">
+            <SaveButton>모두 저장하기</SaveButton>
+          </Link>
 
 
         </TagWrapper>
@@ -74,6 +77,7 @@ const toggleTagDetailButtonState = (index) => {
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
+  align-items: center;
   
   `;
 
@@ -179,4 +183,32 @@ const LocDeleteAll = styled.div`
   align-self: stretch;
   flex-wrap: wrap;
 
+`;
+const Link = styled(RouterLink)`
+  text-decoration: none;
+`;
+const SaveButton = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 12px 20px;
+gap: 10px;
+height: 48px;
+text-decoration: none;
+/* Dark Color */
+background: #024959;
+border-radius: 20px;
+font-family: 'Pretendard Variable';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+/* identical to box height */
+
+/* White Color */
+color: #FCFCFC;
+
+
 `
+

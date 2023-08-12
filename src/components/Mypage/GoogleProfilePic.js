@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
 import styled from 'styled-components';
-import pic from '../프로필.jpg'
+import pic from '../../프로필.jpg';
 
 const GoogleProfilePic = (props) => {
     const { size } = props;

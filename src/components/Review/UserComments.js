@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import GoogleProfilePic from './GoogleProfilePic';
+import GoogleProfilePic from '../Mypage/GoogleProfilePic';
 
 
 function UserComments({text}) {

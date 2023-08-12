@@ -1,12 +1,12 @@
 import { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import HashTag from '../components/HashTag';
-import pic2 from '../프로필.jpg';
-import ScrollGallery from '../components/ScrollGallery';
-import UserComments from '../components/UserComments';
-import CommentsWrite from '../components/CommentsWrite';
+import HashTag from '../../components/Review/HashTag';
+import pic2 from '../../프로필.jpg';
+import ScrollGallery from '../../components/Review/ScrollGallery';
+import UserComments from '../../components/Review/UserComments';
+import CommentsWrite from '../../components/Review/CommentsWrite';
 import { Link } from "react-router-dom";
-import { Wrapper } from '../styles/Common';
+import { Wrapper } from '../../styles/Common';
 
 function MyPageDetail(){
   
