@@ -35,17 +35,12 @@ function MyVolunteerScrap(){
   
   export default MyVolunteerScrap;
   const Infoitem = styled.div`
-
-
   display : flex;
-
   flex-direction: column;
   justify-content : space-between;
   align-items : flex-start;
-
   width : 100%;
   height : 59.5em;
-
 `
 
 const Itemtitle = styled.div`
