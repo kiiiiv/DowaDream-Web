@@ -30,7 +30,7 @@ const Infodiv = styled.div`
   background-color : white;
 
   width : 25%;
-  height : 100%;
+  height : 90%;
 
 `
 

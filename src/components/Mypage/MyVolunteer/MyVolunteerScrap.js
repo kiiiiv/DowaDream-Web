@@ -3,7 +3,7 @@ import InfoItem from '../../Home/InfoItem';
 import { styled } from 'styled-components';
 function MyVolunteerScrap(){
     return (
-      <Wrapper>
+      <>
         <Infoitem>
             <Iteminfo>
               <InfoItem></InfoItem>
@@ -28,8 +28,7 @@ function MyVolunteerScrap(){
               <InfoItem></InfoItem>
             </Iteminfo>
           </Infoitem>
-        
-      </Wrapper>
+        </>
     );
   }
   
@@ -38,30 +37,19 @@ function MyVolunteerScrap(){
   display : flex;
   flex-direction: column;
   justify-content : space-between;
-  align-items : flex-start;
+  align-items : center;
   width : 100%;
   height : 59.5em;
 `
 
-const Itemtitle = styled.div`
-
-  display: flex;
-  justify-content: space-between;
-  align-items: bottom;
-  
-  width: 100%;
-  height: 5.3em;
-  margin: 10px 0px;
-
-`
 
 const Iteminfo = styled.div`
 
-
+justify-content : center;
   width: 100%;
   flex : 1;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 2em;
 
 `
