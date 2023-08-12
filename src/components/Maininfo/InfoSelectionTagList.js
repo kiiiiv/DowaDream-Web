@@ -7,8 +7,6 @@ const Tag = [
 
   const InfoSelectionTagList = (props) => {
     const { isSelectTag, setIsSelectTag } = props;
-    console.log(Tag);
-
     const x = (Tag.length % 4);
   
     const toggleDetailButtonState = (index) => {
@@ -107,9 +105,8 @@ const TagDetailText = styled.div`
 
   
   &:hover {
-    background-color : var(--secondary-yellow-color, ##FFFAC9);
+    background-color: var(--secondary-yellow-color, #FFFAC9);
   }
-
 `
 
 const TagDetailButton = styled.div`
@@ -125,7 +122,7 @@ const TagDetailButton = styled.div`
   border: 2px solid var(--dark-gray-color, #7E8181);
   border-radius: 5px;
   
-  background-color: ${(props) => (props.states==="false") ? 'white' : 'var(--yellow-color, #FFE34F)'};
+  background-color: ${(props) => (props.states === "false" ? "white" : "var(--yellow-color, #FFE34F)")};
 
 
 `
