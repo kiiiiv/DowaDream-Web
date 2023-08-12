@@ -1,6 +1,5 @@
 import { styled } from "styled-components";
-import { Wrapper } from "../../../styles/Common";
-import InfoSelectionList from "../../Maininfo/InfoSelectionList";
+import InfoSelectionList from "./Maininfo/InfoSelectionList";
 import { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
