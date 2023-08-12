@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import pic from '../봉사.jpg';
+import pic from '../../봉사.jpg';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import image1 from '../봉사.jpg';
-import image2 from '../배경.jpg';
-import image3 from '../봉사.jpg';
-import image4 from '../배경.jpg';
-import image5 from '../봉사.jpg';
+import image1 from '../../봉사.jpg';
+import image2 from '../../배경.jpg';
+import image3 from '../../봉사.jpg';
+import image4 from '../../배경.jpg';
+import image5 from '../../봉사.jpg';
 
 const Gallery = styled.div`
   display: flex;

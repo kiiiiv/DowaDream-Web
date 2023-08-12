@@ -5,8 +5,8 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import LoginButton from './LoginButton';
-import LoginedButton from './LoginedButton';
+import LoginButton from './Home/LoginButton';
+import LoginedButton from './Home/LoginedButton';
 import { useNavigate } from 'react-router-dom';
 import LoginButtonPic from '../assets/로그인버튼2.png';
 

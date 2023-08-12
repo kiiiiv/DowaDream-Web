@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ControlledCarousel from '../components/Carousel';
+import ControlledCarousel from '../components/Home/Carousel';
 import TagButton from '../components/TagButton.js';
 import styled from 'styled-components';
 import InfoTitle from '../components/Home/InfoTitle';

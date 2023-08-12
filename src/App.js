@@ -5,20 +5,16 @@ import { createContext, useState } from 'react';
 import data from './apis/data.js';
 import Table from './components/Table.js';
 import {Routes, Route, Link, useNavigate, Outlet} from "react-router-dom";
-import MyPage from './pages/MyPage';
+import MyPage from './pages/Mypage/MyPage';
 import axios from 'axios';
-import Info from './pages/Info'
-import ControlledCarousel from './components/Carousel';
+import ControlledCarousel from './components/Home/Carousel';
 import NavBar2 from './components/NavBar2';
-import Review from './pages/Review';
-import MyPageDetail from './pages/ReviewDetail';
+import MyPageDetail from './pages/Review/ReviewDetail';
 import Main from './pages/Main';
-import AllFamous from './pages/AllFamous';
-import AllNew from './pages/AllNew';
-import AllTagRegion from './pages/AllTagRegion';
 import MainInfo from './pages/Info/MainInfo';
 import MainReview from './pages/Review/MainReview';
-import ReviewWrite2 from './pages/ReviewWrite2';
+import ReviewWrite2 from './pages/Mypage/ReviewWrite2';
+import Save from './pages/Mypage/Save';
 
 
 function App() {
@@ -31,12 +27,10 @@ function App() {
         <Route path='/' element={<Main/>}></Route>
         <Route path='/mypage' element={<MyPage/>}></Route>
         <Route path='/mypage/write' element={<ReviewWrite2/>}></Route>
+        <Route path='/mypage/save' element={<Save/>}></Route>
         <Route path="/info" element={<MainInfo></MainInfo>}></Route>
         <Route path="/mypage/detail" element={ <MyPageDetail shoes={shoes}/> }/>
         <Route path='/review' element={<MainReview/>}></Route>
-        <Route path="/newAll" exact component={<AllNew></AllNew>} />
-        <Route path="/famousAll" component={<AllFamous></AllFamous>} />
-        <Route path="/tagregionAll" component={<AllTagRegion></AllTagRegion>} />
       </Routes>
 
       

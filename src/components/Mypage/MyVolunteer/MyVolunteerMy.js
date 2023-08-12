@@ -1,5 +1,5 @@
-import { Wrapper } from "../styles/Common";
-import InfoItem from './Home/InfoItem';
+import { Wrapper } from "../../../styles/Common";
+import InfoItem from '../../Home/InfoItem';
 import { styled } from 'styled-components';
 
 function MyVolunteerMy(){

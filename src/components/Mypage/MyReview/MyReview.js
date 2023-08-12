@@ -1,6 +1,6 @@
-import { Wrapper } from "../styles/Common";
-import ReviewItem from './Review/ReviewItem';
-import { ReviewInfoWrapper, ReviewItemWrapper} from '../styles/Review/MainReview';
+import { Wrapper } from "../../../styles/Common";
+import ReviewItem from '../../Review/ReviewItem';
+import { ReviewInfoWrapper, ReviewItemWrapper} from '../../../styles/Review/MainReview';
 function MyReview(){
     return (
       <>

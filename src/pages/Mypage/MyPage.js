@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import GoogleProfilePic from '../components/GoogleProfilePic';
-import EmojiPic from '../assets/Emoji.png';
-import { Wrapper } from '../styles/Common'
-import MyVolunteerNavbar from '../components/MyVolunteerNavbar';
-import MyReview from '../components/MyReview';
-import MyTags from '../components/MyTags';
+import GoogleProfilePic from '../../components/Mypage/GoogleProfilePic';
+import EmojiPic from '../../assets/Emoji.png';
+import { Wrapper } from '../../styles/Common'
+import MyVolunteerNavbar from '../../components/Mypage/MyVolunteerNavbar';
+import MyReview from '../../components/Mypage/MyReview/MyReview';
+import MyTags from '../../components/MyTags';
 function MyPage(){
   const [showReview, setShowReview] = useState(false);
   const [showTags, setShowTags] = useState(false);
