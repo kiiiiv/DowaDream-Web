@@ -7,11 +7,33 @@ const Tag = [
   "공익, 인권","교육","국제행사","국제협력, 해외봉사","농어촌 봉사", "문화행사", "멘토링", "보건의료","상담","생활편의지원","안전, 예방","자원봉사교육","재해, 재난","주거환경","행정보조","환경보호","기타"
 ];
 
+const AreaFirstElements = [
+  "전국",
+  "서울",
+  "경기",
+  "인천",
+  "부산",
+  "대구",
+  "광주",
+  "대전",
+  "울산",
+  "세종",
+  "강원",
+  "경남",
+  "경북",
+  "전남",
+  "전북",
+  "충남",
+  "충북",
+  "제주"
+]
+
 function MyTags(){
 
   const [isSelectLoc,setIsSelectLoc] = useState("1");
   const [detailButtonStates, setDetailButtonStates] = useState(Array.from({ length: 33 }).fill(false));
   const [isTagDetailStates, setTagDetailState] = useState(Array.from({length : 20}).fill(false))
+  const [allInfo, setAllInfo] = useState(AreaFirstElements,Array.from({ length: 33 }).fill(false));
 
   const onLocListClicked = (name) =>{
     setIsSelectLoc(`${name}`);
@@ -21,6 +43,22 @@ const toggleTagDetailButtonState = (index) => {
   updatedStates[index] = !updatedStates[index];
   setTagDetailState(updatedStates);
 };
+const onTotalInfoClicked = () =>{
+
+  allInfo.forEach((info, index) => {
+      const firstElement = info[0];
+      if(info[1].length!==1){
+          const secondArray = info[1];
+
+      const nonFalseValues = secondArray.filter(value => value !== false);
+
+      console.log(`First Element: ${firstElement}`);
+      console.log(`Non-False Values: ${nonFalseValues}`);
+      }
+    });
+
+}
+
 
     return (
       <>
@@ -47,7 +85,9 @@ const toggleTagDetailButtonState = (index) => {
                 isSelectLoc={isSelectLoc}
                 SetIsSelectLoc={onLocListClicked}
                 detailButtonStates={detailButtonStates}
-                setDetailButtonStates={setDetailButtonStates} // 수정된 부분: setdetailButtonStates가 아니라 setDetailButtonStates
+                setDetailButtonStates={setDetailButtonStates}
+                allInfo={allInfo}
+                setAllInfo={setAllInfo} // 수정된 부분: setdetailButtonStates가 아니라 setDetailButtonStates
               ></InfoSelectionList>
               <LocDeletediv>
                 <LocDeleteText>지역</LocDeleteText>
@@ -55,7 +95,7 @@ const toggleTagDetailButtonState = (index) => {
               </LocDeletediv>
           </LocWrapper>
           <Link to="/mypage/save">
-            <SaveButton>모두 저장하기</SaveButton>
+            <SaveButton onClick={onTotalInfoClicked}>모두 저장하기</SaveButton>
           </Link>
 
 
