@@ -13,6 +13,8 @@ const MainReview = () => {
 
     const [name,setName] = useState("정렬순");
     const [isOpen, setIsOpen] = useState(false);
+    const [showBespoke, setShowBespoke] = useState(false);
+
 
 
     const onOptionClicked = (value, i) => () => {
@@ -37,8 +39,8 @@ const MainReview = () => {
         </Reviewdiv>
 
         <ReviewSortdiv>
-            <ReviewBespokediv>
-                <ReviewBespokeButton states={false.toString()} ></ReviewBespokeButton>
+            <ReviewBespokediv onClick={()=>setShowBespoke(!showBespoke)}>
+                <ReviewBespokeButton states={showBespoke.toString()} ></ReviewBespokeButton>
                 <ReviewBespokeText>나의 맞춤 후기만</ReviewBespokeText>
             </ReviewBespokediv>
             <CategoryMenuBox onClick={onToggle}> 

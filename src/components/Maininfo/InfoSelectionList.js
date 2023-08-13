@@ -149,7 +149,7 @@ const LocText = styled.div`
 const LocDetailWrapper = styled.div`
 
 
-
+  overflow : auto;
 
   width: 77%;
   height: 317px;
