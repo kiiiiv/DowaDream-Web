@@ -19,6 +19,11 @@ function InfoDetail(){
                 </InfoTitleButtonBox>
                 <InfoTitle>드럼 교육 봉사활동</InfoTitle>
             </InfoTitleContainer>
+            <InfoBox>
+                <Table></Table>
+                <Table></Table>
+                <Table></Table>
+            </InfoBox>
         </InfoContainer>
 
     </Wrapper>
