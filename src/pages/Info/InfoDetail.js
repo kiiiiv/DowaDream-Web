@@ -96,7 +96,6 @@ function InfoDetail(){
 
 export default InfoDetail;
 
-
 const Image = styled.div`
 width: 100%;
 height: 500px;
@@ -325,7 +324,9 @@ const TableWrapper = styled.table`
   width: 100%;
   margin: 0 auto;
   padding: 20px 0px;
+  border:none;
   border-top: 2px solid #000000
+  
 `;
 const Td = styled.td`
   border: 1px solid black;
@@ -337,7 +338,10 @@ const Td = styled.td`
     line-height: 21px;
     letter-spacing: 0em;
     text-align: center;
-    border-bottom: 1px solid #D9D9D9
+    border: none; /* 모든 셀에 대해 테두리를 제거합니다. */
+    border-bottom: 1px solid #D9D9D9; /* 모든 셀에 대해 하단 경계선을 추가합니다. */
+    
+    
 
   &:first-child {
     width: 114px;
