@@ -7,6 +7,7 @@ import { Wrapper } from '../../styles/Common';
 import MyVolunteerNavbar from '../../components/Mypage/MyVolunteerNavbar';
 import MyReview from '../../components/Mypage/MyReview/MyReview';
 import MyTags from '../../components/MyTags';
+import ReviewWriteModal from '../../components/Mypage/ReviewWriteModal';
 
 function MyPage() {
   const { mypageLoc } = useParams();
@@ -17,10 +18,27 @@ function MyPage() {
   const [showVolunteerNavbar, setShowVolunteerNavbar] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [memoText, setMemoText] = useState('');
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const handleCategoryClick = (category) => {
+  const openModal = () => {
+    setIsOpenModal(true);
+  };
+
+  const closeModal = () => {
+    setIsOpenModal(false);
+  };
+
+  const handleModalClick = (e) => {
+    // 모달 배경을 클릭하면 모달을 닫도록 처리
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
+  
+
+  const handleCategoryClick = (category) => { 
+
     setSelectedCategory(category);
-
     window.history.pushState({}, null, `/mypage/${category}`);
 
     setShowVolunteerNavbar(category === 'volunteer');
@@ -84,7 +102,23 @@ function MyPage() {
         </MypageCategory>
       </Container90>
       {showVolunteerNavbar && <MyVolunteerNavbar />}
-      {showReview && <MyReview />}
+      {showReview &&
+      <div>
+        <ReviewWritediv>
+          <ReviewWriteText onClick={()=>setIsOpenModal(!isOpenModal)}>
+            후기 작성하거 가기 →  
+          </ReviewWriteText>
+        </ReviewWritediv>
+        {
+          isOpenModal &&
+          
+          <ModalOverlay onClick={(e)=>handleModalClick(e)}>
+            <ReviewWriteModal></ReviewWriteModal>
+          </ModalOverlay>
+        }
+        <MyReview />
+      </div>
+      }
       {showTags && <MyTags />}
     </Wrapper>
   );
@@ -232,7 +266,46 @@ const MemoInput = styled.input`
   border-bottom: 2px solid #7e8181;
 `;
 
+const ReviewWritediv = styled.div`
 
 
+  margin-top : 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  align-self: stretch;
 
+`
 
+const ReviewWriteText = styled.span`
+
+color: #000;
+font-size: 2em;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+
+`
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* 배경 블러처리 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+`;

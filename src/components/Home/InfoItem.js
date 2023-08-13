@@ -1,9 +1,9 @@
 import React from 'react'
 import { styled } from 'styled-components'
 
-const InfoItem = () => {
+const InfoItem = ({width=90, height=25}) => {
   return (
-    <Infodiv>
+    <Infodiv width={width} height={height}>
                 <InfoImg>
                     <Ddaydiv><div>D-7</div></Ddaydiv>
                 </InfoImg>
@@ -24,15 +24,10 @@ export default InfoItem
 
 
 const Infodiv = styled.div`
+  width: ${props => props.width}%;
+  height: ${props => props.height}%;
+`;
 
-  
-
-  background-color : white;
-
-  width : 25%;
-  height : 90%;
-
-`
 
 const Ddaydiv = styled.div`
 
