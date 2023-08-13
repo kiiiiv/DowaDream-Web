@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from 'styled-components'
 
-const InfoItem = ({width=90, height=25}) => {
+const InfoItem = ({width=25, height=90}) => {
   return (
     <Infodiv width={width} height={height}>
                 <InfoImg>
