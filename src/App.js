@@ -18,7 +18,6 @@ import Save from './pages/Mypage/Save';
 
 
 function App() {
-  let [shoes, setShoes] = useState(data);
   return (
     <div className="App">
       
@@ -29,7 +28,6 @@ function App() {
         <Route path='/mypage/:mypageLoc?' element={<MyPage/>}></Route>
         <Route path='/mypage/write' element={<ReviewWrite2/>}></Route>
         <Route path='/mypage/save' element={<Save/>}></Route>
-        <Route path="/mypage/detail" element={ <MyPageDetail shoes={shoes}/> }/>
 
         <Route path="/info" element={<MainInfo></MainInfo>}></Route>
         <Route path="/info/:infoId" element={<MainInfo></MainInfo>}></Route>
