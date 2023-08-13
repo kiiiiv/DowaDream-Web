@@ -3,13 +3,13 @@ import { styled } from "styled-components";
 export const Reviewdiv = styled.div`
 
     display: inline-flex;
-    padding: 6.4em 0;
+    padding: 6.4em 0 0 0;
     flex-direction: column;
     align-items: flex-start;
 
 `
 
-export const ReviewTitle = styled.p`
+export const ReviewTitle = styled.span`
 
     color: var(--dark-color, #024959);
     font-size: 3.6em;

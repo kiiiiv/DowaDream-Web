@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components'
 import Like from '../../../src/assets/말풍선.svg'
 import TextBol from '../../../src/assets/좋아요.svg'
+import TextBol2 from '../../assets/말풍선색변화.svg'
+import Like2 from '../../assets/좋아요색변화.svg'
+
 
 const ReviewItem = ({width=30,height=670,url='../../1ogo192.png'}) => {
+    
+    const [likeClicked, setLikeClicked] = useState(false); // State to track like button click
+    const [textBolClicked, setTextBolClicked] = useState(false); // State to track like button click
+
+
+    const handleLikeClick = () => {
+        setLikeClicked(!likeClicked);
+    };
+
+    
+    const handleBolClick = () => {
+        setTextBolClicked(!textBolClicked);
+    };
+
     return (
 
     <ReviewCardWrapper width={width} height={height}>
@@ -17,14 +34,22 @@ const ReviewItem = ({width=30,height=670,url='../../1ogo192.png'}) => {
                     <ReviewNameText>나상현</ReviewNameText>
                     <ReviewEmotediv>
                         <ReviewEmoteImg>
-                            <img src={Like}></img>
+                            <img 
+                                src={likeClicked ? TextBol2 : TextBol} // Toggle between Like and TextBol based on likeClicked state
+                                onClick={()=>handleLikeClick()} // Attach click event handler
+            a                   alt="Text"
+                            ></img>
                         </ReviewEmoteImg>
                         <ReviewEmoteText>1</ReviewEmoteText>
                     </ReviewEmotediv>
 
                     <ReviewEmotediv>
                         <ReviewEmoteImg>
-                            <img src={TextBol}></img>
+                            <img 
+                                src={textBolClicked ? Like2 : Like} // Toggle between Like and TextBol based on likeClicked state
+                                onClick={()=>handleBolClick()} // Attach click event handler
+            a                   alt="Like"
+                            ></img>
                         </ReviewEmoteImg>                        
                         <ReviewEmoteText>1</ReviewEmoteText>
                     </ReviewEmotediv>
@@ -158,6 +183,7 @@ const ReviewEmoteImg = styled.div`
 
     width: 24px;
     height : 50%;
+    
 
 `
 

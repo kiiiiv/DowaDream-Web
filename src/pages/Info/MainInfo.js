@@ -5,7 +5,6 @@ import DropDown from '../../components/DropDown';
 import MainInfoVol from '../../components/MainInfoVol';
 import InfoSelectionList from '../../components/Maininfo/InfoSelectionList';
 import InfoSelectionTagList from '../../components/Maininfo/InfoSelectionTagList';
-
 import Search from '../../assets/Search.svg';
 
 const StArray= [
