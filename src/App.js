@@ -6,7 +6,6 @@ import data from './apis/data.js';
 import Table from './components/Table.js';
 import {Routes, Route, Link, useNavigate, Outlet} from "react-router-dom";
 import MyPage from './pages/Mypage/MyPage';
-import axios from 'axios';
 import ControlledCarousel from './components/Home/Carousel';
 import NavBar2 from './components/NavBar2';
 import MyPageDetail from './pages/Review/ReviewDetail';
@@ -15,12 +14,11 @@ import MainInfo from './pages/Info/MainInfo';
 import MainReview from './pages/Review/MainReview';
 import ReviewWrite2 from './pages/Mypage/ReviewWrite2';
 import Save from './pages/Mypage/Save';
-
+import InfoDetail from './pages/Info/InfoDetail';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div className="App">      
       <NavBar2></NavBar2>
       <Routes>
         <Route path='/' element={<Main/>}></Route>
@@ -28,10 +26,10 @@ function App() {
         <Route path='/mypage/:mypageLoc?' element={<MyPage/>}></Route>
         <Route path='/mypage/write' element={<ReviewWrite2/>}></Route>
         <Route path='/mypage/save' element={<Save/>}></Route>
-
+        
         <Route path="/info" element={<MainInfo></MainInfo>}></Route>
         <Route path="/info/:infoId" element={<MainInfo></MainInfo>}></Route>
-
+        <Route path='/infodetail' element={<InfoDetail/>}></Route>
         
         <Route path='/review' element={<MainReview/>}></Route>
         <Route path='/review/:reviewId' element={<MyPageDetail/>}></Route>
