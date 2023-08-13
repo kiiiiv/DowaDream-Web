@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 
@@ -9,6 +10,9 @@ const text = [
 ];
 
 const InfoTitle = ({ num }) => {
+
+  const navigate = useNavigate();
+
   return (
     <>
       {num === 1 ? (
@@ -20,7 +24,7 @@ const InfoTitle = ({ num }) => {
         <TitleTextOthers>{text[num - 1]}</TitleTextOthers>
       )}
       
-        <TiteViewAll>전체보기</TiteViewAll>
+        <TiteViewAll onClick={()=>{navigate('/info')}}>전체보기</TiteViewAll>
 
     </>
   );

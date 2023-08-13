@@ -22,33 +22,29 @@ const Area = [
   ["제주", "제주시", "서귀포시"],
 ];
 
-
-
 const InfoSelectionList = (props) => {
 
 
 
-
-  const { isSelectLoc, SetIsSelectLoc, detailButtonStates, setDetailButtonStates } = props;  // 수정된 부분
+  const { isSelectLoc, SetIsSelectLoc, detailButtonStates,setDetailButtonStates,allInfo,setAllInfo } = props;  // 수정된 부분
   const x = (Area[isSelectLoc].length % 4);
 
-  useEffect(() => {
-    const ResetDetailButtonState = () => {
-      const updatedStates = Array.from({ length: detailButtonStates.length }).fill(false);
-      setDetailButtonStates(updatedStates);
-    };
-  
-    ResetDetailButtonState();
-  }, [isSelectLoc]);
-  
 
 
   const toggleDetailButtonState = (index) => {
     const updatedStates = [...detailButtonStates];
-    updatedStates[index] = !updatedStates[index];
-    setDetailButtonStates(updatedStates);
-  };
+    const updatedAllInfo = [...allInfo];
 
+    if(updatedStates[index] !==false){
+      updatedStates[index] = false;
+    }
+    else{
+      updatedStates[index] = Area[isSelectLoc][index];
+    }
+    updatedAllInfo[isSelectLoc] = [Area[isSelectLoc][0], updatedStates];
+    setDetailButtonStates(updatedStates);
+    setAllInfo(updatedAllInfo);
+  };
 
 
   return (
@@ -70,7 +66,7 @@ const InfoSelectionList = (props) => {
       {
         Area[isSelectLoc].map((area, index) => (
           <LocDetailDiv onClick={() => toggleDetailButtonState(index)} key={area}>
-            <LocDetailButton states={detailButtonStates[index].toString()} />
+          <LocDetailButton states={detailButtonStates[index].toString()} />
             <LocDetailText>{area}</LocDetailText>
           </LocDetailDiv>
         ))
