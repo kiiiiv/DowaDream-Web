@@ -25,12 +25,19 @@ function App() {
       <NavBar2></NavBar2>
       <Routes>
         <Route path='/' element={<Main/>}></Route>
-        <Route path='/mypage' element={<MyPage/>}></Route>
+        
+        <Route path='/mypage/:mypageLoc?' element={<MyPage/>}></Route>
         <Route path='/mypage/write' element={<ReviewWrite2/>}></Route>
         <Route path='/mypage/save' element={<Save/>}></Route>
-        <Route path="/info" element={<MainInfo></MainInfo>}></Route>
         <Route path="/mypage/detail" element={ <MyPageDetail shoes={shoes}/> }/>
+
+        <Route path="/info" element={<MainInfo></MainInfo>}></Route>
+        <Route path="/info/:infoId" element={<MainInfo></MainInfo>}></Route>
+
+        
         <Route path='/review' element={<MainReview/>}></Route>
+        <Route path='/review/:reviewId' element={<MyPageDetail/>}></Route>
+
       </Routes>
 
       
