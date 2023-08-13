@@ -25,7 +25,8 @@ const Area = [
 
 const InfoSelectionList = (props) => {
 
-  SidoTransport(["제주","제주시"]);
+  const sidugu = SidoTransport(["제주","제주시"]);
+  console.log(sidugu);
 
   const { isSelectLoc, SetIsSelectLoc, detailButtonStates,setDetailButtonStates,allInfo,setAllInfo } = props;  // 수정된 부분
   const x = (Area[isSelectLoc].length % 4);

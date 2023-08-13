@@ -51,11 +51,18 @@ export const SidoTransport = (data) => {
             }
         })
 
+        const gugunCodeArray = [];
+
         SidoGugun[loc].map((item, index) => {
             if (gugun === item.gugunName) {
+
+                gugunCodeArray.push(item.gugunCd);
                 console.log(item.gugunCd);
             }
         });
     
-        return SidoTransport;
+        return {
+            sidoCode: SidoGugun[loc][0].sidoCd,
+            gugunCode: gugunCodeArray,
+        };
 };
