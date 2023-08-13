@@ -48,7 +48,7 @@ const ReviewItem = ({width=30,height=670,url='../../1ogo192.png'}) => {
                             <img 
                                 src={textBolClicked ? Like2 : Like} // Toggle between Like and TextBol based on likeClicked state
                                 onClick={()=>handleBolClick()} // Attach click event handler
-            a                   alt="Like"
+                                alt="Like"
                             ></img>
                         </ReviewEmoteImg>                        
                         <ReviewEmoteText>1</ReviewEmoteText>
