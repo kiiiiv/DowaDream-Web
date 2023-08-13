@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Wrapper } from '../../styles/Common'
 import styled from 'styled-components'
+import { Link } from "react-router-dom";
 //import {ReviewTitle} from '../../styles/Review/MainReview'
 
 import illust from '../../../src/assets/일러스트.jpg'
@@ -87,7 +88,10 @@ function InfoDetail(){
 
     </Wrapper>
     <Footer>
-        <RegisterButton>신청하러 가기</RegisterButton>
+            <StyledLink to="/infodetail/save">
+            <RegisterButton>신청하러 가기</RegisterButton>
+            </StyledLink>
+        
     </Footer>
     </>
 
@@ -356,3 +360,7 @@ const Td = styled.td`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+`;

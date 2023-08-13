@@ -15,6 +15,7 @@ import MainReview from './pages/Review/MainReview';
 import ReviewWrite2 from './pages/Mypage/ReviewWrite2';
 import Save from './pages/Mypage/Save';
 import InfoDetail from './pages/Info/InfoDetail';
+import Register from './pages/Info/Register';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/info" element={<MainInfo></MainInfo>}></Route>
         <Route path="/info/:infoId" element={<MainInfo></MainInfo>}></Route>
         <Route path='/infodetail' element={<InfoDetail/>}></Route>
+        <Route path='/infodetail/save' element={<Register/>}></Route>
         
         <Route path='/review' element={<MainReview/>}></Route>
         <Route path='/review/:reviewId' element={<MyPageDetail/>}></Route>
