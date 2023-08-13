@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Wrapper } from '../../styles/Common'
 import styled from 'styled-components'
 import DropDown from '../../components/DropDown';
@@ -41,6 +41,11 @@ const Area = [
 
 
 const MainInfo = () => {
+
+    useEffect(() => {
+        // 컴포넌트가 마운트되면 스크롤을 맨 위로 이동시킴
+        window.scrollTo(0, 0);
+    }, []); // 빈 배열을 전달하면 컴포넌트가 마운트될 때 한 번만 실행됨
 
     const x = 1;
     
