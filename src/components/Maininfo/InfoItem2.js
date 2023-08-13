@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from 'styled-components'
 
-const InfoItem = ({width=25, height=90}) => {
+const InfoItem2 = ({width=25, height=90}) => {
   return (
     <Infodiv width={width} height={height}>
                 <InfoImg>
@@ -19,7 +19,7 @@ const InfoItem = ({width=25, height=90}) => {
   )
 }
 
-export default InfoItem
+export default InfoItem2
 
 
 
@@ -65,8 +65,6 @@ const InfoTextDiv = styled.div`
 
   width: 100%;
   height : 45%;
-
-  background: var(--secondary-yellow-color, #FFFAC9);
   box-sizing: border-box;
   padding: 0.8em 1.2em;
 
@@ -104,7 +102,7 @@ const InfoTextTitle = styled.span`
   color: #000;
   text-overflow: ellipsis;
   whitespace: nowrap;
-  font-size: 1em;
+  font-size: 2em;
   font-style: normal;
   font-weight: 700;
   line-height: normal;

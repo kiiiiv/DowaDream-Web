@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import illust from '../../../src/assets/일러스트.jpg'
 import ReviewItem from '../../components/Review/ReviewItem';
-import InfoItem from '../../components/Home/InfoItem';
+import InfoItem2 from '../../components/Maininfo/InfoItem2';
 
 import LikesandScrap from '../../components/Maininfo/LikesandScrap'
 function InfoDetail(){
@@ -74,10 +74,10 @@ function InfoDetail(){
             <ReviewTitle>현재 보고 있는 봉사와 유사해요!</ReviewTitle>
             <Infoitem>
                 <Iteminfo>
-                    <InfoItem></InfoItem>
-                    <InfoItem></InfoItem>
-                    <InfoItem></InfoItem>
-                    <InfoItem></InfoItem>
+                    <InfoItem2></InfoItem2>
+                    <InfoItem2></InfoItem2>
+                    <InfoItem2></InfoItem2>
+                    <InfoItem2></InfoItem2>
                 </Iteminfo>
             </Infoitem>
           
