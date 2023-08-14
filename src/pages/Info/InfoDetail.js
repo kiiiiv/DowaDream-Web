@@ -76,7 +76,7 @@ function InfoDetail (){
                         </tr>
                         <tr>
                         <Td className="bg-yellow">{array[6]}</Td>
-                        <Td>{info.adultAble}</Td>
+                        <Td>{info.recruitInstitute}</Td>
                         <Td className="bg-yellow">{array[7]}</Td>
                         <Td>{info.adultAble}</Td>
                         <Td className="bg-yellow">{array[8]}</Td>

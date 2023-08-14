@@ -104,7 +104,7 @@ const InfoTextTitle = styled.span`
   color: #000;
   text-overflow: ellipsis;
   whitespace: nowrap;
-  font-size: 1em;
+  font-size: 2em;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
