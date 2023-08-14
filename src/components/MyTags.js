@@ -1,7 +1,8 @@
 import { styled } from "styled-components";
 import InfoSelectionList from "../components/Maininfo/InfoSelectionList"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import { UserLocContext } from "../contexts/UserInfo";
 
 const Tag = [
   "공익, 인권","교육","국제행사","국제협력, 해외봉사","농어촌 봉사", "문화행사", "멘토링", "보건의료","상담","생활편의지원","안전, 예방","자원봉사교육","재해, 재난","주거환경","행정보조","환경보호","기타"
@@ -30,10 +31,16 @@ const AreaFirstElements = [
 
 function MyTags(){
 
+
+  const filteredData = useContext(UserLocContext);
+
+
   const [isSelectLoc,setIsSelectLoc] = useState("1");
-  const [detailButtonStates, setDetailButtonStates] = useState(Array.from({ length: 33 }).fill(false));
+  const [detailButtonStates, setDetailButtonStates] = useState(filteredData[1][1]);
   const [isTagDetailStates, setTagDetailState] = useState(Array.from({length : 20}).fill(false))
-  const [allInfo, setAllInfo] = useState(AreaFirstElements,Array.from({ length: 33 }).fill(false));
+  const [allInfo, setAllInfo] = useState(filteredData);
+
+  
 
   const onLocListClicked = (name) =>{
     setIsSelectLoc(`${name}`);

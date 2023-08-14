@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Wrapper } from '../../styles/Common'
 import styled from 'styled-components'
 import DropDown from '../../components/DropDown';
@@ -8,6 +8,7 @@ import InfoSelectionTagList from '../../components/Maininfo/InfoSelectionTagList
 import Search from '../../assets/Search.svg';
 import axios from 'axios';
 import { getVolInfo } from '../../apis/VolInfo/VolInfo';
+import { UserLocContext } from '../../contexts/UserInfo';
 
 const StArray= [
     "신규순",
@@ -37,9 +38,6 @@ const Area = [
   ];
 
   const arr = Array.from({length : 18}).fill(false);
-  
-  const AreaFirstElements = Area.map(area => area[0]);
-
 
 
 const MainInfo = () => {
@@ -48,6 +46,7 @@ const MainInfo = () => {
     useEffect(() => {
         // 컴포넌트가 마운트되면 스크롤을 맨 위로 이동시킴
         window.scrollTo(0, 0);
+        onTotalInfoClicked(filteredData);
     }, []); // 빈 배열을 전달하면 컴포넌트가 마운트될 때 한 번만 실행됨
 
     const x = 1;
@@ -56,12 +55,17 @@ const MainInfo = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isTag, setIsTag] = useState("Loc");
 
+    const filteredData = useContext(UserLocContext)
+
     //지역 및 세부 주소
     const [isSelectLoc,setIsSelectLoc] = useState("1");
-    const [detailButtonStates, setDetailButtonStates] = useState(Array.from({ length: 33 }).fill(false));
+    const [detailButtonStates, setDetailButtonStates] = useState(filteredData[1][1]);
 
     const [isSelectTag, setIsSelectTag] = useState(Array.from({ length: 22 }).fill(false));
-    const [allInfo, setAllInfo] = useState(AreaFirstElements,Array.from({ length: 33 }).fill(false));
+    const [allInfo, setAllInfo] = useState(filteredData);
+    const [totalNum, setTotalNum] = useState(0);
+
+
     const onToggle = () => setIsOpen(!isOpen);
 
     const [infoList, setInfoList] = useState([]); // 상태 변수로 InfoList 관리
@@ -108,10 +112,10 @@ const MainInfo = () => {
             }
         }
         setInfoList(InfoList);
+        setTotalNum(InfoList.length);
     }
 
     const generateMainInfoVol = (infoList) => {
-        console.log(infoList);
       
         return infoList.map((real, index) => (
           real.map((info, index) => (
@@ -157,7 +161,9 @@ const MainInfo = () => {
         </InfoSelection>
 
         <InfoSummary>
-            <SummaryText>총 {<SummaryNum>35</SummaryNum>}건의 봉사 목록이 있습니다.</SummaryText>
+            <SummaryText>
+                총 <SummaryNum>{infoList.flat(2).length}</SummaryNum>건의 봉사 목록이 있습니다.
+            </SummaryText>
             <CategoryMenuBox onClick={onToggle}>
                 <>{`${name} ∨`}</>
                 { isOpen && <DropDown width={100} array={StArray} onOptionClicked={onOptionClicked}></DropDown>}
