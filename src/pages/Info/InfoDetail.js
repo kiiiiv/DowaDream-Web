@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Wrapper } from '../../styles/Common'
 import styled from 'styled-components'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 //import {ReviewTitle} from '../../styles/Review/MainReview'
 
 import illust from '../../../src/assets/일러스트.jpg'
@@ -9,8 +9,34 @@ import ReviewItem from '../../components/Review/ReviewItem';
 import InfoItem2 from '../../components/Maininfo/InfoItem2';
 
 import LikesandScrap from '../../components/Maininfo/LikesandScrap'
-function InfoDetail(){
+import { getVolDetail } from '../../apis/VolInfo/VolInfo';
+
+function InfoDetail (){
     const array = ["태그","모집기관","장소","모집기간", "봉사기간","봉사시간","등록기관","성인 신청가능여부","청소년 신청가능여부",""];
+    const infoId = useParams();
+
+    const [info, setInfo] = useState({
+        title: "",
+        place: "",
+        actStart: "",
+        adultAble: "",
+        teenAble: "",
+        recruitStart: "",
+        content: "",
+        recruitInstitute: "",
+      });
+
+      useEffect(() => {
+        async function fetchInfo() {
+          const fetchedInfo = await getVolDetail(infoId.infoId);
+          setInfo(fetchedInfo);
+        }
+        fetchInfo();
+      }, [infoId]);
+ 
+
+
+
   return (
     <>
     <Wrapper>
@@ -20,7 +46,7 @@ function InfoDetail(){
                 <InfoTitleButtonBox>
                     <InfoTitleButton>모집마감</InfoTitleButton>
                 </InfoTitleButtonBox>
-                <InfoTitle>드림 교육 봉사활동</InfoTitle>
+                <InfoTitle>{info.title}</InfoTitle>
             </InfoTitleContainer>
             <InfoBox>
                 <TableWrapper>
@@ -29,25 +55,25 @@ function InfoDetail(){
                         <Td className="bg-yellow">{array[0]}</Td>
                         <Td></Td>
                         <Td className="bg-yellow">{array[1]}</Td>
-                        <Td></Td>
+                        <Td>{info.recruitInstitute}</Td>
                         <Td className="bg-yellow">{array[2]}</Td>
-                        <Td></Td>
+                        <Td>{info.place}</Td>
                         </tr>
                         <tr>
                         <Td className="bg-yellow">{array[3]}</Td>
-                        <Td></Td>
+                        <Td>{info.recruitStart}</Td>
                         <Td className="bg-yellow">{array[4]}</Td>
-                        <Td></Td>
+                        <Td>{info.recruitStart}</Td>
                         <Td className="bg-yellow">{array[5]}</Td>
-                        <Td></Td>
+                        <Td>{info.actStart}</Td>
                         </tr>
                         <tr>
                         <Td className="bg-yellow">{array[6]}</Td>
-                        <Td></Td>
+                        <Td>{info.adultAble}</Td>
                         <Td className="bg-yellow">{array[7]}</Td>
-                        <Td></Td>
+                        <Td>{info.adultAble}</Td>
                         <Td className="bg-yellow">{array[8]}</Td>
-                        <Td></Td>
+                        <Td>{info.teenAble}</Td>
                         </tr>
                     </tbody>
                 </TableWrapper>
@@ -56,7 +82,7 @@ function InfoDetail(){
                 <LikesandScrap></LikesandScrap>
             </LikesScrapContainer>
         <MainTextContainer>
-            활동 내용 (데이터 가져와서 들어갈 곳)
+            {info.content}
         </MainTextContainer>
         </InfoContainer>
 
@@ -140,10 +166,9 @@ font-weight: 700;
 font-size: 16px;
 line-height: 19px;
 
-color: #000000;
-
-
+color: #000000
 `
+
 const ReviewContainer = styled.div`
 display: flex;
 flex-direction: column;

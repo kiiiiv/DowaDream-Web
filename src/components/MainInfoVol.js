@@ -1,11 +1,21 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const MainInfoVol = (ac,title,time1,time2) => {
+
+const MainInfoVol = ({ac,title,pagenum,time1,time2}) => {
+
+
+    const navigate =useNavigate();
+
+    
   return (
-    <Wrapper>
-        <Ac>광양시자원봉사센터</Ac>
-        <Title>2023. 비대면 온라인교육 자원봉사 일일학당</Title>
+    <Wrapper onClick={()=>{
+        navigate(pagenum);
+        console.log(pagenum);
+    }}>
+        <Ac>{ac}</Ac>
+        <Title>{title}</Title>
         <Time>
             2023.05.06
             <br />
@@ -29,6 +39,7 @@ export default MainInfoVol
 
 const Wrapper = styled.div`
 
+
     display : flex;
     width : 100%;
     align-items : center;
@@ -39,6 +50,10 @@ const Wrapper = styled.div`
 `;
 
 const Ac = styled.span`
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 
     width: 20%;
     height : auto;
@@ -53,6 +68,10 @@ const Ac = styled.span`
 `;
 
 const Title = styled.span`
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 
 
     text-align : left;
