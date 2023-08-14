@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-function TagButton({text, to}) {
+function TagButton({text,onClick}) {
+
   return (
     <>
-      <StyledButton to={to}>
+      <StyledButton onClick={onClick}>
       <span>{text}</span>
       </StyledButton>
     </>
@@ -14,7 +15,8 @@ function TagButton({text, to}) {
 export default TagButton;
 
 const StyledButton = styled.div`
-  box-sizing: border-box;
+  
+box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -29,8 +31,19 @@ const StyledButton = styled.div`
   flex: none;
   order: 0;
   flex-grow: 0;
-  fontSize: 20;
+
+  font-size: 2.3em;
+  color: var(--dark-gray-color, #7E8181);
+
   fontWeight: 'normal';
   cursor: pointer;
+  transition: 0.2s; 
+
+
+  &:hover {
+    font-size: 2.6em;
+    text-decoration-line: underline;
+  }
+
 `;
 

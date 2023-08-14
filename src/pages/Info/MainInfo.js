@@ -55,7 +55,7 @@ const MainInfo = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isTag, setIsTag] = useState("Loc");
 
-    const filteredData = useContext(UserLocContext)
+    const filteredData = useContext(UserLocContext);
 
     //지역 및 세부 주소
     const [isSelectLoc,setIsSelectLoc] = useState("1");
