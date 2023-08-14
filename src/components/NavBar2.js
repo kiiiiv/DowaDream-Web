@@ -9,6 +9,8 @@ import LoginButton from './Home/LoginButton';
 import LoginedButton from './Home/LoginedButton';
 import { useNavigate } from 'react-router-dom';
 import LoginButtonPic from '../assets/로그인버튼2.png';
+import Login from './Home/Login';
+import { Profile } from './Home/Profile';
 
 
 function NavBar2() {
@@ -21,7 +23,7 @@ function NavBar2() {
     // 로그인 페이지로 이동
     navigate('/login');
   };
-
+/*
   // 로그아웃 버튼 클릭 시 이벤트 핸들러
   const handleLogoutClick = () => {
     // 로그아웃 상태로 변경되고, 사용자 이름도 초기화됨
@@ -38,9 +40,13 @@ function NavBar2() {
     } else {
       // 로그인하지 않은 상태라면, LoginButton 컴포넌트를 렌더링하고,
       // onClick 이벤트 핸들러를 설정하여 로그인 페이지로 이동함
-      return <LoginButton backgroundImg={LoginButton} onClick={handleLoginClick} />;
+      return <GoogleLoginButton onClick={handleLoginClick}/>;
     }
-  };
+  };*/
+  const [isLogin, setIsLogin] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
+
+
 
   return (
     <>
@@ -58,6 +64,10 @@ function NavBar2() {
               <Nav.Link onClick={() => { navigate('/review') }}>봉사후기</Nav.Link>
               <Nav.Link onClick={() => { navigate('/mypage') }}>마이페이지</Nav.Link>
             </Nav>
+            {!isLogin
+                ? <Login setUserInfo={setUserInfo} setIsLogin={setIsLogin} />
+                : <Profile userInfo={userInfo} />
+            }
             <Form className="d-flex">
               <Form.Control
                 type="search"
@@ -67,7 +77,7 @@ function NavBar2() {
               />
               <Button variant="outline-success">Search</Button>
             </Form>
-            {renderLoginButton()}
+            
           </Navbar.Collapse>
         </Container>
       </Navbar>

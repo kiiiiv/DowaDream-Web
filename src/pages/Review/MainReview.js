@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Wrapper } from '../../styles/Common'
 import { CategoryMenuBox, ReviewBespokeButton, ReviewBespokeText, ReviewBespokediv, ReviewInfoWrapper, ReviewItemWrapper, ReviewSortdiv, ReviewTitle, Reviewdiv } from '../../styles/Review/MainReview'
 import Dropdown from '../../components/DropDown'
@@ -14,8 +14,7 @@ const MainReview = () => {
     const [name,setName] = useState("정렬순");
     const [isOpen, setIsOpen] = useState(false);
     const [showBespoke, setShowBespoke] = useState(false);
-
-
+    
 
     const onOptionClicked = (value, i) => () => {
         console.log(value);
@@ -86,6 +85,7 @@ const MainReview = () => {
             </ReviewItemWrapper>
 
         </ReviewInfoWrapper>
+
 
 
 
