@@ -43,12 +43,7 @@ const Area = [
 const MainInfo = () => {
 
 
-    useEffect(() => {
-        // 컴포넌트가 마운트되면 스크롤을 맨 위로 이동시킴
-        window.scrollTo(0, 0);
-        onTotalInfoClicked(filteredData);
-    }, []); // 빈 배열을 전달하면 컴포넌트가 마운트될 때 한 번만 실행됨
-
+    
     const x = 1;
     
     const [name,setName] = useState("정렬순");
@@ -63,13 +58,27 @@ const MainInfo = () => {
 
     const [isSelectTag, setIsSelectTag] = useState(Array.from({ length: 22 }).fill(false));
     const [allInfo, setAllInfo] = useState(filteredData);
-    const [totalNum, setTotalNum] = useState(0);
+    const [totalNum, setTotalNum] = useState(1);
 
 
     const onToggle = () => setIsOpen(!isOpen);
 
     const [infoList, setInfoList] = useState([]); // 상태 변수로 InfoList 관리
- 
+    const [divList, setdivList] = useState([]); // 상태 변수로 InfoList 관리
+
+
+
+
+    useEffect(() => {
+        // 컴포넌트가 마운트되면 스크롤을 맨 위로 이동시킴
+        window.scrollTo(0, 0);
+        onTotalInfoClicked(filteredData);
+    }, []); // 빈 배열을 전달하면 컴포넌트가 마운트될 때 한 번만 실행됨
+
+    useEffect(()=>{
+        const mainInfoVols = generateMainInfoVols(infoList);
+        setdivList(mainInfoVols);
+    },[totalNum]) 
     
     const onOptionClicked = (value, i) => () => {
       console.log(value);
@@ -94,7 +103,7 @@ const MainInfo = () => {
         }
     
         setIsSelectLoc(`${name}`);
-        setAllInfo(updatedAllInfo);
+        setAllInfo(updatedAllInfo);   
     }
 
     const  InfoList= [];
@@ -112,26 +121,45 @@ const MainInfo = () => {
             }
         }
         setInfoList(InfoList);
-        setTotalNum(InfoList.length);
+        const mainInfoVols = generateMainInfoVols(InfoList);
+        setdivList(mainInfoVols);
+
     }
 
-    const generateMainInfoVol = (infoList) => {
+    const generateMainInfoVols = (infoList) => {
+        const mainInfoVols = [];
       
-        return infoList.map((real, index) => (
-          real.map((info, index) => (
-            <MainInfoVol
-              key={info.progrmRegistNo} // 고유한 key 값을 설정합니다.
-              ac={info.place}
-              title={info.title}
-              pagenum={info.progrmRegistNo}
-              time1={info.time1}
-              time2={info.time2}
-            />
-          ))
-        ));
-      };
-      
+        for (let index = 1; index < (totalNum-1) + 20; index++) {
+          const real = infoList[index] || []; // 해당 인덱스의 데이터가 없을 경우 빈 배열 사용
+          
+          for (const info of real) {
+            mainInfoVols.push(
+              <MainInfoVol
+                key={info.progrmRegistNo}
+                ac={info.place}
+                title={info.title}
+                pagenum={info.progrmRegistNo}
+                time1={info.time1}
+                time2={info.time2}
+              />
+            );
+          }
+          if(mainInfoVols.length>=20*(totalNum)){
+            break;
+          }
+        }
+        console.log(mainInfoVols.length)
+        return mainInfoVols
+        };
 
+      const onLoadMoreClicked=()=>{
+        setTotalNum(totalNum + 1);
+        const mainInfoVols = generateMainInfoVols(infoList);
+        setdivList(mainInfoVols);
+        
+      }
+    
+      
 
     
 
@@ -162,7 +190,7 @@ const MainInfo = () => {
 
         <InfoSummary>
             <SummaryText>
-                총 <SummaryNum>{infoList.flat(2).length}</SummaryNum>건의 봉사 목록이 있습니다.
+                총 <SummaryNum>{(infoList.flat(2).length-10)}</SummaryNum>건의 봉사 목록이 있습니다.
             </SummaryText>
             <CategoryMenuBox onClick={onToggle}>
                 <>{`${name} ∨`}</>
@@ -178,15 +206,16 @@ const MainInfo = () => {
                 <InfoTimeText>봉사 기간</InfoTimeText>
                 <InfoTimeText>모집기간</InfoTimeText>
             </InfoTypesWrapper>
-            {generateMainInfoVol(infoList)}
-
-
-            
+            {
+                divList
+            }
         </InfoAllWrapper>
 
-        {/*배열 크기에 따른 생성 여부 결정 필요*/
-                (arr.length>20*x) ?<SearchMore>더보기 ∨</SearchMore> : <Margindiv></Margindiv>
-        }
+        {((infoList.flat(2).length-10) > 20 * totalNum) ? (
+            <SearchMore onClick={onLoadMoreClicked}>더보기 ∨</SearchMore>
+            ) : (
+            <Margindiv></Margindiv>
+        )}
 
 
     </Wrapper>
