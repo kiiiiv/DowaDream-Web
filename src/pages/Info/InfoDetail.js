@@ -12,6 +12,7 @@ import LikesandScrap from '../../components/Maininfo/LikesandScrap'
 import { getVolDetail } from '../../apis/VolInfo/VolInfo';
 
 function InfoDetail (){
+
     const array = ["태그","모집기관","장소","모집기간", "봉사기간","봉사시간","등록기관","성인 신청가능여부","청소년 신청가능여부",""];
     const infoId = useParams();
 
@@ -26,6 +27,11 @@ function InfoDetail (){
         recruitInstitute: "",
       });
 
+      function renderHTML(htmlString) {
+        return { __html: htmlString };
+    }
+
+
       useEffect(() => {
         async function fetchInfo() {
           const fetchedInfo = await getVolDetail(infoId.infoId);
@@ -33,6 +39,7 @@ function InfoDetail (){
         }
         fetchInfo();
       }, [infoId]);
+
  
 
 
@@ -160,11 +167,15 @@ height: 439px;
 border-width: 1px 0px;
 border-style: solid;
 border-color: #7E8181;
-font-family: 'Pretendard Variable';
+text-align : -webkit-auto;
 font-style: normal;
 font-weight: 700;
 font-size: 16px;
 line-height: 19px;
+
+word-break: break-all;
+white-space: pre-wrap;
+
 
 color: #000000
 `
