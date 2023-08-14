@@ -8,13 +8,15 @@ import LoginButton from './Home/LoginButton';
 import LoginedButton from './Home/LoginedButton';
 import { useNavigate } from 'react-router-dom';
 import LoginButtonPic from '../assets/로그인버튼2.png';
+import GoogleLoginButton2 from './Home/GoogleLoginButton2';
+
 import { Profile } from './Home/Profile';
 import {GoogleLogin} from "@react-oauth/google";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 import {useCallback} from "react";
 
 
-function NavBar2() {
+function NavBar() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
@@ -66,8 +68,10 @@ function NavBar2() {
               <Nav.Link onClick={() => { navigate('/review') }}>봉사후기</Nav.Link>
               <Nav.Link onClick={() => { navigate('/mypage') }}>마이페이지</Nav.Link>
             </Nav>
+            <GoogleLoginButton2></GoogleLoginButton2>
+            
             {loggedIn ? (
-              <LoginButtonPic />
+              <Profile userInfo={userInfo} onLogoutClick={handleLogoutClick} />
             ) : (
               <GoogleOAuthProvider clientId="263882411657-kanoto1m439tbjmhahgc0hgv9u58t451.apps.googleusercontent.com">
                 <GoogleLogin
@@ -96,4 +100,4 @@ function NavBar2() {
   );
 }
 
-export default NavBar2;
+export default NavBar;

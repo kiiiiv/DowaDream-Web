@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import loginButton from '../../assets/로그인후버튼.png';
 import Illust from '../../assets/일러스트.jpg';
@@ -13,11 +13,13 @@ function LoginPage(){
             <Greetings1>
                 <GreetingsText>
                     <GreetingsText1>환영합니다!</GreetingsText1>
-                    <GreetingsText1 fontSize="24px" fontWeight="400">로그인을 하고 나에게 맞는 봉사를 추천 받아보세요!</GreetingsText1>
+                    <GreetingsText1 fontSize="20px" fontWeight="400">로그인을 하고 나에게 맞는 봉사를 추천 받아보세요!</GreetingsText1>
                 </GreetingsText>
                 <Login></Login>             
             </Greetings1>
+            <StyledLink to="/">
             <GreetingsText1 color="#7A7777" fontSize="16px" fontWeight="400">먼저 둘러보기</GreetingsText1>
+            </StyledLink>
         </Greetings>
         
       </LoginContainer>  
@@ -146,3 +148,10 @@ background-size: cover;
   background-position: center;
 `;
 
+const StyledLink = styled(Link)`
+  width: 100%;
+  &:hover {
+    cursor: pointer;
+
+}
+`;
