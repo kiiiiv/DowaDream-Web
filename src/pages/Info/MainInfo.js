@@ -6,6 +6,8 @@ import MainInfoVol from '../../components/MainInfoVol';
 import InfoSelectionList from '../../components/Maininfo/InfoSelectionList';
 import InfoSelectionTagList from '../../components/Maininfo/InfoSelectionTagList';
 import Search from '../../assets/Search.svg';
+import axios from 'axios';
+import { getVolInfo } from '../../apis/VolInfo/VolInfo';
 
 const StArray= [
     "신규순",
@@ -42,6 +44,7 @@ const Area = [
 
 const MainInfo = () => {
 
+
     useEffect(() => {
         // 컴포넌트가 마운트되면 스크롤을 맨 위로 이동시킴
         window.scrollTo(0, 0);
@@ -60,6 +63,9 @@ const MainInfo = () => {
     const [isSelectTag, setIsSelectTag] = useState(Array.from({ length: 22 }).fill(false));
     const [allInfo, setAllInfo] = useState(AreaFirstElements,Array.from({ length: 33 }).fill(false));
     const onToggle = () => setIsOpen(!isOpen);
+
+    const [infoList, setInfoList] = useState([]); // 상태 변수로 InfoList 관리
+ 
     
     const onOptionClicked = (value, i) => () => {
       console.log(value);
@@ -86,23 +92,44 @@ const MainInfo = () => {
         setIsSelectLoc(`${name}`);
         setAllInfo(updatedAllInfo);
     }
-    
 
-    const onTotalInfoClicked = () =>{
+    const  InfoList= [];
 
-        allInfo.forEach((info, index) => {
-            const firstElement = info[0];
-            if(info[1].length!==1){
+    const onTotalInfoClicked = async () => {
+
+        for (const info of allInfo) {
+            if (info[1].length !== 1) {
                 const secondArray = info[1];
-      
-            const nonFalseValues = secondArray.filter(value => value !== false);
-      
-            console.log(`First Element: ${firstElement}`);
-            console.log(`Non-False Values: ${nonFalseValues}`);
+                const nonFalseValues = secondArray.filter(value => value !== false);
+                for (const item of nonFalseValues) {
+                    const volInfo = await getVolInfo(item);
+                    InfoList.push(volInfo);
+                }
             }
-          });
-
+        }
+        setInfoList(InfoList);
     }
+
+    const generateMainInfoVol = (infoList) => {
+        console.log(infoList);
+      
+        return infoList.map((real, index) => (
+          real.map((info, index) => (
+            <MainInfoVol
+              key={info.progrmRegistNo} // 고유한 key 값을 설정합니다.
+              ac={info.place}
+              title={info.title}
+              pagenum={info.progrmRegistNo}
+              time1={info.time1}
+              time2={info.time2}
+            />
+          ))
+        ));
+      };
+      
+
+
+    
 
       
   return (
@@ -145,14 +172,7 @@ const MainInfo = () => {
                 <InfoTimeText>봉사 기간</InfoTimeText>
                 <InfoTimeText>모집기간</InfoTimeText>
             </InfoTypesWrapper>
-            <MainInfoVol ac={1} title={1} time1={1} time2={1} ></MainInfoVol>
-
-            {
-                // 배열 크기에 따른 변환 필요
-                Array.from({ length: 20 }).map((_, index) => (
-                    <MainInfoVol key={index} ac={1} title={1} time1={1} time2={1} ></MainInfoVol>
-                ))
-            }
+            {generateMainInfoVol(infoList)}
 
 
             

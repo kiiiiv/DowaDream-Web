@@ -20,7 +20,7 @@ const LikesandScrap = () => {
   return (
     <>
         <LikesScrapContainer2>
-                <LikesContainer isFirst>
+                <LikesContainer>
                     <img 
                         src={likeClicked ? Like2 : Like} // Toggle between Like and TextBol based on likeClicked state
                         onClick={()=>handleLikeClick()} // Attach click event handler
@@ -69,7 +69,6 @@ align-items: center;
 padding: 0px;
 width: 124px;
 height: 52px;
-border-radius: ${({ isFirst }) => isFirst ? '20px 0px 0px 20px' : '0px 20px 20px 0px'};
 background: #D9D9D9;
 gap: 10px;
 font-family: Pretendard Variable;

@@ -9,6 +9,8 @@ const StArray= [
     "없음",
 ]
 
+const dummyArr = Array.from({length : 18}).fill(false);
+
 const MainReview = () => {
 
     const [name,setName] = useState("정렬순");
@@ -50,7 +52,7 @@ const MainReview = () => {
         </ReviewSortdiv>
 
         <ReviewInfoWrapper>
-
+        
             <ReviewItemWrapper>
                 <ReviewItem></ReviewItem>
                 <ReviewItem></ReviewItem>
@@ -81,8 +83,7 @@ const MainReview = () => {
             
             <ReviewItemWrapper>
                 <ReviewItem></ReviewItem>
-                <ReviewItem></ReviewItem>
-                <ReviewItem></ReviewItem>
+
             </ReviewItemWrapper>
 
         </ReviewInfoWrapper>
