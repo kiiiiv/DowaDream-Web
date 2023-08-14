@@ -32,7 +32,7 @@ function App() {
         <Route path='/mypage/save' element={<Save/>}></Route>
         
         <Route path="/info" element={<MainInfo></MainInfo>}></Route>
-        <Route path="/info/:infoId" element={<MainInfo></MainInfo>}></Route>
+        <Route path="/info/:infoId" element={<InfoDetail></InfoDetail>}></Route>
         <Route path='/infodetail' element={<InfoDetail/>}></Route>
         <Route path='/infodetail/save' element={<Register/>}></Route>
         
