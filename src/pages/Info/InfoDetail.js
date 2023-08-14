@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Wrapper } from '../../styles/Common'
 import styled from 'styled-components'
 import { Link, useParams } from "react-router-dom";
@@ -40,10 +40,6 @@ function InfoDetail (){
         fetchInfo();
       }, [infoId]);
 
- 
-
-
-
   return (
     <>
     <Wrapper>
@@ -76,7 +72,7 @@ function InfoDetail (){
                         </tr>
                         <tr>
                         <Td className="bg-yellow">{array[6]}</Td>
-                        <Td>{info.adultAble}</Td>
+                        <Td>{info.recruitInstitute}</Td>
                         <Td className="bg-yellow">{array[7]}</Td>
                         <Td>{info.adultAble}</Td>
                         <Td className="bg-yellow">{array[8]}</Td>
@@ -97,9 +93,13 @@ function InfoDetail (){
             <ReviewTitle>후기</ReviewTitle>
             <ReviewInfoWrapper>
                 <ReviewItemWrapper>
-                    <ReviewItem/>
-                    <ReviewItem/>
-                    <ReviewItem/>
+                    <ReviewItem width={20}/>
+                    <ReviewItem width={20}/>
+                    <ReviewItem width={20}/>
+                    <ReviewItem width={20}/>
+                    <ReviewItem width={20}/>
+
+                    
                 </ReviewItemWrapper>
           </ReviewInfoWrapper>
         </ReviewContainer>
@@ -182,6 +182,7 @@ color: #000000
 
 const ReviewContainer = styled.div`
 display: flex;
+
 flex-direction: column;
 align-items: flex-start;
 padding: 0px 0px 40px;
@@ -200,26 +201,29 @@ const ReviewTitle = styled.span`
 
 `
 const ReviewInfoWrapper = styled.div`
+    display: inline-flex; /* 변경 */
+    width : 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth; /* 부드러운 스크롤링을 활성화합니다. */
 
-    width : 100%
-    height : auto;
 
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 60px;
+    user-select: none; /* Prevent text selection */
 
-`
+`;
+
 const ReviewItemWrapper = styled.div`
-
     display: flex;
-    justify-content : space-between;
-
-    width: 1080px;
-    height : auto;
     align-items: flex-start;
 
-`
+    gap: 20px;
+    width: fit-content; /* 추가 */
+    
+
+`;
+
 const Similar = styled.div`
 display: flex;
 flex-direction: column;
