@@ -2,22 +2,27 @@ import {GoogleLogin} from "@react-oauth/google";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 import jwtDecode from "jwt-decode";
 
-const GoogleLoginButton = () => {
-    const clientId = '263882411657-kanoto1m439tbjmhahgc0hgv9u58t451.apps.googleusercontent.com'
-    return (
-        <>
-            <GoogleOAuthProvider clientId={clientId}>
-                <GoogleLogin
-                    onSuccess={((credentialResponse: any)) => {
-                        console.log(jwtDecode(credentialResponse.credential));
-                    }}
-                    onFailure={(err) => {
-                        console.log("Login Failed");
-                    }}
-                />
-            </GoogleOAuthProvider>
-        </>
-    );
-};
+const clientId = '263882411657-kanoto1m439tbjmhahgc0hgv9u58t451.apps.googleusercontent.com'
 
-export default GoogleLoginButton
+const onSuccess = (credentialResponse: any) => {
+  const token = jwtDecode(credentialResponse.credential);
+  return token;
+}
+const token = ""; 
+
+export function GoogleLoginButton() {
+  return (
+    <>
+      <GoogleOAuthProvider clientId={clientId}>
+        <GoogleLogin
+          onSuccess={onSuccess}
+          onFailure={(err) => {
+            console.log("Login Failed");
+          }}
+        />
+      </GoogleOAuthProvider>
+    </>
+  );
+}
+
+export { onSuccess, token };

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import loginButton from '../../assets/로그인후버튼.png';
 import Illust from '../../assets/일러스트.jpg';
 import { Wrapper } from '../../styles/Common';
-import GoogleLoginButton from '../../components/Home/GoogleLoginButton';
+import {GoogleLoginButton} from '../../components/Home/GoogleLoginButton';
 function LoginPage(){
     return(
     <Wrapper>      
