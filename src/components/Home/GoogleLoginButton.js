@@ -8,6 +8,7 @@ const onSuccess = (credentialResponse: any) => {
   const token = jwtDecode(credentialResponse.credential);
   return token;
 }
+const token = ""; 
 
 export function GoogleLoginButton() {
   return (
