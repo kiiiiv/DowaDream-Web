@@ -2,6 +2,7 @@ import React from 'react'
 import { Wrapper } from '../../styles/Common'
 import { styled } from 'styled-components'
 import InfoItem from '../Home/InfoItem'
+import { useNavigate } from 'react-router-dom'
 
 const ReviewWriteModal = () => {
   return (
@@ -11,7 +12,11 @@ const ReviewWriteModal = () => {
           <ReviewTitieText>내가 한 봉사</ReviewTitieText>
         </ReviewTitlediv>
         <InfoWrapper>
-            <InfoItem width={30} height={80} />
+         
+            <InfoItem width={30} height={80} onClick={()=>{
+              window.location.href='/review/write/1';
+            }
+            } />
             <InfoItem width={30} height={80} />
             <InfoItem width={30} height={80} />
             <InfoItem width={30} height={80} />

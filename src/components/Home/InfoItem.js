@@ -1,9 +1,9 @@
 import React from 'react'
 import { styled } from 'styled-components'
 
-const InfoItem = ({width=25, height=90}) => {
+const InfoItem = ({width=25, height=90, onClick=null}) => {
   return (
-    <Infodiv width={width} height={height}>
+    <Infodiv width={width} height={height} onClick={onClick}>
                 <InfoImg>
                     <Ddaydiv><div>D-7</div></Ddaydiv>
                 </InfoImg>

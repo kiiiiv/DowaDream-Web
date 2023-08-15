@@ -1,15 +1,34 @@
 import React, { useState, useRef, useEffect, createRef } from 'react';
 import styled from 'styled-components';
+import { Wrapper } from '../../styles/Common';
+import Dropdown from '../../components/DropDown';
+import { useParams } from 'react-router-dom';
+import { writeReview } from '../../apis/Review/GetReview';
+
+const closing = [
+  "전체 공개",
+  "나만 보기"
+]
+
 
 function ReviewWrite2(){
-    const [title, setTitle] = useState('제목');
+    const [name,setName] = useState("전체 보기");
+    const [isOpen, setIsOpen] = useState(false);
+    const infoId = useParams();
+
+    const onToggle = () => setIsOpen(!isOpen);
+
     const [titleFocus, setTitleFocus] = useState(false);
-    const [content, setContent] = useState(
-      '한전은 7일 본사 경영진을 비롯한 전국 15개 지역본부와 함께 긴급 화상회의를 열고 여름 전력 수급 피크와 태풍 카눈에 대비한 전력 공급 상황을 긴밀히 점검했다. 산업통상자원부와 한전은 오전 배포한 자료에서 이날부터 8일 오후까지 극한 무더위로 인한 냉방기 사용 급증 등으로 전력수요가 92.9GW까지 높아지면서 올여름 전력크를 기록할 것으로 전망했다. 그러나 찌는 듯한 폭염 속에 전력수요는 정부 예상치를 훌쩍 뛰어넘. 전력거래소에 따르면 이날 오후 4시 35분 전력수요는 올 여름 들어 최고치인 94.1GW를 찍었다. 이는 역대 최대였던 지난해 7월 7일 여름철 전력최고인 92.9GW를 경신한 수치다. 다만 지난달 사고로 가동이 중단된 1GW급 한빛 원전 2기가 전날부터 극적으로 가동에 들어가면서 전력 공급 능력은 104GW로 블랙아웃(대규모 정전)은 피했다. 신보령 2호기(1.02GW)도 적기에 힘을 보태면서 전력피크를 찍 당시 예비율은 10.4GW였다.아리가또고자이마스'
-    );
     const [contentFocus, setContentFocus] = useState(false);
-    const [imageFiles, setImageFiles] = useState(Array(5).fill(null));
     const fileInputRef = useRef(null);
+
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState(
+        ''
+      );
+    const [imageFiles, setImageFiles] = useState(Array(5).fill(null));
+
+
       
       const handleImageClick = (index) => {
         if (fileInputRef.current) {
@@ -33,11 +52,34 @@ function ReviewWrite2(){
         }
       };
 
+      const onOptionClicked = (value, i) => () => {
+        console.log(value);
+          setName(value);
+          setIsOpen(false);
+      };
+
+      const SaveInfo = async () =>{
+
+        if(title!==""){
+          if(content!==""){
+            const response = await writeReview(infoId.infoId,title,content);
+          }
+        }
+
+      }
+
   return (
-    <Container80>
+    <Wrapper>
+      <WriteWrapper>
       <Container81>
         <RegisterContainer>
-          <RegisterButton>등록하기</RegisterButton>
+          <CategoryMenuBox onClick={onToggle}>
+              <>{`${name} ∨`}</>
+              {
+                isOpen && <Dropdown width={100} array={closing} onOptionClicked={onOptionClicked}></Dropdown>
+              }
+          </CategoryMenuBox>
+          <RegisterButton onClick={SaveInfo}>등록하기</RegisterButton>
         </RegisterContainer>
         <MyReview>
           <MyReviewTitleContainer>
@@ -64,13 +106,26 @@ function ReviewWrite2(){
           </MyReviewTitleContainer>
           <WriteContainer>
           <WriteMain
-            
-            value={contentFocus && content === "한전은 7일 본사 경영진을 비롯한 전국 15개 지역본부와 함께 긴급 화상회의를 열고 여름철 전력 수급 피크와 태풍 카눈에 대비한 전력 공급 상황을 긴밀히 점검했다. 산업통상자원부와 한전은 오전 배포한 자료에서 이날부터 8일 오후까지 극한 무더위로 인한 냉방기 사용 급증 등으로 전력수요가 92.9GW까지 높아지면서 올여름 전력피크를 기록할 것으로 전망했다. 그러나 찌는 듯한 폭염 속에 전력수요는 정부 예상치를 훌쩍 뛰어넘었다. 전력거래소에 따르면 이날 오후 4시 35분 전력수요는 올 여름 들어 최고치인 94.1GW를 찍었다. 이는 역대 최대였던 지난해 7월 7일 여름철 전력최고치인 92.9GW를 경신한 수치다. 다만 지난달 사고로 가동이 중단된 1GW급 한빛 원전 2호기가 전날부터 극적으로 가동에 들어가면서 전력 공급 능력은 104GW로 블랙아웃(대규모 정전)은 피했다. 신보령 2호기(1.02GW)도 적기에 힘을 보태면서 전력피크를 찍을 당시 예비율은 10.4GW였다.아리가또고자이마스" ? "" : content}
-            onFocus={() => !contentFocus && setContentFocus(true)}
-            onBlur={() => contentFocus && setContent("")}
+            value={contentFocus ? content : "본문을 작성해주세요"}
+            onFocus={() => {
+              if (!contentFocus) {
+                setContent("");
+                setContentFocus(true);
+                }
+            }
+            }
+            onBlur={() =>{
+              if (content === "") {
+                setContent("본문을 작성해주세요");
+                setContentFocus(false);
+                }
+            } 
+            }
             onChange={(e) => setContent(e.target.value)}
             style={{ fontSize: "16px", color: contentFocus ? "black" : "#7E8181" }}
-            />
+            >
+              {content}
+            </WriteMain>
             <MyReviewNum><span style={{ color: contentFocus ? "#F74E43" : "inherit" }}>{content.length}</span>/100</MyReviewNum>
           </WriteContainer>
         </MyReview>
@@ -101,19 +156,25 @@ function ReviewWrite2(){
             onChange={handleImageUpload}
           />
       </ImgContainer>
-    </Container80>
+      </WriteWrapper>
+    </Wrapper>
   );
 };
 
 export default ReviewWrite2;
 
-const Container80 = styled.div`
+const WriteWrapper = styled.div`
+  padding-top: 40px;
+  padding-bottom: 40px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 0px 0px;
-  height: 955px;
-  width: 1170px;
+  justify-content: center; /* 추가 */
+  width: 73 %;
+  height: auto;
+  min-height: 100vh; /* 화면 높이에 따라 최소 높이 조정 */
+  margin: 0 auto; /* 가운데 정렬을 위한 마진 설정 */
 `;
 
 const Container81 = styled.div`
@@ -121,38 +182,62 @@ const Container81 = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  width: 1018px;
+  width: 100%;
   height: 672px;
 `;
 
 const RegisterContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   padding: 0px 0px 20px;
-  gap: 10px;
-  width: 1018px;
+  width: 100%;
   height: 65px;
 `;
 
 const RegisterButton = styled.button`
-  display: flex;
-  flex-direction: row;
+
   justify-content: center;
-  align-items: center;
+
   padding: 12px 20px;
-  gap: 10px;
-  width: 103px;
+
+  width: 120px;
   height: 45px;
+  
   /* Yellow Color */
   background: #FFE34F;
   border-radius: 30px;
-  font-family: 'Pretendard Variable';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   color: #000000;
+  border: none; /* 테두리 없애기 */
+
+
+`;
+
+const CategoryMenuBox = styled.button`
+  border: 1px solid #000;
+  background: var(--secondary-yellow-color, #FFFAC9);
+
+
+    width: 7em;
+    height: 2.1em;
+    padding: 4px 10px 4px 10px;
+    margin-top: 0; /* Object1 위쪽 여백을 없애서 상단으로 붙임 */
+
+
+
+    font-weight: 400;
+    font-size:1.4em;
+
+    display: flex;
+    align-items: center;
+
+    flex-direction : column;
+
 `;
 
 const MyReview = styled.div`
@@ -160,7 +245,7 @@ const MyReview = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  width: 1018px;
+  width: 100%;
   height: 607px;
 `;
 
@@ -180,7 +265,7 @@ const MyReviewTitle = styled.textarea`
   align-items: center;
   padding: 8px 4px;
   gap: 10px;
-  width: 1018px;
+  width: 100%;
   height: 100%;
   /* Dark Gray Color */
   border-bottom: 2px solid #7E8181;
@@ -214,7 +299,7 @@ const WriteContainer = styled.div`
   align-items: flex-end;
   padding: 8px;
   gap: 10px;
-  width: 1018px;
+  width: 100%;
   height: 519px;
   /* Light Gray Color */
   border: 1px solid #D9D9D9;
@@ -225,7 +310,7 @@ const WriteMain = styled.textarea`
   align-items: center;
   padding: 10px;
   gap: 10px;
-  width: 1002px;
+  width: 100%;
   height: 479px;
   align-self: stretch;
   flex-grow: 1;
@@ -242,7 +327,7 @@ const ImgContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 0px 0px 10px;
-  width: 1060px;
+  width: 100%;
   height: 243px;
 `;
 const ImgInfo1 = styled.div`
@@ -287,8 +372,8 @@ const ImgInfo = styled.div`
 const ImgContainer1 = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   padding: 0px 10px;
   gap: 10px;
   width: 100%;
