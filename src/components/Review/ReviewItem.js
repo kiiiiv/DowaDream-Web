@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { styled } from 'styled-components'
 import Like from '../../../src/assets/말풍선.svg'
 import TextBol from '../../../src/assets/좋아요.svg'
@@ -7,8 +9,10 @@ import Like2 from '../../assets/좋아요색변화.svg'
 
 
 
-const ReviewItem = ({width=30,height=670,url='../../1ogo192.png'}) => {
+const ReviewItem = ({width=30,height=670,url='../../1ogo192.png',rid,updated_at,progrmRegistNo,title,content,is_public=true,writer,images}) => {
     
+    const navigate = useNavigate();
+
     const [likeClicked, setLikeClicked] = useState(false); // State to track like button click
     const [textBolClicked, setTextBolClicked] = useState(false); // State to track like button click
     
@@ -25,15 +29,19 @@ const ReviewItem = ({width=30,height=670,url='../../1ogo192.png'}) => {
     return (
 
 
-    <ReviewCardWrapper width={width} height={height}>
-        <ReviewCardImg url={url}></ReviewCardImg>
+    <ReviewCardWrapper width={width} height={height} 
+        onClick={()=>{
+            navigate(`${rid}`);
+        }}
+    >
+        <ReviewCardImg url={images}></ReviewCardImg>
         <ReviewCardInfodiv>
             <ReviewNameWrapper>
                 <ReviewNamediv>
                     <ReviewNameImg>
                         
                     </ReviewNameImg>
-                    <ReviewNameText>나상현</ReviewNameText>
+                    <ReviewNameText>{writer}</ReviewNameText>
                     <ReviewEmotediv>
                         <ReviewEmoteImg>
                             <img 
@@ -60,11 +68,11 @@ const ReviewItem = ({width=30,height=670,url='../../1ogo192.png'}) => {
 
             </ReviewNameWrapper>
             <ReviewTextdiv>
-                    <ReviewTextTitle>우당탕탕 봉사 후기 이러쿵 저러쿵 어쩌구 저쩌구</ReviewTextTitle>
+                    <ReviewTextTitle>{title}</ReviewTextTitle>
                     <ReviewTextTag>#하나둘셋넷다섯</ReviewTextTag>
             </ReviewTextdiv>
             <ReviewDetaildiv>
-                <ReviewDetailText>오늘 간 봉사 어쩌구 저쩌구는 매우매우 아주 재미있고 뿌듯하고 보람 찼다 어쩌구 저쩌구</ReviewDetailText>
+                <ReviewDetailText>{content}</ReviewDetailText>
             </ReviewDetaildiv>
         </ReviewCardInfodiv>
 
@@ -222,6 +230,8 @@ const ReviewTextTitle = styled.span`
     white-space: nowrap; /* Prevent line breaks */
     text-overflow: ellipsis;
 
+
+    text-align : left;
     color: #000;
     font-size: 1.8em;
     font-style: normal;
@@ -284,5 +294,6 @@ const ReviewDetailText = styled.span`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    text-align : left;
 
 `

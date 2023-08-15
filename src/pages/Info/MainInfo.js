@@ -6,7 +6,6 @@ import MainInfoVol from '../../components/MainInfoVol';
 import InfoSelectionList from '../../components/Maininfo/InfoSelectionList';
 import InfoSelectionTagList from '../../components/Maininfo/InfoSelectionTagList';
 import Search from '../../assets/Search.svg';
-import axios from 'axios';
 import { getVolInfo } from '../../apis/VolInfo/VolInfo';
 import { UserLocContext } from '../../contexts/UserInfo';
 
@@ -37,9 +36,6 @@ const Area = [
     ["제주", "제주시", "서귀포시"],
   ];
 
-  const arr = Array.from({length : 18}).fill(false);
-
-
 const MainInfo = () => {
 
 
@@ -65,7 +61,7 @@ const MainInfo = () => {
 
     const [infoList, setInfoList] = useState([]); // 상태 변수로 InfoList 관리
     const [divList, setdivList] = useState([]); // 상태 변수로 InfoList 관리
-
+    const [infoCount, setInfoCount] = useState();
 
 
 
@@ -74,11 +70,6 @@ const MainInfo = () => {
         window.scrollTo(0, 0);
         onTotalInfoClicked(filteredData);
     }, []); // 빈 배열을 전달하면 컴포넌트가 마운트될 때 한 번만 실행됨
-
-    useEffect(()=>{
-        const mainInfoVols = generateMainInfoVols(infoList);
-        setdivList(mainInfoVols);
-    },[totalNum]) 
     
     const onOptionClicked = (value, i) => () => {
       console.log(value);
@@ -108,6 +99,7 @@ const MainInfo = () => {
 
     const  InfoList= [];
 
+
     const onTotalInfoClicked = async () => {
 
         for (const info of allInfo) {
@@ -119,9 +111,15 @@ const MainInfo = () => {
                     InfoList.push(volInfo);
                 }
             }
+        
         }
-        setInfoList(InfoList);
-        const mainInfoVols = generateMainInfoVols(InfoList);
+        let newArray2 = [].concat(...InfoList);
+        console.log(newArray2)
+
+        setInfoList(newArray2);
+        setInfoCount(newArray2.length);
+        setTotalNum(1);
+        const mainInfoVols = generateMainInfoVols(newArray2);
         setdivList(mainInfoVols);
 
     }
@@ -129,35 +127,32 @@ const MainInfo = () => {
     const generateMainInfoVols = (infoList) => {
         const mainInfoVols = [];
       
-        for (let index = 1; index < (totalNum-1) + 20; index++) {
-          const real = infoList[index] || []; // 해당 인덱스의 데이터가 없을 경우 빈 배열 사용
-          
-          for (const info of real) {
+        for (let i =0;i<20*totalNum;i++) {
             mainInfoVols.push(
               <MainInfoVol
-                key={info.progrmRegistNo}
-                ac={info.place}
-                title={info.title}
-                pagenum={info.progrmRegistNo}
-                time1={info.time1}
-                time2={info.time2}
+                key={i}
+                ac={infoList[i].place}
+                title={infoList[i].title}
+                pagenum={infoList[i].progrmRegistNo}
+                time1={infoList[i].time1}
+                time2={infoList[i].time2}
               />
             );
+            if(mainInfoVols.length===infoList.length){
+                break;
+              }
           }
-          if(mainInfoVols.length>=20*(totalNum)){
-            break;
-          }
-        }
         console.log(mainInfoVols.length)
-        return mainInfoVols
-        };
+        return mainInfoVols;
+    }
 
-      const onLoadMoreClicked=()=>{
+    const onLoadMoreClicked=()=>{
+
         setTotalNum(totalNum + 1);
         const mainInfoVols = generateMainInfoVols(infoList);
         setdivList(mainInfoVols);
         
-      }
+    }
     
       
 
@@ -190,7 +185,7 @@ const MainInfo = () => {
 
         <InfoSummary>
             <SummaryText>
-                총 <SummaryNum>{(infoList.flat(2).length-10)}</SummaryNum>건의 봉사 목록이 있습니다.
+                총 <SummaryNum>{infoCount}</SummaryNum>건의 봉사 목록이 있습니다.
             </SummaryText>
             <CategoryMenuBox onClick={onToggle}>
                 <>{`${name} ∨`}</>
@@ -211,7 +206,7 @@ const MainInfo = () => {
             }
         </InfoAllWrapper>
 
-        {((infoList.flat(2).length-10) > 20 * totalNum) ? (
+        {((infoCount) > 20 * totalNum) ? (
             <SearchMore onClick={onLoadMoreClicked}>더보기 ∨</SearchMore>
             ) : (
             <Margindiv></Margindiv>
@@ -402,6 +397,7 @@ const SearchInfo = styled.div`
     line-height: normal;
     color: #000;
 
+    cursor: pointer;
 
 
 `

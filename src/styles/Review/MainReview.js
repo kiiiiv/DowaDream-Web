@@ -106,7 +106,9 @@ export const ReviewInfoWrapper = styled.div`
     height : auto;
 
     display: flex;
-    flex-direction: column;
+    justify-content :flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 64px;
 
