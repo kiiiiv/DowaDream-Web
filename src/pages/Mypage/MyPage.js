@@ -106,7 +106,7 @@ function MyPage() {
       <div>
         <ReviewWritediv>
           <ReviewWriteText onClick={()=>setIsOpenModal(!isOpenModal)}>
-            후기 작성하거 가기 →  
+            후기 작성하러 가기 →  
           </ReviewWriteText>
         </ReviewWritediv>
         {
