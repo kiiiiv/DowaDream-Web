@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import LoginButtonPic from '../assets/로그인버튼2.png';
 import { Profile } from './Home/Profile';
-import GoogleLoginButton from './Home/GoogleLoginButton';
+import {GoogleLoginButton} from './Home/GoogleLoginButton';
 import jwtDecode from "jwt-decode";
 
 
