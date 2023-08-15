@@ -5,27 +5,37 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
-import LoginButtonPic from '../assets/로그인버튼2.png';
-import { Profile } from './Home/Profile';
 import {GoogleLoginButton} from './Home/GoogleLoginButton';
 import jwtDecode from "jwt-decode";
+import { onSuccess, token } from './Home/GoogleLoginButton';
 
 
 function NavBar2() {
 
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState(null);
+  const [isLogined, setIsLogined] = useState(false);
 
   // 구글 로그인 성공 시 이벤트 핸들러
-  const [userInfo, setUserInfo] = useState(null);
-  const handleLoginSuccess = (credentialResponse) => {
-    setUserInfo(jwtDecode(credentialResponse.credential));
-    console.log("userInfo"+userInfo);
-  };
-  useEffect(() => {
-    if (userInfo) {
-      window.location.reload();
-    }
-  }, [userInfo]);
+
+    // 로그아웃
+    const logout = () => {
+      setUserInfo(null);
+      setIsLogined(false);
+    };
+  
+    const onSuccess = (credentialResponse: any) => {
+      setIsLogined(true);
+      const token = jwtDecode(credentialResponse.credential);
+      setUserInfo(token);
+    };
+  
+    useEffect(() => {
+      setIsLogined(!!token);
+      if (token) {
+        setUserInfo(token);
+      }
+    }, []);
 
   return (
     <>
@@ -43,8 +53,25 @@ function NavBar2() {
               <Nav.Link onClick={() => { navigate('/review') }}>봉사후기</Nav.Link>
               <Nav.Link onClick={() => { navigate('/mypage') }}>마이페이지</Nav.Link>
             </Nav>
-             {/* onSuccess 핸들러를 props로 전달 */}
-             <GoogleLoginButton onSuccess={handleLoginSuccess} />
+            {isLogined ? (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    background: `url('${userInfo.picture}')`,
+                    backgroundSize: "cover",
+                    marginRight: "8px",
+                  }}
+                ></div>
+                <Button variant="info" onClick={logout}>
+                  로그아웃
+                </Button>
+              </div>
+            ) : (
+              <GoogleLoginButton onSuccess={onSuccess} />
+            )}
 
 
 

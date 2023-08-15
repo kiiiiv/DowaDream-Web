@@ -38,7 +38,7 @@ function CommentsWrite({ onCommentSubmit, onLikeSubmit, numLikes, numComments })
 }
 export default CommentsWrite;
 let Container70 = styled.div`
-width: 1170px;
+width: 100%;
 margin-left: auto;
 margin-right: auto;
 padding-left: 16px;
@@ -53,7 +53,7 @@ border-bottom: 2px #024959;
 gap: 20px;
 `;
 let CommentsWriteContainer2 = styled.div`
-width: 1000px;
+width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: flex-end;
