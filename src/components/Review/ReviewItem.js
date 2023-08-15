@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { styled } from 'styled-components'
 import Like from '../../../src/assets/말풍선.svg'
 import TextBol from '../../../src/assets/좋아요.svg'
@@ -6,11 +6,12 @@ import TextBol2 from '../../assets/말풍선색변화.svg'
 import Like2 from '../../assets/좋아요색변화.svg'
 
 
+
 const ReviewItem = ({width=30,height=670,url='../../1ogo192.png'}) => {
     
     const [likeClicked, setLikeClicked] = useState(false); // State to track like button click
     const [textBolClicked, setTextBolClicked] = useState(false); // State to track like button click
-
+    
 
     const handleLikeClick = () => {
         setLikeClicked(!likeClicked);
@@ -22,6 +23,7 @@ const ReviewItem = ({width=30,height=670,url='../../1ogo192.png'}) => {
     };
 
     return (
+
 
     <ReviewCardWrapper width={width} height={height}>
         <ReviewCardImg url={url}></ReviewCardImg>
@@ -67,6 +69,7 @@ const ReviewItem = ({width=30,height=670,url='../../1ogo192.png'}) => {
         </ReviewCardInfodiv>
 
     </ReviewCardWrapper>
+    
 
 
     )
