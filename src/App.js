@@ -16,6 +16,8 @@ import ReviewWrite2 from './pages/Mypage/ReviewWrite2';
 import Save from './pages/Mypage/Save';
 import InfoDetail from './pages/Info/InfoDetail';
 import Register from './pages/Info/Register';
+import LoginPage from './pages/Login/LoginPage';
+import LoginNeeded from './pages/Login/LoginNeeded';
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
       <NavBar2></NavBar2>
       <Routes>
         <Route path='/' element={<Main/>}></Route>
+
+        <Route path='/login' element={<LoginPage/>}></Route>
+        <Route path='/loginNeeded' element={<LoginNeeded/>}></Route>
         
         <Route path='/mypage/:mypageLoc?' element={<MyPage/>}></Route>
         <Route path='/mypage/write' element={<ReviewWrite2/>}></Route>
