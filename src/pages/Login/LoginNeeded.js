@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 
-import GoogleLoginButton from '../../components/Home/GoogleLoginButton';
+import {GoogleLoginButton} from '../../components/Home/GoogleLoginButton';
 function Save(){
     return (
         <Container20>
