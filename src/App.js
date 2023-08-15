@@ -17,6 +17,7 @@ import Save from './pages/Mypage/Save';
 import InfoDetail from './pages/Info/InfoDetail';
 import Register from './pages/Info/Register';
 import LoginPage from './pages/Login/LoginPage';
+import LoginNeeded from './pages/Login/LoginNeeded';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path='/' element={<Main/>}></Route>
 
         <Route path='/login' element={<LoginPage/>}></Route>
+        <Route path='/loginNeeded' element={<LoginNeeded/>}></Route>
         
         <Route path='/mypage/:mypageLoc?' element={<MyPage/>}></Route>
         <Route path='/mypage/write' element={<ReviewWrite2/>}></Route>

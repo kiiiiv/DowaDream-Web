@@ -1,54 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import LoginButton from './Home/LoginButton';
-import LoginedButton from './Home/LoginedButton';
 import { useNavigate } from 'react-router-dom';
 import LoginButtonPic from '../assets/로그인버튼2.png';
 import { Profile } from './Home/Profile';
-import {GoogleLogin} from "@react-oauth/google";
-import {GoogleOAuthProvider} from "@react-oauth/google";
-import {useCallback} from "react";
+import GoogleLoginButton from './Home/GoogleLoginButton';
+import jwtDecode from "jwt-decode";
 
 
 function NavBar2() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState({});
+
   const navigate = useNavigate();
 
   // 구글 로그인 성공 시 이벤트 핸들러
-  const handleGoogleLoginSuccess = useCallback((response) => {
-    console.log(response);
-    if (!response.profileObj) {
-      console.error('Failed to log into img');
-      return;
+  const [userInfo, setUserInfo] = useState(null);
+  const handleLoginSuccess = (credentialResponse) => {
+    setUserInfo(jwtDecode(credentialResponse.credential));
+    console.log("userInfo"+userInfo);
+  };
+  useEffect(() => {
+    if (userInfo) {
+      window.location.reload();
     }
-    const { profileObj } = response;
-    const { imageUrl, email, name } = profileObj;
-
-    console.log(imageUrl, email, name);
-    const userInfo = {
-      profileImg: profileObj.imageUrl || '',
-      email: profileObj.email || '',
-      name: profileObj.name || '',
-    };
-    console.log(profileObj);
-    setUserInfo(userInfo);
-    setLoggedIn(true);
-  }, []);
-
-  // 로그아웃 버튼 클릭 시 이벤트 핸들러
-  const handleLogoutClick = useCallback(() => {
-    // 로그아웃 상태로 변경되고, 사용자 정보도 초기화됨
-    setLoggedIn(false);
-    setUserInfo({});
-  }, []);
-
-
-
+  }, [userInfo]);
 
   return (
     <>
@@ -66,18 +43,10 @@ function NavBar2() {
               <Nav.Link onClick={() => { navigate('/review') }}>봉사후기</Nav.Link>
               <Nav.Link onClick={() => { navigate('/mypage') }}>마이페이지</Nav.Link>
             </Nav>
-            {loggedIn ? (
-              <LoginButtonPic />
-            ) : (
-              <GoogleOAuthProvider clientId="263882411657-kanoto1m439tbjmhahgc0hgv9u58t451.apps.googleusercontent.com">
-                <GoogleLogin
-                  buttonText="Login"
-                  onSuccess={handleGoogleLoginSuccess}
-                  onFailure={() => console.log('Failed to log in')}
-                  cookiePolicy={'single_host_origin'}
-                />
-              </GoogleOAuthProvider>
-            )}
+             {/* onSuccess 핸들러를 props로 전달 */}
+             <GoogleLoginButton onSuccess={handleLoginSuccess} />
+
+
 
             <Form className="d-flex">
               <Form.Control

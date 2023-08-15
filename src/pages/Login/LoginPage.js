@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import loginButton from '../../assets/로그인후버튼.png';
 import Illust from '../../assets/일러스트.jpg';
 import { Wrapper } from '../../styles/Common';
-import Login from '../../components/Home/Login';
+import GoogleLoginButton from '../../components/Home/GoogleLoginButton';
 function LoginPage(){
     return(
     <Wrapper>      
@@ -15,7 +15,7 @@ function LoginPage(){
                     <GreetingsText1>환영합니다!</GreetingsText1>
                     <GreetingsText1 fontSize="20px" fontWeight="400">로그인을 하고 나에게 맞는 봉사를 추천 받아보세요!</GreetingsText1>
                 </GreetingsText>
-                <Login></Login>             
+                <GoogleLoginButton></GoogleLoginButton>             
             </Greetings1>
             <StyledLink to="/">
             <GreetingsText1 color="#7A7777" fontSize="16px" fontWeight="400">먼저 둘러보기</GreetingsText1>

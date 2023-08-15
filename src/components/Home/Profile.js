@@ -1,14 +1,14 @@
-export const Profile = ({userInfo}) => {
+import React from 'react';
 
-    return(
-        <>
-            <div style={{
-                width: "32px",
-                height: "32px",
-                borderRadius: "32px",
-                background: `url(${userInfo.profileImg.replace("96", "32")})`}}
-            />
+function Profile(props) {
+  const { userInfo } = props;
 
-        </>
-    );
+  return (
+    <div>
+      <h2>{userInfo.name}</h2>
+      <img src={userInfo.picture} alt="Profile" />
+    </div>
+  );
 }
+
+export default Profile;
