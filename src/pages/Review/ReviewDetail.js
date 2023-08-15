@@ -5,13 +5,30 @@ import pic2 from '../../프로필.jpg';
 import ScrollGallery from '../../components/Review/ScrollGallery';
 import UserComments from '../../components/Review/UserComments';
 import CommentsWrite from '../../components/Review/CommentsWrite';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Wrapper } from '../../styles/Common';
+import { getReviewDetail } from '../../apis/Review/GetReview';
 
 function MyPageDetail(){
+
+  const reviewId = useParams();
+
   
   const [numLikes, setNumLikes] = useState(0);
   const [numComments, setNumComments] = useState(0);
+
+  const [review, setReview] = useState({
+    rid: "",
+    created_at: "",
+    updated_at: "",
+    progrmRegistNo: "",
+    title: "",
+    content: "",
+    is_public: "",
+    writer: "",
+    images:"",
+  });
+
    // 상단 이동 버튼 생성을 위한 useRef
   const topButtonRef = useRef(null);
 
@@ -19,14 +36,24 @@ function MyPageDetail(){
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+  
   const [userComments, setUserComments] = useState([]);
 
   const addComment = (comment) => {
     setUserComments([...userComments, comment]);
   }
+
+  const fetchInfo = async () =>{
+    const fetchedInfo = await getReviewDetail(reviewId.reviewId);
+    setReview(fetchedInfo);
+  }
+  
   useEffect(() => {
     setNumComments(userComments.length);
-  }, [userComments]);
+    fetchInfo();
+
+  }, [userComments,reviewId]);
+
   const handleLikeSubmit = (likes) => {
     setNumLikes(likes);
   }
@@ -40,13 +67,13 @@ function MyPageDetail(){
             </Link>
           </Container1>
           <Container2>
-              <h2>어쩌구 저쩌구 우당탕탕 봉사 후기</h2>
+              <h2>{review.title}</h2>
               <Date>2023-08-05 2:10:76</Date>
           </Container2>
           <Container3>
             <ProfilePic></ProfilePic>
             <ProfileInfo>
-              <ProfileName>이름</ProfileName>
+              <ProfileName>{review.writer}</ProfileName>
               <ProfileRegion>봉사지역:</ProfileRegion>
             </ProfileInfo>
           </Container3>
@@ -66,7 +93,7 @@ function MyPageDetail(){
           <Container5>
             <ScrollGallery></ScrollGallery>
           </Container5>
-          <Container6>ㅇㄹㅇㅁㄹ ㅁ ㅇㅁㄹㅇㄹㅁ ㅁㅇㄹㅁㅇㄹ ㅁㅇㄹㄹㅇㅁㄹㅇㅁㄹㅁ ㅇㅁㄹㅁ ㅇㅇㄴㅁㅌㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ ㅇㄹㅇㅁ ㅇ ㅇ ㅇ ㅇ ㅇ ㅇ ㅇ ㅇ 텍스트 이러쿵 저러쿵 뭐시기 저시기 어쩔 저쩔</Container6> 
+          <Container6>{review.content}</Container6> 
           <Container7>
             <CommentsHeader>
               <Comments>

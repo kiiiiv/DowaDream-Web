@@ -6,7 +6,6 @@ import MainInfoVol from '../../components/MainInfoVol';
 import InfoSelectionList from '../../components/Maininfo/InfoSelectionList';
 import InfoSelectionTagList from '../../components/Maininfo/InfoSelectionTagList';
 import Search from '../../assets/Search.svg';
-import axios from 'axios';
 import { getVolInfo } from '../../apis/VolInfo/VolInfo';
 import { UserLocContext } from '../../contexts/UserInfo';
 
@@ -36,9 +35,6 @@ const Area = [
     ["충북", "청주시", "충주시", "제천시", "보은군", "옥천군", "영동군", "증평군", "진천군", "괴산군", "음성군", "단양군"],
     ["제주", "제주시", "서귀포시"],
   ];
-
-  const arr = Array.from({length : 18}).fill(false);
-
 
 const MainInfo = () => {
 

@@ -27,10 +27,6 @@ function InfoDetail (){
         recruitInstitute: "",
       });
 
-      function renderHTML(htmlString) {
-        return { __html: htmlString };
-    }
-
 
       useEffect(() => {
         async function fetchInfo() {
