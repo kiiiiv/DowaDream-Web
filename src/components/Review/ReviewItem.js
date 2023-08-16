@@ -9,7 +9,7 @@ import Like2 from '../../assets/좋아요색변화.svg'
 
 
 
-const ReviewItem = ({width=30,height=670,url='../../1ogo192.png',rid,updated_at,progrmRegistNo,title,content,is_public=true,writer,images}) => {
+const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,updated_at,progrmRegistNo,title,content,is_public=true,writer,images}) => {
     
     const navigate = useNavigate();
 
@@ -94,7 +94,7 @@ const ReviewCardWrapper = styled.div`
     flex-direction: column;
     align-items: flex-start;
 
-    width: ${props => props.width+'%' || '33%'}; /* width 프롭이 주어지면 해당 값으로, 아니면 기본값으로 설정합니다. */
+    width: ${props => props.width || '33%'}; /* width 프롭이 주어지면 해당 값으로, 아니면 기본값으로 설정합니다. */
     height: ${props => props.height+'px' || '670px'}; 
 
 

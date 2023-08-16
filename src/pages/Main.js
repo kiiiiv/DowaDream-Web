@@ -24,8 +24,6 @@ function Main(){
   }
 
 
-
-
     return(
     <Wrapper>
       
@@ -36,7 +34,7 @@ function Main(){
 
         <div>
           <HeaderWrapper>
-              <h3>  님! 어떤 봉사정보 추천을 원하시나요?{'\n'}</h3>
+              <h3>김성민님! 어떤 봉사정보 추천을 원하시나요?{'\n'}</h3>
           </HeaderWrapper>
           <ButtonWrapper>
             <TagButton text="관심 태그 & 지역" onClick={onContent1Click}></TagButton>

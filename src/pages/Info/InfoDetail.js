@@ -84,21 +84,20 @@ function InfoDetail (){
             {info.content}
         </MainTextContainer>
         </InfoContainer>
+        
+        <ReviewContent>후기</ReviewContent>
+        <ReviewInfodiv>
+          <ReviewInfoWrapper>
 
-        <ReviewContainer>
-            <ReviewTitle>후기</ReviewTitle>
-            <ReviewInfoWrapper>
-                <ReviewItemWrapper>
-                    <ReviewItem width={20}/>
-                    <ReviewItem width={20}/>
-                    <ReviewItem width={20}/>
-                    <ReviewItem width={20}/>
-                    <ReviewItem width={20}/>
+            <ReviewItem width={'475px'}></ReviewItem>
+            <ReviewItem width={'475px'}></ReviewItem>
+            <ReviewItem width={'475px'}></ReviewItem>
+            <ReviewItem width={'475px'}></ReviewItem>
 
-                    
-                </ReviewItemWrapper>
           </ReviewInfoWrapper>
-        </ReviewContainer>
+        </ReviewInfodiv>
+
+
         <Similar>
             <ReviewTitle>현재 보고 있는 봉사와 유사해요!</ReviewTitle>
             <Infoitem>
@@ -149,7 +148,17 @@ align-items: flex-start;
 width: 100%;
 height: 131px;
 `
+
+const Trashdiv = styled.div`
+
+    width: 500px; 
+    height : 500px;
+    background-color: black;
+
+`
+
 const MainTextContainer = styled.div`
+
 box-sizing: border-box;
 
 /* Auto layout */
@@ -176,49 +185,52 @@ white-space: pre-wrap;
 color: #000000
 `
 
-const ReviewContainer = styled.div`
-display: flex;
 
-flex-direction: column;
-align-items: flex-start;
-padding: 0px 0px 40px;
-
-width: 100%;
-height: 783.39px;
-
-
-`
 const ReviewTitle = styled.span`
-    color: var(--dark-color, #024959);
-    font-size: 3.6em;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+  color: #000;
+  font-size: 2.4em;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`
+
+const ReviewInfodiv = styled.div`
+  display: flex;
+  width: 100%;
+  padding-bottom: 10px;
+  margin-bottom : 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: auto;
+
 
 `
+
 const ReviewInfoWrapper = styled.div`
-    display: inline-flex; /* 변경 */
-    width : 100%;
-    overflow-x: auto;
-    scroll-behavior: smooth; /* 부드러운 스크롤링을 활성화합니다. */
+
+  display : grid;
+  grid-template-columns: 1fr 1fr 1fr;
+	gap: 20px;
+  grid-auto-flow: column;  /* row 를 가지지않을거라면 반드시! */
 
 
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 60px;
-    user-select: none; /* Prevent text selection */
 
 `;
 
-const ReviewItemWrapper = styled.div`
-    display: flex;
-    align-items: flex-start;
+const ReviewContent = styled.h3`
+  margin-top : 40px;
+  color: #000;
+  font-size: 2.4em;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align : left;
 
-    gap: 20px;
-    width: fit-content; /* 추가 */
-    
 
-`;
+`
+
+
+
 
 const Similar = styled.div`
 display: flex;
