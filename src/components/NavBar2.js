@@ -5,8 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
-import LoginButtonPic from '../assets/로그인버튼2.png';
-import { Profile } from './Home/Profile';
 import {GoogleLoginButton} from './Home/GoogleLoginButton';
 import jwtDecode from "jwt-decode";
 
@@ -14,18 +12,67 @@ import jwtDecode from "jwt-decode";
 function NavBar2() {
 
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState(null);
+  const [isLogined, setIsLogined] = useState(false);
+  const [name, setName] = useState('');
+  const [profile, setProfile] = useState('');
 
   // 구글 로그인 성공 시 이벤트 핸들러
-  const [userInfo, setUserInfo] = useState(null);
-  const handleLoginSuccess = (credentialResponse) => {
-    setUserInfo(jwtDecode(credentialResponse.credential));
-    console.log("userInfo"+userInfo);
+  const LoginSuccess = (credentialResponse) => {
+    setIsLogined(true);
+    const token = jwtDecode(credentialResponse.credential);
+    setUserInfo(token);
+    setName(token.name);
+    setProfile(token.googleId);
+
+    doSignUp();
   };
-  useEffect(() => {
-    if (userInfo) {
-      window.location.reload();
+  const doSignUp = () => {
+    window.sessionStorage.setItem('profile', profile);
+    window.sessionStorage.setItem('name', name);
+  }
+  
+  const onLogout = () => {
+    
+    if (window.gapi) {
+      const auth2 = window.gapi.auth2.getAuthInstance();
+      if (auth2 !== null) {
+        auth2
+          .signOut()
+          .then(auth2.disconnect())
+          .catch(e => console.log(e));
+      }
     }
-  }, [userInfo]);
+    setIsLogined(false);
+    
+    //SessionStorage Clear
+    window.sessionStorage.clear();
+    window.localStorage.clear();
+  }
+
+  useEffect(() => {
+    const name = window.sessionStorage.getItem('name');
+    if(name) {
+      LoginSuccess();
+    }
+    else {
+      onLogout();
+    }
+  }, []);
+
+  
+    
+  /*
+    useEffect(() => {
+      setIsLogined(!!token);
+      if (token) {
+        setUserInfo(token);
+      }
+    }, []);
+*/
+
+    
+    
 
   return (
     <>
@@ -43,8 +90,25 @@ function NavBar2() {
               <Nav.Link onClick={() => { navigate('/review') }}>봉사후기</Nav.Link>
               <Nav.Link onClick={() => { navigate('/mypage') }}>마이페이지</Nav.Link>
             </Nav>
-             {/* onSuccess 핸들러를 props로 전달 */}
-             <GoogleLoginButton onSuccess={handleLoginSuccess} />
+            {isLogined ? (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <div
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "50%",
+                    background: `url('${userInfo.picture}')`,
+                    backgroundSize: "cover",
+                    marginRight: "8px",
+                  }}
+                ></div>
+                <Button variant="info" onClick={onLogout}>
+                  로그아웃
+                </Button>
+              </div>
+            ) : (
+              <GoogleLoginButton onSuccess={LoginSuccess} />
+            )}
 
 
 
