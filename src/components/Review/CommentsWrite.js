@@ -22,6 +22,7 @@ function CommentsWrite({ onCommentSubmit, onLikeSubmit, numLikes, numComments })
   }
 
     return (
+
       <Container70>
           <GoogleProfilePic size={60}></GoogleProfilePic>
           <form>
@@ -37,8 +38,8 @@ function CommentsWrite({ onCommentSubmit, onLikeSubmit, numLikes, numComments })
     );
 }
 export default CommentsWrite;
+
 let Container70 = styled.div`
-width: 100%;
 margin-left: auto;
 margin-right: auto;
 padding-left: 16px;
@@ -51,6 +52,18 @@ background: #FFFAC9;
 border-top: 2px #024959;
 border-bottom: 2px #024959;
 gap: 20px;
+
+@media only screen and (min-width: 768px) {
+  width: 720px;
+}
+
+@media only screen and (min-width: 992px) {
+  width: 940px;
+}
+
+@media only screen and (min-width: 1200px) {
+  width: 1100px;
+}
 `;
 let CommentsWriteContainer2 = styled.div`
 width: 100%;

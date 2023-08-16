@@ -7,7 +7,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import {GoogleLoginButton} from './Home/GoogleLoginButton';
 import jwtDecode from "jwt-decode";
-import { onSuccess, token } from './Home/GoogleLoginButton';
 
 
 function NavBar2() {
@@ -17,26 +16,36 @@ function NavBar2() {
   const [isLogined, setIsLogined] = useState(false);
 
   // 구글 로그인 성공 시 이벤트 핸들러
-
-    // 로그아웃
-    const logout = () => {
-      setUserInfo(null);
-      setIsLogined(false);
-    };
   
-    const onSuccess = (credentialResponse: any) => {
+  const onLogout = () => {
+    setUserInfo(null);
+      
+    if (window.gapi) {
+      const auth2 = window.gapi.auth2.getAuthInstance();
+      if (auth2 !== null) {
+        auth2
+          .signOut()
+          .then(auth2.disconnect())
+          .catch(e => console.log(e));
+      }
+    }
+    setIsLogined(false);
+  };
+
+  
+    const LoginSuccess = (credentialResponse) => {
       setIsLogined(true);
       const token = jwtDecode(credentialResponse.credential);
       setUserInfo(token);
     };
-  
+  /*
     useEffect(() => {
       setIsLogined(!!token);
       if (token) {
         setUserInfo(token);
       }
     }, []);
-
+*/
   return (
     <>
       <Navbar expand="lg" style={{ backgroundColor: "yellow" }} className="bg-ffe34f">
@@ -65,12 +74,12 @@ function NavBar2() {
                     marginRight: "8px",
                   }}
                 ></div>
-                <Button variant="info" onClick={logout}>
+                <Button variant="info" onClick={onLogout}>
                   로그아웃
                 </Button>
               </div>
             ) : (
-              <GoogleLoginButton onSuccess={onSuccess} />
+              <GoogleLoginButton onSuccess={LoginSuccess} />
             )}
 
 
