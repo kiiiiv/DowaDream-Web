@@ -28,7 +28,7 @@ function App() {
 
         <Route path='/login' element={<LoginPage/>}></Route>
         <Route path='/loginNeeded' element={<LoginNeeded/>}></Route>
-        
+
         <Route path='/mypage/:mypageLoc?' element={<MyPage/>}></Route>
         <Route path='/mypage/write' element={<ReviewWrite2/>}></Route>
         <Route path='/mypage/save' element={<Save/>}></Route>
@@ -40,6 +40,8 @@ function App() {
         
         <Route path='/review' element={<MainReview/>}></Route>
         <Route path='/review/:reviewId' element={<MyPageDetail/>}></Route>
+        <Route path='/review/write/:infoId' element={<ReviewWrite2/>}></Route>
+x
 
       </Routes>
 

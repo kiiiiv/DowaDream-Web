@@ -7,7 +7,7 @@ import { getAllReviewInfo } from '../../apis/Review/GetReview'
 
 const StArray= [
     "응원하기순",
-    "없음",
+    "신규순",
 ]
 
 const newReviewArr = [];
@@ -15,7 +15,7 @@ const likeReviewArr =[];
 
 const MainReview = () => {
 
-    const [name,setName] = useState("정렬순");
+    const [name,setName] = useState("신규순");
     const [isOpen, setIsOpen] = useState(false);
     const [showBespoke, setShowBespoke] = useState(false);
     const [reviewList, setReviewList] = useState();
@@ -38,12 +38,7 @@ const MainReview = () => {
 
     const onOptionClicked = (value, i) => () => {
         console.log(value);
-        if(value==="없음"){
-          setName("정렬순");
-          
-        }else{
-        setName("응원순");
-        }
+        setName(value);
         setIsOpen(false);
       };
 
