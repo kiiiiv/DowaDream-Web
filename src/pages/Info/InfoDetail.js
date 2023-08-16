@@ -36,6 +36,10 @@ function InfoDetail (){
         fetchInfo();
       }, [infoId]);
 
+      const onClicked1365 = () =>{
+        window.open(`https://www.1365.go.kr/vols/1572247904127/partcptn/timeCptn.do?type=show&progrmRegistNo=${infoId.infoId}`, "_blank", "noopener, noreferrer");
+      }
+
   return (
     <>
     <Wrapper>
@@ -117,7 +121,7 @@ function InfoDetail (){
     </Wrapper>
     <Footer>
             <StyledLink to="/infodetail/save">
-            <RegisterButton>신청하러 가기</RegisterButton>
+            <RegisterButton onClick={onClicked1365}>신청하러 가기</RegisterButton>
             </StyledLink>
         
     </Footer>
