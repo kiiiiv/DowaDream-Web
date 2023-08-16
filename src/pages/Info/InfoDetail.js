@@ -120,7 +120,7 @@ function InfoDetail (){
 
     </Wrapper>
     <Footer>
-            <StyledLink to="/infodetail/save">
+            <StyledLink to={`/infodetail/save/${infoId.infoId}`}>
             <RegisterButton onClick={onClicked1365}>신청하러 가기</RegisterButton>
             </StyledLink>
         

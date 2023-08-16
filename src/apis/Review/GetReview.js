@@ -46,3 +46,10 @@ export const writeReview = async (props) =>{
     return error;
   }
 }
+
+export const upDateVolInfo = async(props) => {
+
+  const [progrmRegistNo,cheered=false,participated=false,clipped=false] = props;
+
+
+}
