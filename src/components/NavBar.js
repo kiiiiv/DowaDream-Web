@@ -35,7 +35,20 @@ function NavBar() {
     setUserInfo({});
   };
 
-
+  const onLogout = () => {
+    setUserInfo(null);
+      
+    if (window.gapi) {
+      const auth2 = window.gapi.auth2.getAuthInstance();
+      if (auth2 !== null) {
+        auth2
+          .signOut()
+          .then(auth2.disconnect())
+          .catch(e => console.log(e));
+      }
+    }
+    setIsLogined(false);
+  };
 
 
   return (

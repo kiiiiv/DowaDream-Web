@@ -14,12 +14,26 @@ function NavBar2() {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
   const [isLogined, setIsLogined] = useState(false);
+  const [name, setName] = useState('');
+  const [profile, setProfile] = useState('');
 
   // 구글 로그인 성공 시 이벤트 핸들러
+  const LoginSuccess = (credentialResponse) => {
+    setIsLogined(true);
+    const token = jwtDecode(credentialResponse.credential);
+    setUserInfo(token);
+    setName(token.name);
+    setProfile(token.googleId);
+
+    doSignUp();
+  };
+  const doSignUp = () => {
+    window.sessionStorage.setItem('profile', profile);
+    window.sessionStorage.setItem('name', name);
+  }
   
   const onLogout = () => {
-    setUserInfo(null);
-      
+    
     if (window.gapi) {
       const auth2 = window.gapi.auth2.getAuthInstance();
       if (auth2 !== null) {
@@ -30,14 +44,24 @@ function NavBar2() {
       }
     }
     setIsLogined(false);
-  };
+    
+    //SessionStorage Clear
+    window.sessionStorage.clear();
+    window.localStorage.clear();
+  }
+
+  useEffect(() => {
+    const name = window.sessionStorage.getItem('name');
+    if(name) {
+      LoginSuccess();
+    }
+    else {
+      onLogout();
+    }
+  }, []);
 
   
-    const LoginSuccess = (credentialResponse) => {
-      setIsLogined(true);
-      const token = jwtDecode(credentialResponse.credential);
-      setUserInfo(token);
-    };
+    
   /*
     useEffect(() => {
       setIsLogined(!!token);
@@ -46,6 +70,10 @@ function NavBar2() {
       }
     }, []);
 */
+
+    
+    
+
   return (
     <>
       <Navbar expand="lg" style={{ backgroundColor: "yellow" }} className="bg-ffe34f">
