@@ -154,11 +154,6 @@ const MainInfo = () => {
         
     }
     
-      
-
-    
-
-      
   return (
     <Wrapper>
         

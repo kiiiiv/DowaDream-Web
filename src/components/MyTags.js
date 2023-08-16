@@ -48,18 +48,24 @@ function MyTags(){
 
 
 
+
+
   useEffect(() => {
     const [index,result] = findChangedData(siInfo);
     generateDeleteDiv(index, result);
   }, [allInfo]);
 
+  useEffect(()=>{
+    generateDeleteDiv("1", "종로구");
+  },[])
+
+  
+
   const onDeleteDivClicked = (loc,index)=>{
     let updatedAllInfo = [...allInfo];
     updatedAllInfo[loc][1][index] = false;
-    let DeleteDivLists = [...deleteDiv];
-    DeleteDivLists = DeleteDivLists.filter(key => key.key !== `${loc},${index}`);
-    setAllInfo(updatedAllInfo);
-    setDeleteDiv(DeleteDivLists);
+    // setAllInfo(updatedAllInfo);
+
   }
 
   const generateDeleteDiv = (index, result) =>{
@@ -80,6 +86,7 @@ function MyTags(){
     }else{
       DeleteDivLists = DeleteDivLists.filter(key => key.key !== `${isSelectLoc},${index}`);
     }
+    console.log(DeleteDivLists);
     setDeleteDiv(DeleteDivLists);
   }
 
