@@ -18,6 +18,7 @@ import InfoDetail from './pages/Info/InfoDetail';
 import Register from './pages/Info/Register';
 import LoginPage from './pages/Login/LoginPage';
 import LoginNeeded from './pages/Login/LoginNeeded';
+import ReviewDetail from './pages/Review/ReviewDetail';
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
         <Route path='/review' element={<MainReview/>}></Route>
         <Route path='/review/:reviewId' element={<MyPageDetail/>}></Route>
         <Route path='/review/write/:infoId' element={<ReviewWrite2/>}></Route>
-x
+
 
       </Routes>
 
