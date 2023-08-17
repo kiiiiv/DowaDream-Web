@@ -1,7 +1,19 @@
 import { Wrapper } from "../../../styles/Common";
 import InfoItem from '../../Home/InfoItem';
 import { styled } from 'styled-components';
+import { uploadUserClip } from '../../../apis/Program/ProgramInfo'; 
+import { useEffect } from "react";
 function MyVolunteerScrap(){
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        await uploadUserClip();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
     return (
       <>
         <Infoitem>
