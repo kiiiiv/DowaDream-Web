@@ -29,6 +29,8 @@ function MyPageDetail(){
     is_public: "",
     writer: "",
     images:"",
+    updated_at:"",
+
   });
 
    // 상단 이동 버튼 생성을 위한 useRef
@@ -49,6 +51,13 @@ function MyPageDetail(){
     const fetchedInfo = await getReviewDetail(reviewId.reviewId);
     setReview(fetchedInfo);
   }
+
+  const navigateToNewURL = (newURL) => {
+    const newPT = window.location.origin + `/${newURL}`;
+    window.location.assign(newPT);
+
+  };
+
   
   useEffect(() => {
     setNumComments(userComments.length);
@@ -64,19 +73,19 @@ function MyPageDetail(){
         
           <Container1>
             <HashTag text={`${review.tag}`}></HashTag>
-            <Link to={`info/${review.progrmRegistNo}`}>
+            <Link onClick={()=>navigateToNewURL(`info/${review.progrmRegistNo}`)}>
               <ViewInfoButton>봉사 정보 보러가기</ViewInfoButton>
             </Link>
           </Container1>
           <Container2>
               <h2>{review.title}</h2>
-              <Date>2023-08-05 2:10:76</Date>
+              <Date>{review.updated_at}</Date>
           </Container2>
           <Container3>
             <ProfilePic></ProfilePic>
             <ProfileInfo>
               <ProfileName>{review.writer}</ProfileName>
-              <ProfileRegion>봉사지역:</ProfileRegion>
+              <ProfileRegion>봉사지역:{review.region}</ProfileRegion>
             </ProfileInfo>
           </Container3>
           <Container4>

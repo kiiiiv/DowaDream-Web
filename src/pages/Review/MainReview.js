@@ -52,13 +52,21 @@ const MainReview = () => {
                 mainReviews.push(
                     <ReviewItem
                         key={index}
+                        
                         rid={item.rid}
                         updated_at={item.updated_at}
                         progrmRegistNo={item.progrmRegistNo}
                         title={item.title}
+                        tag= {item.tag}
+
+                        num_comment ={item.num_comment}
+                        num_cheer={item.num_cheer}
                         content={item.content}
                         is_public={item.is_public}
+                        is_customized={item.is_customized}
+
                         writer={item.writer}
+                        writer_profile_img={item.writer_profile_img}
                         images={item.images}
                     />
 

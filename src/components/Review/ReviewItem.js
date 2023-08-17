@@ -8,7 +8,7 @@ import Like2 from '../../assets/좋아요색변화.svg'
 
 
 
-const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,updated_at,progrmRegistNo,title,content,is_public=true,writer,images}) => {
+const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,num_cheer,num_comment,tag,updated_at,progrmRegistNo,title,content,is_public=true,is_customized=true,writer,images,writer_profile_img=null,writer_username="OO"}) => {
     
     const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,updated
         <ReviewCardInfodiv>
             <ReviewNameWrapper>
                 <ReviewNamediv>
-                    <ReviewNameImg>
+                    <ReviewNameImg url={writer_profile_img}>
                         
                     </ReviewNameImg>
                     <ReviewNameText>{writer}</ReviewNameText>
@@ -44,17 +44,17 @@ const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,updated
                                 alt="Text"
                             ></img>
                         </ReviewEmoteImg>
-                        <ReviewEmoteText>1</ReviewEmoteText>
+                        <ReviewEmoteText>{num_cheer}</ReviewEmoteText>
                     </ReviewEmotediv>
 
                     <ReviewEmotediv>
                         <ReviewEmoteImg>
                             <img 
-                                src={ TextBol} // Toggle between Like and TextBol based on likeClicked state
+                                src={TextBol} // Toggle between Like and TextBol based on likeClicked state
                                 alt="Like"
                             ></img>
                         </ReviewEmoteImg>                        
-                        <ReviewEmoteText>1</ReviewEmoteText>
+                        <ReviewEmoteText>{num_comment}</ReviewEmoteText>
                     </ReviewEmotediv>
                     
                 </ReviewNamediv>
@@ -62,7 +62,7 @@ const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,updated
             </ReviewNameWrapper>
             <ReviewTextdiv>
                     <ReviewTextTitle>{title}</ReviewTextTitle>
-                    <ReviewTextTag>#하나둘셋넷다섯</ReviewTextTag>
+                    <ReviewTextTag>{tag}</ReviewTextTag>
             </ReviewTextdiv>
             <ReviewDetaildiv>
                 <ReviewDetailText>{content}</ReviewDetailText>
@@ -111,6 +111,8 @@ const ReviewCardImg = styled.div`
     border-radius: 20px;
     background: url(${props=>props.url || '../../1ogo192.png'}) , lightgray 50% / cover no-repeat;
 
+    background-size: cover; /* 이미지를 컨테이너에 맞게 늘립니다 */
+    background-position: center; /* 이미지를 중앙으로 정렬합니다 */ 
 `
 
 const ReviewCardInfodiv = styled.div`
@@ -157,7 +159,8 @@ const ReviewNameImg = styled.div`
     align-items: flex-start;
     border-radius: 50px;
     background: url(${props=>props.url}), lightgray 50% / cover no-repeat;
-
+    background-size: cover; /* 이미지를 컨테이너에 맞게 늘립니다 */
+    background-position: center; /* 이미지를 중앙으로 정렬합니다 */ 
 `
 
 const ReviewNameText = styled.span`
