@@ -12,7 +12,7 @@ import { upDateVolInfo } from '../../apis/Program/ProgramInfo';
 
 function MyPage() {
 
-    const { mypageLoc } = useParams();
+  const { mypageLoc } = useParams();
 
   const [showReview, setShowReview] = useState(false);
   const [showTags, setShowTags] = useState(false);

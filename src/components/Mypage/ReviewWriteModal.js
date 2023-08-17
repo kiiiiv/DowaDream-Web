@@ -29,6 +29,7 @@ const ReviewWriteModal = () => {
                 window.location.href=`/review/write/${List[i].rid}`}} 
                   key={i}
                   rid={List[i].rid}
+                  tag = {List[i].tag}
                   updated_at={List[i].updated_at}
                   progrmRegistNo={List[i].progrmRegistNo}
                   title={List[i].title}

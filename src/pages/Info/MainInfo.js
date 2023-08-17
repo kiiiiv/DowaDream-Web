@@ -9,6 +9,7 @@ import Search from '../../assets/Search.svg';
 import { getVolInfo } from '../../apis/VolInfo/VolInfo';
 import { UserLocContext } from '../../contexts/UserInfo';
 import { gugunCdMaker } from '../../assets/Sidogugun';
+import { SearchAreaKeyword } from '../../apis/Review/ScrapCheerSave';
 
 const StArray= [
     "신규순",
@@ -41,14 +42,11 @@ const MainInfo = () => {
 
     
     
-    const x = 1;
-    
     const [name,setName] = useState("정렬순");
     const [isOpen, setIsOpen] = useState(false);
     const [isTag, setIsTag] = useState("Loc");
 
     const filteredData = useContext(UserLocContext);
-    console.log(filteredData)
 
     //지역 및 세부 주소
     const [isSelectLoc,setIsSelectLoc] = useState("1");
@@ -69,6 +67,7 @@ const MainInfo = () => {
 
     useEffect(() => {
         // 컴포넌트가 마운트되면 스크롤을 맨 위로 이동시킴
+        setdivList([]);
         window.scrollTo(0, 0);
         onTotalInfoClicked(allInfo);
     }, []); // 빈 배열을 전달하면 컴포넌트가 마운트될 때 한 번만 실행됨
@@ -103,40 +102,46 @@ const MainInfo = () => {
 
 
     const onTotalInfoClicked = async () => {
+        
+        setdivList([]);
+        setTotalNum(1);
+        setInfoCount("기다려");
+
+
         let i = 0;
         for (const info of allInfo) {
-            console.log(info);
             i = i+1;
             if (info[1].length !== 1) {
                 const secondArray = info[1];
                 //index , indexof 함수 사용하기 
                 const nonFalseValues = secondArray.filter(value => value !== false);
+                console.log(nonFalseValues);
                 if(nonFalseValues!==[]){
                     for (const item of nonFalseValues) {
-
                         const num = gugunCdMaker(i,item);
-                        const volInfo = await getVolInfo(num);
-                        InfoList.push(volInfo);
+                        console.log(num);
+                        InfoList.push(num);
                     }
                 }
 
             }
         
         }
-        let newArray2 = [].concat(...InfoList);
-        console.log(newArray2)
+        const volInfo = await SearchAreaKeyword(null,InfoList);
 
-        setInfoList(newArray2);
-        setInfoCount(newArray2.length);
+        setInfoList(volInfo);
+        setInfoCount(volInfo.length);
         setTotalNum(1);
-        const mainInfoVols = generateMainInfoVols(newArray2);
+        
+        const mainInfoVols = generateMainInfoVols(volInfo);
         setdivList(mainInfoVols);
 
     }
 
     const generateMainInfoVols = (infoList) => {
         const mainInfoVols = [];
-      
+        console.log(infoList)
+        if(infoList!==[]){
         for (let i =0;i<20*totalNum;i++) {
             mainInfoVols.push(
               <MainInfoVol
@@ -146,14 +151,21 @@ const MainInfo = () => {
                 pagenum={infoList[i].progrmRegistNo}
                 time1={infoList[i].time1}
                 time2={infoList[i].time2}
+
+                recruitEnd={infoList[i].recruitEnd}
+                recruitStart={infoList[i].recruitStart}
+
+                actStart={infoList[i].actStart.slice(0,10)}
+                actEnd={infoList[i].actEnd.slice(0,10)}
+              
               />
             );
             if(mainInfoVols.length===infoList.length){
                 break;
               }
-          }
-        console.log(mainInfoVols.length)
+        }
         return mainInfoVols;
+        }
     }
 
     const onLoadMoreClicked=()=>{

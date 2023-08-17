@@ -15,13 +15,21 @@ export const FourMostCheered = async () => {
 }
 
 export const SearchAreaKeyword = async (tagCode, areaCode) => { 
+  if(tagCode==null){
+    console.log(tagCode);
+    tagCode=undefined;
+    
+  }
   try{
-      const response = await axios.get(`${baseUrl}search/keyword/`,  {
-        params: {
-        tagCode: `${tagCode}`,
-        areaCode: `${areaCode}`
-  }});
+    const response = await axios.get(`${baseUrl}search/keyword/`, {
+      params: {
+        tagCode: tagCode ? `${tagCode}` : undefined,
+        areaCode: areaCode ? `${areaCode}` : undefined
+      }
+    });
+    
     return response.data.data;
+    
   }catch(error){
         console.log(error);
         return error;

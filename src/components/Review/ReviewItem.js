@@ -50,7 +50,7 @@ const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,num_che
                     <ReviewEmotediv>
                         <ReviewEmoteImg>
                             <img 
-                                src={ TextBol} // Toggle between Like and TextBol based on likeClicked state
+                                src={TextBol} // Toggle between Like and TextBol based on likeClicked state
                                 alt="Like"
                             ></img>
                         </ReviewEmoteImg>                        
