@@ -14,19 +14,17 @@ export const FourMostCheered = async () => {
   
 }
 
-export const SearchAreaKeyword = async (tagCode, areaCode) => {
-    
+export const SearchAreaKeyword = async (tagCode, areaCode) => { 
   try{
       const response = await axios.get(`${baseUrl}search/keyword/`,  {
         params: {
         tagCode: `${tagCode}`,
         areaCode: `${areaCode}`
-    }});
+  }});
     return response.data.data;
-    }catch(error){
+  }catch(error){
         console.log(error);
         return error;
-    }
-  
+  }  
 }
 

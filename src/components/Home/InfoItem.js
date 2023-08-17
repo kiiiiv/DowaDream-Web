@@ -4,16 +4,16 @@ import { styled } from 'styled-components'
 
 // '구'를 파라미터로 넘겨서 검색
 
-const InfoItem = ({width=25, height=90, onClick=null}) => {
-  
+const InfoItem = (props) => {
+  const {width=25, height=90, onClick=null,rid,tag,updated_at,progrmRegistNo,title,is_public,is_customized,writer,images,writer_profile_img,writer_username} = props;
   return (
     <Infodiv width={width} height={height} onClick={onClick}>
                 <InfoImg>
                     <Ddaydiv><div>D-7</div></Ddaydiv>
                 </InfoImg>
                 <InfoTextDiv>
-                  <InfoTextTag>#교육</InfoTextTag>
-                  <InfoTextTitle>창녕군 영산도서관 '책 읽어주세요~' 청소년 자원봉사자 모집</InfoTextTitle>
+                  <InfoTextTag>{tag}</InfoTextTag>
+                  <InfoTextTitle>{title}</InfoTextTitle>
                   <InfoTextDetail>등록기관: 경상남도 창녕군</InfoTextDetail>
                   <InfoTextDetail>모집기간: 10시 0분 ~ 16시 0분</InfoTextDetail>
                   <InfoTextDetail>봉사기간 : 2023.05.02 ~ 2023.08.02</InfoTextDetail>

@@ -8,9 +8,11 @@ import MyVolunteerNavbar from '../../components/Mypage/MyVolunteerNavbar';
 import MyReview from '../../components/Mypage/MyReview/MyReview';
 import MyTags from '../../components/MyTags';
 import ReviewWriteModal from '../../components/Mypage/ReviewWriteModal';
+import { upDateVolInfo } from '../../apis/Program/ProgramInfo';
 
 function MyPage() {
-  const { mypageLoc } = useParams();
+
+    const { mypageLoc } = useParams();
 
   const [showReview, setShowReview] = useState(false);
   const [showTags, setShowTags] = useState(false);

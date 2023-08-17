@@ -1,10 +1,61 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Wrapper } from '../../styles/Common'
 import { styled } from 'styled-components'
 import InfoItem from '../Home/InfoItem'
 import { useNavigate } from 'react-router-dom'
+import { ViewMyReview } from '../../apis/Review/GetReview'
 
 const ReviewWriteModal = () => {
+
+  const [writeReviewDiv,setWriteReviewDiv] = useState([]);
+
+    
+  const reviews = async()=>{
+      const abc= await ViewMyReview();
+      generateWriteDiv(abc);
+      console.log(abc);
+  } 
+  
+  const generateWriteDiv = (List)=>{
+      console.log(List);
+      const writeDiv = [];
+
+      for(let i  =0; i<List.length; i++){
+          writeDiv.push(
+              <InfoItem
+               width={30} 
+               height={80} 
+               onClick={()=>{
+                window.location.href=`/review/write/${List[i].rid}`}} 
+                  key={i}
+                  rid={List[i].rid}
+                  updated_at={List[i].updated_at}
+                  progrmRegistNo={List[i].progrmRegistNo}
+                  title={List[i].title}
+                  is_public={List[i].is_public}
+                  is_customized={List[i].is_customized}
+                  writer={List[i].writer}
+                  images={List[i].images}
+                  writer_profile_img={List[i].writer_profile_img}
+                  writer_username={List[i].writer_username}
+               >
+              </InfoItem>           
+          )
+          
+      }
+      const x = List.length % 3;
+      if(x!==0){
+        for(let i =0; i< (3-x); i++){
+          writeDiv.push(<NonReview></NonReview>)
+        }
+      }
+      setWriteReviewDiv(writeDiv)
+  }
+
+  useEffect(()=>{
+      reviews();
+  },[])
+
   return (
     <Wrapper>
       <ReviewWrapper>
@@ -12,17 +63,8 @@ const ReviewWriteModal = () => {
           <ReviewTitieText>내가 한 봉사</ReviewTitieText>
         </ReviewTitlediv>
         <InfoWrapper>
-         
-            <InfoItem width={30} height={80} onClick={()=>{
-              window.location.href='/review/write/1';
-            }
-            } />
-            <InfoItem width={30} height={80} />
-            <InfoItem width={30} height={80} />
-            <InfoItem width={30} height={80} />
-            <InfoItem width={30} height={80} />
-            <InfoItem width={30} height={80} />
-         
+        {writeReviewDiv}
+
         </InfoWrapper>
       </ReviewWrapper>
     </Wrapper>
@@ -62,6 +104,13 @@ const ReviewTitlediv = styled.div`
 
 `
 
+const NonReview = styled.div`
+
+  width : 30%;
+  height: 80%;
+
+`
+
 const ReviewTitieText = styled.span`
 
     color: #000;
@@ -73,6 +122,7 @@ const ReviewTitieText = styled.span`
 `
 
 const InfoWrapper = styled.div`
+  width: 100%;
   height: 85%;
   min-height: 0;
   display: flex;

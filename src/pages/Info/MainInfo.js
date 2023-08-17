@@ -39,7 +39,7 @@ const Area = [
 
 const MainInfo = () => {
 
-
+    
     
     const x = 1;
     
@@ -353,7 +353,7 @@ const InfoSelection = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-	flex-wrap: wrap; 
+   flex-wrap: wrap; 
 
 
 `;

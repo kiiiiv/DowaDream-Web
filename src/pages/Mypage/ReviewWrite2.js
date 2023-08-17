@@ -49,7 +49,6 @@ function ReviewWrite2(){
             return newArray;
           });
           console.log(imageFiles);
-  
           URL.revokeObjectURL(file);
         }
       };
