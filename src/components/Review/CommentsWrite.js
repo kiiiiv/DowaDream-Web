@@ -25,15 +25,14 @@ function CommentsWrite({ onCommentSubmit, onLikeSubmit, numLikes, numComments })
 
       <Container70>
           <GoogleProfilePic size={60}></GoogleProfilePic>
-          <form>
-            <CommentsWriteContainer2>
-              <CommentsInput value={inputText} onChange={handleInputChange} />
+          <CommentsWriteContainer2>
+            <CommentsInput value={inputText} onChange={handleInputChange} />
               <CommentsButtonContainer>
                 <CommentsButton color="#F79999" onClick={handleLikeSubmit}>응원하기</CommentsButton>
                 <CommentsButton color="#2A2A2A" type="submit" onClick={handleSubmit}>등록하기</CommentsButton>
               </CommentsButtonContainer>
-            </CommentsWriteContainer2>
-          </form>
+
+          </CommentsWriteContainer2>
       </Container70>
     );
 }
@@ -47,23 +46,27 @@ padding-right: 16px;
 display: flex;
 flex-direction: row;
 padding: 30px;
-height: 239px;
 background: #FFFAC9;
 border-top: 2px #024959;
 border-bottom: 2px #024959;
+border-radius: 10px;
 gap: 20px;
-
 @media only screen and (min-width: 768px) {
   width: 720px;
 }
 
-@media only screen and (min-width: 992px) {
-  width: 940px;
+@media only screen and (min-width: 1000px) {
+  width: 1000px;
+}
+@media only screen and (min-width: 1100px) {
+  width: 1100px;
 }
 
 @media only screen and (min-width: 1200px) {
-  width: 1100px;
+  width: 1200px;
 }
+
+
 `;
 let CommentsWriteContainer2 = styled.div`
 width: 100%;
@@ -74,6 +77,7 @@ align-items: flex-end;
 padding: 0px;
 height: 203px;
 gap: 20px;
+
 `;
 /*padding-top, padding-right, padding-bottom, padding-left*/
 /* Rectangle 96 */

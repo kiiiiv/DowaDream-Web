@@ -5,7 +5,7 @@ import GoogleProfilePic from '../Mypage/GoogleProfilePic';
 
 function UserComments({text}) {
   return (
-    <div className='Wrapper'>
+    <div>
       <Container60>  
           <GoogleProfilePic size={45}></GoogleProfilePic>
           <Container62>
@@ -20,20 +20,30 @@ function UserComments({text}) {
 export default UserComments;
 
 const Container60 = styled.div`
-max-width: 1170px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     align-items: flex-stretch;
     padding: 20px 20px 10px;
-    width: 1170px;
-    max-width: 1170px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 16px;
-    padding-right: 16px;
-    gap: 20px
+    gap: 20px;
+    @media only screen and (min-width: 768px) {
+      width: 720px;
+    }
+    
+    @media only screen and (min-width: 1000px) {
+      width: 1000px;
+    }
+    @media only screen and (min-width: 1100px) {
+      width: 1100px;
+    }
+    
+    @media only screen and (min-width: 1200px) {
+      width: 1200px;
+    }
+    
+    
 `;
 /* Frame 109 */
 const Container62 = styled.div`
@@ -42,6 +52,8 @@ flex-direction: column;
 align-items: flex-start;
 padding: 3px 0px 0px 16px;
 width: 90%;
+border: 1px dotted black;
+border-radius: 10px;
 `;
 const CommentsName = styled.div`
 display: flex;
