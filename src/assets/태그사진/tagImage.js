@@ -1,3 +1,4 @@
+import {Info} from '../../../public/tagImage/공익인권.svg'
 
 export const getImageName = (tag) => {
     console.log(tag);
