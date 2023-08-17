@@ -1,11 +1,13 @@
 import axios from "axios";
 export const baseUrl = "https://api.dowadream.site/program/";
+const accessToken = localStorage.getItem("accessToken");
+
 
 //내가 한 봉사, 스크랩한봉사, 응원한봉사, 추가하기
 export const upDateVolInfo = async(props) => {
 
     const [progrmRegistNo,cheered=false,participated=false,clipped=false] = props;
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTA0ODk1LCJpYXQiOjE2OTIyNDU2OTUsImp0aSI6IjljYzY1MTE0ZTQwMzQ3NmU5ZjUwZTkzOTc3MjU4NWQ5IiwidXNlcl9pZCI6MTV9.nyAMpdAN_llQZwWuKExZhN3stnXcPR1CE5KA_BHAjUY"
+    const token = accessToken;
     try{
 
       const response = await axios.put(baseUrl,
@@ -30,8 +32,7 @@ export const upDateVolInfo = async(props) => {
 //마이페이지 내가 한 봉사
 export const uploadUserVol = async() => {
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTA0ODk1LCJpYXQiOjE2OTIyNDU2OTUsImp0aSI6IjljYzY1MTE0ZTQwMzQ3NmU5ZjUwZTkzOTc3MjU4NWQ5IiwidXNlcl9pZCI6MTV9.nyAMpdAN_llQZwWuKExZhN3stnXcPR1CE5KA_BHAjUY"
-
+  const token = accessToken;
   try{
     const response = await axios.get(`${baseUrl}participated/`,{
       headers : {
@@ -48,7 +49,7 @@ export const uploadUserVol = async() => {
 //마이페이지 스크랩한 봉사
 export const uploadUserClip = async() => {
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTA0ODk1LCJpYXQiOjE2OTIyNDU2OTUsImp0aSI6IjljYzY1MTE0ZTQwMzQ3NmU5ZjUwZTkzOTc3MjU4NWQ5IiwidXNlcl9pZCI6MTV9.nyAMpdAN_llQZwWuKExZhN3stnXcPR1CE5KA_BHAjUY"
+  const token = accessToken;
 
   try{
     const resopnse = await axios.get(`${baseUrl}clipped/`,{
@@ -66,7 +67,7 @@ export const uploadUserClip = async() => {
 //마이페이지 응원봉사
 export const uploadUserCheered = async () => {
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTA0ODk1LCJpYXQiOjE2OTIyNDU2OTUsImp0aSI6IjljYzY1MTE0ZTQwMzQ3NmU5ZjUwZTkzOTc3MjU4NWQ5IiwidXNlcl9pZCI6MTV9.nyAMpdAN_llQZwWuKExZhN3stnXcPR1CE5KA_BHAjUY"
+  const token = accessToken;
   try{
     const resopnse = await axios.get(`${baseUrl}cheered/`,{
       headers : {

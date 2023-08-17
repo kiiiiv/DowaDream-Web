@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import {GoogleLoginButton} from './Home/GoogleLoginButton';
 import jwtDecode from "jwt-decode";
-import pic from '../assets/로그인버튼2.png';
+import logo from '../assets/로고/도와드림로고.png';
 import axios from 'axios';
 //버튼을 눌러서 url로 이동하게..!
 // redirect url 을 프론트 url로 ,
@@ -110,7 +110,8 @@ function NavBar2() {
     <>
       <Navbar expand="lg" style={{ backgroundColor: "yellow" }} className="bg-ffe34f">
         <Container fluid>
-          <Navbar.Brand style={{backgroundImage: `url('${pic}')`, width: "100px", height: "30px"}} onClick={() => { navigate('/') }}></Navbar.Brand>
+          <Navbar.Brand style={{backgroundImage: `url('${logo}')`, backgroundSize: "cover",
+    backgroundPosition: "center", width: "40px", height: "40px", padding: "0px"}} onClick={() => { navigate('/') }}></Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
