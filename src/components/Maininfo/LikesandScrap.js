@@ -10,7 +10,6 @@ import Scrap2 from '../../assets/스크랩색변화.svg'
 const LikesandScrap = () => {
     const [likeClicked, setLikeClicked] = useState(false); // State to track like button click
     const [scrapClicked, setScrapClicked] = useState(false); // State to track like button click
-    
     const handleLikeClick = () => {
         setLikeClicked(!likeClicked);
     };
@@ -40,10 +39,10 @@ const LikesandScrap = () => {
         </LikesScrapContainer2>
                 <LikesScrapText>
                     <TextContainer>
-                        응원수 <span style={{color: "#F74E43"}}>n</span>회
+                        응원수 <span style={{color: "#F74E43"}}></span>회
                     </TextContainer>
                     <TextContainer>
-                        스크랩 <span style={{color: "#F74E43"}}>n</span>개
+                        스크랩 <span style={{color: "#F74E43"}}></span>개
                     </TextContainer>
                 </LikesScrapText>
                 </>

@@ -17,6 +17,7 @@ export const getVolInfo = async (keyword) => {
     }
 };
 
+
 //봉사 세부 정보 받아오기 
 export const getVolDetail = async (pageNum) =>{
 
@@ -36,7 +37,11 @@ export const getVolReview = async (pageNum) =>{
 
 
     try{
-        const response = await axios.get(`https://api.dowadream.site/review?progrmRegistNo=12345`);
+        const response = await axios.get(`https://api.dowadream.site/review`,{
+            params : {
+                "progrmRegistNo" : `${pageNum}`
+            }
+        });
         return response.data.data;
     } catch(error){
         return error;

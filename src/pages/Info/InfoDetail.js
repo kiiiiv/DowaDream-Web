@@ -34,11 +34,17 @@ function InfoDetail (){
       ]);
 
       const fetchReview = async () => {
+          console.log(infoId.infoId)
           const fetchedReview = await getVolReview(infoId.infoId);
           console.log(fetchedReview);
       }
       async function fetchInfo() {
-        const fetchedInfo = await getVolDetail(infoId.infoId);
+        var fetchedInfo = await getVolDetail(infoId.infoId);
+        fetchedInfo.TimeStart = fetchedInfo.actStart.slice(11);
+        fetchedInfo.TimeEnd = fetchedInfo.actEnd.slice(11);
+        fetchedInfo.actStart = fetchedInfo.actStart.slice(0,10);
+        fetchedInfo.actEnd = fetchedInfo.actEnd.slice(0,10);
+
         setInfo(fetchedInfo);
       }
 
@@ -68,7 +74,7 @@ function InfoDetail (){
                     <tbody>
                         <tr>
                         <Td className="bg-yellow">{array[0]}</Td>
-                        <Td></Td>
+                        <Td>{info.tagCode}</Td>
                         <Td className="bg-yellow">{array[1]}</Td>
                         <Td>{info.recruitInstitute}</Td>
                         <Td className="bg-yellow">{array[2]}</Td>
@@ -76,11 +82,11 @@ function InfoDetail (){
                         </tr>
                         <tr>
                         <Td className="bg-yellow">{array[3]}</Td>
-                        <Td>{info.recruitStart}</Td>
+                        <Td>{info.recruitStart}-{info.recruitEnd}</Td>
                         <Td className="bg-yellow">{array[4]}</Td>
-                        <Td>{info.recruitStart}</Td>
+                        <Td>{info.recruitStart}-{info.recruitEnd}</Td>
                         <Td className="bg-yellow">{array[5]}</Td>
-                        <Td>{info.actStart}</Td>
+                        <Td>{info.TimeStart}-{info.TimeEnd}</Td>
                         </tr>
                         <tr>
                         <Td className="bg-yellow">{array[6]}</Td>
