@@ -16,6 +16,7 @@ export function GoogleLoginButton({onSuccess}) {
   return (
     <>
       <GoogleOAuthProvider clientId={clientId}>
+        
         <GoogleLogin
           buttonText="Login"
           onSuccess={onSuccess}
@@ -23,6 +24,7 @@ export function GoogleLoginButton({onSuccess}) {
             console.log(err);
           }}
         />
+
       </GoogleOAuthProvider>
     </>
   );

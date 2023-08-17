@@ -124,3 +124,111 @@ export const ReviewItemWrapper = styled.div`
     align-items: flex-start;
 
 `
+
+export const ReviewGaugediv = styled.div`
+
+    display: flex;
+    padding: 64px 0px 40px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+
+`
+
+export const ReviewGagueTextdiv = styled.div`
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+`
+
+export const ReviewGaugeText = styled.span`
+
+    color: #000;
+    font-size: 2em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+`
+
+export const Gaugediv = styled.div`
+
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content : center;
+    align-items: end;
+    gap : 120px;
+
+`
+
+export const Cheerdiv = styled.div`
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 36px;
+
+`
+
+export const CheerButton = styled.button`
+
+    background-image: url(${props => props.url});
+    background-size: cover; /* 이미지를 컨테이너에 맞게 늘립니다 */
+    background-position: center; /* 이미지를 중앙으로 정렬합니다 */ 
+    width : 67px;
+    height : 67px;
+    display: flex;
+    padding: 4px 12px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+
+`
+
+export const CheerText = styled.span`
+    text-align : left;
+    color: var(--dark-gray-color, #7E8181);
+    font-family: Pretendard Variable;
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+`
+
+export const Gradediv = styled.div`
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+`
+
+export const GradeText =styled.span`
+
+    color: #000;
+    font-family: Pretendard Variable;
+    font-size: 1.4em;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+`
+
+export const GradeImg = styled.div`
+
+    background-image: url(${props => props.url});
+    background-size: cover; /* 이미지를 컨테이너에 맞게 늘립니다 */
+    background-position: center; /* 이미지를 중앙으로 정렬합니다 */ 
+    display: flex;
+    width: 200px;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+
+`

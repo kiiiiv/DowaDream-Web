@@ -78,9 +78,8 @@ export const uploadUserCheered = async () => {
     console.log(resopnse.data.data)
     return resopnse.data.data
   }catch(error){
-
+    return error;
   }
 
 }
-
 
