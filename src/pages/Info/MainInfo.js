@@ -123,9 +123,10 @@ const MainInfo = () => {
             }
         
         }
+        
         let result1 = [...new Set(InfoList)];
-
         const volInfo = await SearchAreaKeyword(null,result1);
+
         setInfoList(volInfo);
         setInfoCount(volInfo.length);
         setTotalNum(1);
@@ -147,6 +148,8 @@ const MainInfo = () => {
             if(mainInfoVols.length===infoList.length){
                 break;
               }
+              const start = infoList[i].actStart.slice(0,10);
+              const end = infoList[i].actEnd.slice(0,10);
             mainInfoVols.push(
               
               <MainInfoVol
@@ -161,8 +164,8 @@ const MainInfo = () => {
                 recruitEnd={infoList[i].recruitEnd}
                 recruitStart={infoList[i].recruitStart}
 
-                actStart={infoList[i].actStart.slice(0,10)}
-                actEnd={infoList[i].actEnd.slice(0,10)}
+                actStart={start}
+                actEnd={end}
               
               />
             

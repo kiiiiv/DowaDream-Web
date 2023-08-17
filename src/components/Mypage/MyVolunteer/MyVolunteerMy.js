@@ -18,6 +18,10 @@ function MyVolunteerMy(){
           console.log(detailVolunteer);
           myVolunteerArr.push(
             <InfoItem
+
+            onClick={()=>{
+              window.location.href=`/info/${detailVolunteer.progrmRegistNo}`}} 
+
               key={i} style={{ width:'25%'}}
               rid={detailVolunteer.title}
               tag={detailVolunteer.tag}

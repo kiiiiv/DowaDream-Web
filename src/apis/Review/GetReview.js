@@ -72,6 +72,7 @@ export const writeReview = async (props) =>{
 //나의 후기
 export const ViewMyReview = async () => {
   const token =accessToken;
+  console.log(token);
   try {
     const response = await axios.get(`${baseUrl}user/`, {
       headers: {
