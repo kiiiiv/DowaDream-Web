@@ -4,9 +4,12 @@ import { useContext, useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { UserLocContext } from "../contexts/UserInfo";
 import Xurl from "../../src/assets/x.svg";
+import { TagCodeMaker } from "../assets/TagCode";
+import { userRegion } from "../apis/Program/User";
+import { gugunCdMaker } from "../assets/Sidogugun";
 
 const Tag = [
-  "공익, 인권","교육","국제행사","국제협력, 해외봉사","농어촌 봉사", "문화행사", "멘토링", "보건의료","상담","생활편의지원","안전, 예방","자원봉사교육","재해, 재난","주거환경","행정보조","환경보호","기타"
+  "공익.인권","교육","국제행사","국제협력.해외봉사","농어촌 봉사", "문화행사", "멘토링", "보건의료","상담","생활편의지원","안전.예방","자원봉사교육","재해ㆍ재난","주거환경","행정보조","환경보호","기타"
 ];
 
 const Area = [
@@ -35,6 +38,8 @@ function MyTags(){
 
 
   const filteredData = useContext(UserLocContext);
+  const Cd = TagCodeMaker(Tag[0]);
+  console.log(Cd);
 
 
   const [isSelectLoc,setIsSelectLoc] = useState("1");
@@ -123,24 +128,40 @@ function MyTags(){
     setIsSelectLoc(`${name}`);
     setAllInfo(updatedAllInfo);   
 }
-  const onTotalInfoClicked = () =>{
+  const onTotalInfoClicked = async() =>{
+        const InfoList = [];
+        const TagList = [];
+        let i = 0;
+        for (const info of allInfo) {
+            console.log(info);
+            i = i+1;
+            if (info[1].length !== 1) {
+                const secondArray = info[1];
+                //index , indexof 함수 사용하기 
+                const nonFalseValues = secondArray.filter(value => value !== false);
+                if(nonFalseValues!==[]){
+                    for (const item of nonFalseValues) {
+                        const num = gugunCdMaker(i,item);
+                        InfoList.push(num);
+                    }
+                }
 
-    allInfo.forEach((info, index) => {
-        const firstElement = info[0];
-        if(info[1].length!==1){
-          const secondArray = info[1];
-          const nonFalseValues = secondArray.filter(value => value !== false);  
-
-          console.log(`First Element: ${firstElement}`);
-          console.log(`Non-False Values: ${nonFalseValues}`);
+            }
+        
         }
-    });
 
+        const response = await userRegion(InfoList);
+        console.log(InfoList);
+        console.log(response);
   }
 
   const toggleTagDetailButtonState = (index) => {
     const updatedStates = [...isTagDetailStates];
-    updatedStates[index] = !updatedStates[index];
+    if(updatedStates[index]!==false){
+      updatedStates[index] = false
+    }else{
+      updatedStates[index] = Tag[index];
+    }
     setTagDetailState(updatedStates);
   };
 

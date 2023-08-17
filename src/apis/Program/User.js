@@ -1,72 +1,44 @@
 import axios from "axios";
 export const baseUrl = "https://api.dowadream.site/user/";
-export const userRegion = async () =>{
-    
-    try {
-        const accessToken = 'my_access_token';
-        const regions = ['region1', 'region2'];
-    
-        if(regions.length < 1 || regions.length > 10) {
-          throw new Error('The number of regions must be between 1 and 10.');
-        }
-    
-        const response = await axios.post(`${baseUrl}/user/region`, { // URL 수정
-          regions: regions
+
+export const userRegion = async (props) =>{
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTA0ODk1LCJpYXQiOjE2OTIyNDU2OTUsImp0aSI6IjljYzY1MTE0ZTQwMzQ3NmU5ZjUwZTkzOTc3MjU4NWQ5IiwidXNlcl9pZCI6MTV9.nyAMpdAN_llQZwWuKExZhN3stnXcPR1CE5KA_BHAjUY"
+  const regions = props;
+
+    try {    
+        const response = await axios.post(`${baseUrl}region/`, { // URL 수정
+          "regions": regions
         }, {
           headers: {
-            'Authorization': `Bearer ${accessToken}`
+            Authorization : `Bearer ${token}`
+          }, data : {
+            regions : regions
           }
         });
     
         console.log(response.data);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
 }
 
+export const userTag = async (props) =>{
 
-  export const UserResol = async(props) => {
-    const token = window.localStorage.getItem('access');
-    const text = props;
-    try{
-      const response = await axios.put(`${baseUrl}/user/resol`,{
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTA0ODk1LCJpYXQiOjE2OTIyNDU2OTUsImp0aSI6IjljYzY1MTE0ZTQwMzQ3NmU5ZjUwZTkzOTc3MjU4NWQ5IiwidXNlcl9pZCI6MTV9.nyAMpdAN_llQZwWuKExZhN3stnXcPR1CE5KA_BHAjUY"
+  const tags = props;
 
-        headers: {
-            authorization: `Bearer ${token}` 
-         }
-        ,data:{
-            text
-        }
-        
-      })
-      console.log(response);
-      return response;
-    }catch(error){
-        return error;
-    }
-  
-  
-  }
-  export const userTag = async () =>{
-    
-    try {
-        const accessToken = 'my_access_token';
-        const tag = ['tag1', 'tag2', 'tag3'];
-    
-        if(regions.length < 1 || regions.length > 10) {
-          throw new Error('The number of regions must be between 1 and 10.');
-        }
-    
-        const response = await axios.post(`${baseUrl}/user/tag`, { // URL 수정
-          regions: regions
-        }, {
-          headers: {
-            'Authorization': `Bearer ${accessToken}`
-          }
-        });
-    
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
+  try{
+    const response = await axios.post(`${baseUrl}tags/`,{
+      headers : {
+        Authorization : `Bearer ${token}`
+      },data: {
+        "tags" : tags
       }
+    })
+
+    console.log(response.data);
+  }catch(error){
+    console.log(error);
+  }
+
 }
