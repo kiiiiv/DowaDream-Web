@@ -17,30 +17,15 @@ function NavBar2() {
 
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
-  const [isLogined, setIsLogined] = useState(false);
+  const [isLogined, setIsLogined] = useState(true);
   const [name, setName] = useState('');
   const [profile, setProfile] = useState('');
-
-  // 구글 로그인 성공 시 이벤트 핸들러
-
-  function handleLogin() {
-    const client_id = '594839259275-qangv0n8999qqgo12aofgtdko2socqmv.apps.googleusercontent.com';
-    const redirect_uri = 'http://localhost:3000/';
-    const scope = 'https://www.googleapis.com/auth/userinfo.email';
-    const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&response_type=code&redirect_uri=${redirect_uri}&scope=${scope}`;
-    
-    // URL 주소로 페이지 이동
-    window.location.href = url;
-  }
 
   const LoginSuccess = (credentialResponse) => {
     setIsLogined(true);
     const token = jwtDecode(credentialResponse.credential);
-    setUserInfo(token);
-    setName(token.name);
-    setProfile(token.googleId);
 
-    doSignUp();
+
   };
   const doSignUp = () => {
     window.sessionStorage.setItem('profile', profile);
@@ -62,29 +47,28 @@ function NavBar2() {
     
     //SessionStorage Clear
     window.sessionStorage.clear();
-    window.localStorage.clear();
+    window.sessionStorage.clear();
   }
 
-  useEffect(() => {
-    const name = window.sessionStorage.getItem('name');
-    if(name) {
-      LoginSuccess();
-    }
-    else {
-      onLogout();
-    }
-  }, []);
+  // useEffect(() => {
+  //   const name = window.sessionStorage.getItem('name');
+  //   if(name) {
+  //     LoginSuccess();
+  //   }
+  //   else {
+  //     onLogout();
+  //   }
+  // }, []);
 
   
     
-  /*
-    useEffect(() => {
-      setIsLogined(!!token);
-      if (token) {
-        setUserInfo(token);
-      }
-    }, []);
-*/
+
+      // useEffect(() => {
+      //   setIsLogined(!!token);
+      //   if (token) {
+      //     setUserInfo(token);
+      //   }
+      // }, []);
 
     
     
@@ -105,28 +89,8 @@ function NavBar2() {
               <Nav.Link onClick={() => { navigate('/review') }}>봉사후기</Nav.Link>
               <Nav.Link onClick={() => { navigate('/mypage') }}>마이페이지</Nav.Link>
             </Nav>
-            <Button variant="info" onClick={handleLogin} >
-                  로그아웃
-              </Button>
-            /*{isLogined ? (
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <div
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "50%",
-                    background: `url('${userInfo.picture}')`,
-                    backgroundSize: "cover",
-                    marginRight: "8px",
-                  }}
-                ></div>
-                <Button onClick={onLogout}>
-                  로그아웃
-                </Button>
-              </div>
-            ) : (
+
               <GoogleLoginButton onSuccess={LoginSuccess} />
-            )}
 
 
 
