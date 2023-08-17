@@ -65,7 +65,9 @@ function NavBar2() {
           "profilePhoto":profile1
         });
     
-        console.log(response.data);
+        const accessToken = response.data.data.access_token;
+        localStorage.setItem("accessToken", accessToken);
+        console.log(accessToken);
       } catch (error) {
         console.error(error);
       }

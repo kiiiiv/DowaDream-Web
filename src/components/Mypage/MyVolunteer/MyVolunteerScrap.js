@@ -47,28 +47,9 @@ function MyVolunteerScrap(){
         <Infoitem>
             <Iteminfo>
               {myScrap.map((scrapItem) => scrapItem)}
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
             </Iteminfo>
           </Infoitem>
-          <Infoitem>
-            <Iteminfo>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-            </Iteminfo>
-          </Infoitem>
-          <Infoitem>
-            <Iteminfo>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-            </Iteminfo>
-          </Infoitem>
+          
         </>
     );
   }
@@ -86,7 +67,7 @@ function MyVolunteerScrap(){
 
 const Iteminfo = styled.div`
 
-justify-content : center;
+justify-content : flex-start;
   width: 100%;
   flex : 1;
   display: flex;
