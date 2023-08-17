@@ -17,19 +17,19 @@ const MainInfoVol = ({ac,title,pagenum,recruitStart,recruitEnd, actStart,actEnd}
         <Ac>{ac}</Ac>
         <Title>{title}</Title>
         <Time>
-            {recruitStart}
-            <br />
-            -
-            <br/>
-            {recruitEnd}
-     
-        </Time>
-        <Time>
             {actStart}
             <br />
             -
             <br/>
             {actEnd}
+     
+        </Time>
+        <Time>
+            {recruitStart}
+            <br />
+            -
+            <br/>
+            {recruitEnd}
         </Time>
     </Wrapper>
   )

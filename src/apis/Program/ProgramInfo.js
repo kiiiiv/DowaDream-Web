@@ -6,9 +6,6 @@ export const upDateVolInfo = async(props) => {
 
     const [progrmRegistNo,cheered=false,participated=false,clipped=false] = props;
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTA0ODk1LCJpYXQiOjE2OTIyNDU2OTUsImp0aSI6IjljYzY1MTE0ZTQwMzQ3NmU5ZjUwZTkzOTc3MjU4NWQ5IiwidXNlcl9pZCI6MTV9.nyAMpdAN_llQZwWuKExZhN3stnXcPR1CE5KA_BHAjUY"
-
-    
-
     try{
 
       const response = await axios.put(baseUrl,
@@ -23,7 +20,6 @@ export const upDateVolInfo = async(props) => {
             Authorization: `Bearer ${token}` 
          }
       })
-      console.log(response);
       return response;
     }catch(error){
         return error;
