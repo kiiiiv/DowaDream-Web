@@ -5,7 +5,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { UserLocContext } from "../contexts/UserInfo";
 import Xurl from "../../src/assets/x.svg";
 import { TagCodeMaker } from "../assets/TagCode";
-import { userRegion } from "../apis/Program/User";
+import { userRegion, userTag } from "../apis/Program/User";
 import { gugunCdMaker } from "../assets/Sidogugun";
 
 const Tag = [
@@ -36,11 +36,8 @@ const Area = [
 
 function MyTags(){
 
-
+  TagCodeMaker(Tag[1]);
   const filteredData = useContext(UserLocContext);
-  const Cd = TagCodeMaker(Tag[0]);
-  console.log(Cd);
-
 
   const [isSelectLoc,setIsSelectLoc] = useState("1");
   const [detailButtonStates, setDetailButtonStates] = useState(filteredData[1][1]);
@@ -77,7 +74,7 @@ function MyTags(){
     if(result !== false){
       DeleteDivLists.push(
           <LocDeleteButton
-          key={`${isSelectLoc},${index}`} // 고유한 key 값 생성
+          key={`${isSelectLoc},${index},1`} // 고유한 key 값 생성
           onClick={()=>onDeleteDivClicked(isSelectLoc,index)}
           >
             <LocDeleteItemText>
@@ -131,9 +128,19 @@ function MyTags(){
   const onTotalInfoClicked = async() =>{
         const InfoList = [];
         const TagList = [];
+
+          for(let k = 0; k<Tag.length;k++){
+            if(isTagDetailStates[k]!==false){
+              const num = TagCodeMaker(Tag[k]);
+              TagList.push(num);
+            }
+          }
+        const response2 = await userTag(TagList);
+        console.log(response2);
+
+
         let i = 0;
         for (const info of allInfo) {
-            console.log(info);
             i = i+1;
             if (info[1].length !== 1) {
                 const secondArray = info[1];
@@ -149,11 +156,13 @@ function MyTags(){
             }
         
         }
-
+        
         const response = await userRegion(InfoList);
+        console.log(TagList);
         console.log(InfoList);
         console.log(response);
-  }
+      
+      }
 
   const toggleTagDetailButtonState = (index) => {
     const updatedStates = [...isTagDetailStates];
@@ -163,6 +172,7 @@ function MyTags(){
       updatedStates[index] = Tag[index];
     }
     setTagDetailState(updatedStates);
+;
   };
 
 
@@ -176,7 +186,7 @@ function MyTags(){
             <TagAlldiv>
             {Tag.map((tag, index) => (
             <TagDetail 
-              key= {index}
+              key= {tag}
               onClick={()=>toggleTagDetailButtonState(index)}
               states={isTagDetailStates[index].toString()}
               >

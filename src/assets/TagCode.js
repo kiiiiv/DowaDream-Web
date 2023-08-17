@@ -477,10 +477,12 @@ const Tags = [
 
   export const TagCodeMaker = (name) => {
 
-    const code = Tags.indexOf(name,0);
-    if(code!==-1){
-        return Tags[code].highClsCd;
+    console.log(Tags[1].highClsCd);
+
+    for(let i =0; i<Tags.length;i++){
+      if(name===Tags[i].highClsNm){
+        return Tags[i].highClsCd;
+      }
     }
-
-
+    return -1;
 }
