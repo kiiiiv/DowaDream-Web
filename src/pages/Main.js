@@ -1,4 +1,4 @@
-import React,{ useRef, useEffect } from 'react';
+import React,{ useRef, useEffect, useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ControlledCarousel from '../components/Home/Carousel';
@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import InfoTitle from '../components/Home/InfoTitle';
 import InfoItem from '../components/Home/InfoItem';
 import { Wrapper } from '../styles/Common';
-import { SearchArea, SearchAreaKeyword } from '../apis/Review/ScrapCheerSave';
+import { SearchArea, SearchAreaKeyword, SearchCheer, SearchDday } from '../apis/Review/ScrapCheerSave';
 import { gugunCdMaker } from '../assets/Sidogugun';
 import { TagCodeMaker } from '../assets/TagCode';
 function Main(){
@@ -16,6 +16,10 @@ function Main(){
   const content1Ref = useRef(null);
   const content2Ref = useRef(null);
   const content3Ref = useRef(null);
+
+  const [Area,SetArea] = useState();
+  const [Dday,SetDday] = useState();
+  const [Cheer,SetCheer] = useState();
 
   const onContent1Click = () => {
     content1Ref.current?.scrollIntoView({ behavior: 'smooth', block :'center' });
@@ -30,16 +34,31 @@ function Main(){
   const callInfo = async() =>{
     const gugunCd = gugunCdMaker("2","종로구");
     const TagCd = TagCodeMaker("온라인자원봉사");
-    console.log(TagCd);
     const arr1 = [];
     const arr2 = [];
     arr1.push(gugunCd);
     arr2.push(TagCd);
 
-    const resopnse = SearchAreaKeyword(arr2,arr1);
-    console.log(resopnse);    
+
+    let resopnse = await SearchAreaKeyword(null,arr1);
+    let resopnse2 = await SearchDday();
+    let response3 = await SearchCheer();
+
+    resopnse = resopnse.slice(0,4);
+    resopnse2 = resopnse2.slice(0,4);
+    response3 = response3.slice(0,4);
+
+
+    console.log(resopnse);
+    await SetArea(resopnse);
+    await SetDday(resopnse2);
+    await SetCheer(response3);
+
+
 
   }
+  
+
   
   useEffect(() => {
     // accessToken 가져오기
@@ -74,10 +93,33 @@ function Main(){
               <InfoTitle num={1}></InfoTitle>
             </Itemtitle>
             <Iteminfo>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
+              {
+                Area && Area.map((item,index)=>{
+                    return(<InfoItem
+                    onClick={()=>{
+                      window.location.href=`/info/${item.progrmRegistNo}`}} 
+                      key={index} 
+                      style={{ width:'25%'}}
+                      // rid={item.title}
+                      tag={item.tag}
+                      progrmRegistNo={item.progrmRegistNo}
+                      title={item.title}
+                      institute={item.recruitInstitute}
+                      recruitStart={item.recruitStart}
+                      recruitEnd={item.recruitEnd}
+                      actStart={item.actStart}
+                      actEnd={item.actSEnd}
+                      dday ={item.dday}
+                      place={item.place}
+                      // num_cheer={item.num_cheer}
+                      // num_comment={item.num_comment}
+                      // writer={item.writer}
+                      // writer_profile_img={item.writer_profile_img}
+                      // writer_username={item.writer_username}
+                    >
+                    </InfoItem>)
+                })                
+              }
             </Iteminfo>
           </Infoitem>
 
@@ -86,10 +128,34 @@ function Main(){
               <InfoTitle num={2}></InfoTitle>
             </Itemtitle>
               <Iteminfo>
-                <InfoItem></InfoItem>
-                <InfoItem></InfoItem>
-                <InfoItem></InfoItem>
-                <InfoItem></InfoItem>
+                {
+                Dday && Dday.map((item,index)=>{
+                  
+                    return(<InfoItem
+                    onClick={()=>{
+                      window.location.href=`/info/${item.progrmRegistNo}`}} 
+                      key={index} 
+                      style={{ width:'25%'}}
+                      // rid={item.title}
+                      tag={item.tag}
+                      progrmRegistNo={item.progrmRegistNo}
+                      title={item.title}
+                      institute={item.recruitInstitute}
+                      recruitStart={item.recruitStart}
+                      recruitEnd={item.recruitEnd}
+                      actStart={item.actStart}
+                      actEnd={item.actSEnd}
+                      dday ={item.dday}
+                      place={item.place}
+                      // num_cheer={item.num_cheer}
+                      // num_comment={item.num_comment}
+                      // writer={item.writer}
+                      // writer_profile_img={item.writer_profile_img}
+                      // writer_username={item.writer_username}
+                    >
+                    </InfoItem>)
+                })   
+                }
               </Iteminfo>
           </Infoitem>
 
@@ -98,10 +164,34 @@ function Main(){
               <InfoTitle num={3}></InfoTitle>
             </Itemtitle>    
             <Iteminfo>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
+                {
+                Cheer && Cheer.map((item,index)=>{
+                  console.log(item);
+                  return(<InfoItem
+                  onClick={()=>{
+                    window.location.href=`/info/${item.progrmRegistNo}`}} 
+                    key={index} 
+                    style={{ width:'25%'}}
+                    // rid={item.title}
+                    tag={item.tag}
+                    progrmRegistNo={item.progrmRegistNo}
+                    title={item.title}
+                    institute={item.registerInstitute}
+                    recruitStart={item.recruitStart}
+                    recruitEnd={item.recruitEnd}
+                    actStart={item.actStart}
+                    actEnd={item.actSEnd}
+                    dday ={item.dday}
+                    place={item.place}
+                    // num_cheer={item.num_cheer}
+                    // num_comment={item.num_comment}
+                    // writer={item.writer}
+                    // writer_profile_img={item.writer_profile_img}
+                    // writer_username={item.writer_username}
+                  >
+                  </InfoItem>)
+              })   
+                }
             </Iteminfo>
           </Infoitem>
 

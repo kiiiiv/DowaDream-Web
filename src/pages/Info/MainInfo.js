@@ -42,7 +42,6 @@ const Area = [
 const MainInfo = () => {
 
     
-    
     const [name,setName] = useState("정렬순");
     const [isOpen, setIsOpen] = useState(false);
     const [isTag, setIsTag] = useState("Loc");
