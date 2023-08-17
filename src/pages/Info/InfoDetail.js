@@ -164,7 +164,6 @@ align-items: flex-start;
 width: 100%;
 height: 131px;
 `
-
 const Trashdiv = styled.div`
 
     width: 500px; 
@@ -172,7 +171,6 @@ const Trashdiv = styled.div`
     background-color: black;
 
 `
-
 const MainTextContainer = styled.div`
 
 box-sizing: border-box;
@@ -200,8 +198,6 @@ white-space: pre-wrap;
 
 color: #000000
 `
-
-
 const ReviewTitle = styled.span`
   color: #000;
   font-size: 2.4em;
@@ -209,7 +205,6 @@ const ReviewTitle = styled.span`
   font-weight: 700;
   line-height: normal;
 `
-
 const ReviewInfodiv = styled.div`
   display: flex;
   width: 100%;
@@ -221,18 +216,13 @@ const ReviewInfodiv = styled.div`
 
 
 `
-
 const ReviewInfoWrapper = styled.div`
 
   display : grid;
   grid-template-columns: 1fr 1fr 1fr;
 	gap: 20px;
   grid-auto-flow: column;  /* row 를 가지지않을거라면 반드시! */
-
-
-
 `;
-
 const ReviewContent = styled.h3`
   margin-top : 40px;
   color: #000;
@@ -244,10 +234,6 @@ const ReviewContent = styled.h3`
 
 
 `
-
-
-
-
 const Similar = styled.div`
 display: flex;
 flex-direction: column;
@@ -255,7 +241,6 @@ align-items: flex-start;
 padding: 0px;
 gap: 20px;
 width: 100%;
-height: 551px;
 
 `;
 const Infoitem = styled.div`
@@ -265,7 +250,6 @@ justify-content : space-between;
 align-items : center;
 width : 100%;
 height : 59.5em;
-
 `
 const Iteminfo = styled.div`
 justify-content : center;
@@ -285,10 +269,7 @@ align-items: center;
 padding: 10px;
 gap: 10px;
 width: 100%;
-position: absolute;
 height: 140px;
-
-top: 2853px;
 
 /* Light Gray Color */
 background: #D9D9D9;

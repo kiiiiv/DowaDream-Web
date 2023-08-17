@@ -19,7 +19,7 @@ function NavBar2() {
 
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
-  const [isLogined, setIsLogined] = useState(true);
+  const [isLogined, setIsLogined] = useState(false);
   const [userName, setUserName] = useState('');
   const [profile, setProfile] = useState('');
   const [userEmail, setUserEmail] = useState('');
@@ -38,51 +38,37 @@ function NavBar2() {
     setProfile(token2.picture);
     setUserEmail(token2.email);
     
-    postAccessToken(token);
     console.log(userEmail);
+    console.log(profile);
+    console.log(userName);
 
     doSignUp();
-    sendUserData(userName, profile, userEmail);
+    sendUserData(userEmail, profile, userEmail);
     
   };
+  
+  
+
+  const doSignUp = () => {
+    window.sessionStorage.setItem('profile', profile);
+    window.sessionStorage.setItem('name', userName);
+  }
   const sendUserData = async (userName, profile, userEmail) =>{
     const name1 = String(userName);
     const profile1 = String(profile);
     const email1 = String(userEmail);
     const baseUrl = "https://api.dowadream.site/user/";
     try {    
-        const response = await axios.post(`${baseUrl}get-token`, { // URL 수정
+        const response = await axios.post(`${baseUrl}get-token/`, { // URL 수정
           "userName": name1,
-          "email":profile1,
-          "profilePhoto":email1
+          "email":email1,
+          "profilePhoto":profile1
         });
     
         console.log(response.data);
       } catch (error) {
         console.error(error);
       }
-  }
-  const postAccessToken = async (token) => {
-    const url = "https://api.dowadream.site/user/get-token/";
-    
-    const requestBody = {
-      "access_token": token // 액세스 토큰을 사용하여 요청 본문을 만듭니다.
-    };
-    console.log(token);
-
-    try {
-      const response = await axios.post(`${url}`, {
-        "access_token" : token
-      }); // 비동기 POST 요청을 보냅니다.
-      console.log(response.data); // 서버에서 반환한 데이터를 출력합니다.
-    } catch (error) {
-      console.error(error); // 오류가 발생한 경우, 오류 메시지를 출력합니다.
-    }
-  };
-
-  const doSignUp = () => {
-    window.sessionStorage.setItem('profile', profile);
-    window.sessionStorage.setItem('name', userName);
   }
 
   
@@ -133,7 +119,6 @@ function NavBar2() {
               <Nav.Link onClick={() => { navigate('/info') }}>봉사정보</Nav.Link>
               <Nav.Link onClick={() => { navigate('/review') }}>봉사후기</Nav.Link>
               <Nav.Link onClick={() => { navigate('/mypage') }}>마이페이지</Nav.Link>
-              <Button onClick={sendUserData}></Button>
             </Nav>
             
 
