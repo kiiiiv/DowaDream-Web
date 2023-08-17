@@ -18,7 +18,7 @@ function MyVolunteerMy(){
           console.log(detailVolunteer);
           myVolunteerArr.push(
             <InfoItem
-              key={i}
+              key={i} style={{ width:'25%'}}
               rid={detailVolunteer.title}
               tag={detailVolunteer.tag}
               updated_at={detailVolunteer.updated_at}
@@ -49,28 +49,10 @@ function MyVolunteerMy(){
         <Infoitem>
             <Iteminfo>
             {myVolunteer.map((volunteerItem) => volunteerItem)}
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
+              
             </Iteminfo>
           </Infoitem>
-          <Infoitem>
-            <Iteminfo>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-            </Iteminfo>
-          </Infoitem>
-          <Infoitem>
-          <Iteminfo>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-              <InfoItem></InfoItem>
-            </Iteminfo>
-            </Infoitem>
+          
 
       </>
     );
@@ -92,7 +74,7 @@ function MyVolunteerMy(){
 
 const Iteminfo = styled.div`
 
-justify-content : center;
+justify-content : flex-start;
   width: 100%;
   flex : 1;
   display: flex;
