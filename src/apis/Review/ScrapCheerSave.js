@@ -14,29 +14,24 @@ export const FourMostCheered = async () => {
   
 }
 
-export const SearchAreaKeyword = async (tagCode, areaCode) => { 
-  if(tagCode==null){
-    console.log(tagCode)
-    tagCode=undefined;
-    
-  }
-  try{
-    console.log(areaCode)
-    const areaCodeArray = Array.isArray(areaCode) ? areaCode : [areaCode];
+export const SearchAreaKeyword = async (tagCode, areaCode) => {
+  try {
+    const areaCodeArray = Array.isArray(areaCode) ? areaCode.filter(code => code !== null) : [];
+    const tagCodeArray = Array.isArray(tagCode) ? tagCode.filter(code => code !== null) : [];
+
     const areaCodeQuery = areaCodeArray.map(code => `areaCode=${code}`).join('&');
+    const tagCodeQuery = tagCodeArray.map(code => `tagCode=${code}`).join('&');
 
-    const tagCodeArray = Array.isArray(tagCode) ? tagCode : [tagCode];
-    const tagCodeQuery = tagCodeArray.map(code => `tagCodeQuery=${code}`).join('&');
+    console.log(`${baseUrl}search/keyword/?${areaCodeQuery}${tagCodeQuery}`);
 
-
-
-    const response = await axios.get(`${baseUrl}search/keyword/?${areaCodeQuery}?${tagCodeQuery}`);
+    const response = await axios.get(`${baseUrl}search/keyword/?${areaCodeQuery}${tagCodeQuery}`);
     
     return response.data.data;
     
-  }catch(error){
-        console.log(error);
-        return error;
-  }  
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 }
+
 
