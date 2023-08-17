@@ -25,7 +25,7 @@ function NavBar2() {
 
   function handleLogin() {
     const client_id = '594839259275-qangv0n8999qqgo12aofgtdko2socqmv.apps.googleusercontent.com';
-    const redirect_uri = 'http://localhost:3000';
+    const redirect_uri = 'http://localhost:3000/';
     const scope = 'https://www.googleapis.com/auth/userinfo.email';
     const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&response_type=code&redirect_uri=${redirect_uri}&scope=${scope}`;
     

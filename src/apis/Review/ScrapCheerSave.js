@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 
 export const baseUrl = "https://api.dowadream.site/program/";
 
@@ -28,11 +29,11 @@ export const FourMostCheered = async () => {
     }
   
 }
-export const SearchArea = async () => {
+export const SearchArea = async (gugun) => {
 
     try{
       const response = await axios.get(`${baseUrl}search/area`,  {params: {
-        keyword: keyword
+        keyword: `${gugun}`
     }});
     return response.data.data;
     }catch(error){
@@ -40,14 +41,14 @@ export const SearchArea = async () => {
     }
   
 }
-export const SearchAreaKeyword = async () => {
+export const SearchAreaKeyword = async (keyword, actPlace, tagCode, areaCode) => {
     const [info, setInfo] = useState(null);
     try{
       const response = await axios.get(`${baseUrl}search/keyword`,  {params: {
-        keyword: keyword,
-        actPlace: actPlace,
-        tagCode: tagCode,
-        areaCode: areaCode
+        keyword: `${keyword}`,
+        actPlace: `${actPlace}`,
+        tagCode: `${tagCode}`,
+        areaCode: `${areaCode}`
     }});
     const {title, place, recruitInstitue, dday} = response.data;
     setInfo({
@@ -61,11 +62,11 @@ export const SearchAreaKeyword = async () => {
     }
   
 }
-export const SearchId = async () => {
+export const SearchId = async (keyword) => {
     const [info, setInfo] = useState(null);
     try{
       const response = await axios.get(`${baseUrl}search/registno`,  {params: {
-        keyword: keyword,
+        keyword: `${keyword}`,
     }});
     const {title, place, recruitInstitue, dday} = response.data;
     setInfo({

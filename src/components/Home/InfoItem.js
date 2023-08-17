@@ -1,7 +1,11 @@
 import React from 'react'
 import { styled } from 'styled-components'
 
+
+// '구'를 파라미터로 넘겨서 검색
+
 const InfoItem = ({width=25, height=90, onClick=null}) => {
+  
   return (
     <Infodiv width={width} height={height} onClick={onClick}>
                 <InfoImg>
