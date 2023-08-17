@@ -19,6 +19,8 @@ function MyVolunteerMy(){
           console.log(detailVolunteer);
           myVolunteerArr.push(
             <InfoItem
+
+                            
               key={i} style={{ width:'25%'}}
               rid={detailVolunteer.title}
               tag={detailVolunteer.tag}
