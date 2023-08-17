@@ -39,7 +39,6 @@ export default MainInfoVol
 
 const Wrapper = styled.div`
 
-
     display : flex;
     width : 100%;
     align-items : center;
@@ -87,6 +86,7 @@ const Title = styled.span`
     line-height: normal;
 
 `;
+
 const Time = styled.span`
 
     width: 10%;
