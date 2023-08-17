@@ -1,4 +1,5 @@
 import axios from "axios";
+const accessToken = localStorage.getItem("accessToken");
 
 export const baseUrl = "https://api.dowadream.site/review/";
 
@@ -30,7 +31,7 @@ export const getReviewDetail = async (reviewNum) =>{
 //리뷰 작성
 export const writeReview = async (props) =>{
   const [pageNum=3019635,title="1",content="1",is_public=true,images] = props;
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTA0ODk1LCJpYXQiOjE2OTIyNDU2OTUsImp0aSI6IjljYzY1MTE0ZTQwMzQ3NmU5ZjUwZTkzOTc3MjU4NWQ5IiwidXNlcl9pZCI6MTV9.nyAMpdAN_llQZwWuKExZhN3stnXcPR1CE5KA_BHAjUY"
+    const token =accessToken;
     const formData = new FormData();
     formData.append('progrmRegistNo', 3019635);
     formData.append('title', "111");
@@ -70,7 +71,7 @@ export const writeReview = async (props) =>{
 
 //나의 후기
 export const ViewMyReview = async () => {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTA0ODk1LCJpYXQiOjE2OTIyNDU2OTUsImp0aSI6IjljYzY1MTE0ZTQwMzQ3NmU5ZjUwZTkzOTc3MjU4NWQ5IiwidXNlcl9pZCI6MTV9.nyAMpdAN_llQZwWuKExZhN3stnXcPR1CE5KA_BHAjUY"
+  const token =accessToken;
   try {
     const response = await axios.get(`${baseUrl}user/`, {
       headers: {
