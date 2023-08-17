@@ -62,7 +62,7 @@ const MainInfo = () => {
     const onToggle = () => setIsOpen(!isOpen);
 
     const [infoList, setInfoList] = useState([]); // 상태 변수로 InfoList 관리
-    const [divList, setdivList] = useState([]); // 상태 변수로 InfoList 관리
+    const [divList, setdivList] = useState([]); // 상태 변수로 divList 관리
     const [infoCount, setInfoCount] = useState();
 
 

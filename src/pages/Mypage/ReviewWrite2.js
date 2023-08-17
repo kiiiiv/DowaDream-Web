@@ -39,6 +39,7 @@ function ReviewWrite2(){
       const handleImageUpload = (event) => {
         if (event.target.files) {
           const file = event.target.files[0];
+
           const fileURL = URL.createObjectURL(file);
   
           setImageFiles((prevArray) => {
@@ -47,6 +48,7 @@ function ReviewWrite2(){
             newArray[emptyIndex] = fileURL;
             return newArray;
           });
+          console.log(imageFiles);
   
           URL.revokeObjectURL(file);
         }
@@ -62,7 +64,8 @@ function ReviewWrite2(){
 
         if(title!==""){
           if(content!==""){
-            const response = await writeReview(infoId.infoId,title,content);
+            const response = await writeReview("3019635",title,content,"True",imageFiles);
+            console.log(response)
           }
         }
 

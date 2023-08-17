@@ -7,6 +7,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import {GoogleLoginButton} from './Home/GoogleLoginButton';
 import jwtDecode from "jwt-decode";
+import pic from '../assets/로그인버튼2.png';
+import axios from 'axios';
 //버튼을 눌러서 url로 이동하게..!
 // redirect url 을 프론트 url로 ,
 // 그 url에서 code(인가코드)만 파싱해서 빼옴
@@ -17,35 +19,72 @@ function NavBar2() {
 
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(null);
-  const [isLogined, setIsLogined] = useState(false);
-  const [name, setName] = useState('');
+  const [isLogined, setIsLogined] = useState(true);
+  const [userName, setUserName] = useState('');
   const [profile, setProfile] = useState('');
+  const [userEmail, setUserEmail] = useState('');
 
-  // 구글 로그인 성공 시 이벤트 핸들러
-
-  function handleLogin() {
-   
-    const client_id = '594839259275-qangv0n8999qqgo12aofgtdko2socqmv.apps.googleusercontent.com';
-    const redirect_uri = 'http://localhost:3000/';
-    const scope = 'https://www.googleapis.com/auth/userinfo.email';
-    const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&response_type=code&redirect_uri=${redirect_uri}&scope=${scope}`;
-    // URL 주소로 페이지 이동
-    window.location.href = url;
-
-  }
+  
 
   const LoginSuccess = (credentialResponse) => {
     setIsLogined(true);
-    const token = jwtDecode(credentialResponse.credential);
-    setUserInfo(token);
-    setName(token.name);
-    setProfile(token.googleId);
+    console.log(credentialResponse);
+    const token = credentialResponse.credential;
+    const token2 = jwtDecode(credentialResponse.credential);
+
+    console.log(token);
+    setUserInfo(token2);
+    setUserName(token2.name);
+    setProfile(token2.picture);
+    setUserEmail(token2.email);
+    
+    postAccessToken(token);
+    console.log(userEmail);
+
     doSignUp();
+    sendUserData(userName, profile, userEmail);
+    
   };
+  const sendUserData = async (userName, profile, userEmail) =>{
+    const name1 = String(userName);
+    const profile1 = String(profile);
+    const email1 = String(userEmail);
+    const baseUrl = "https://api.dowadream.site/user/";
+    try {    
+        const response = await axios.post(`${baseUrl}get-token`, { // URL 수정
+          "userName": name1,
+          "email":profile1,
+          "profilePhoto":email1
+        });
+    
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+  }
+  const postAccessToken = async (token) => {
+    const url = "https://api.dowadream.site/user/get-token/";
+    
+    const requestBody = {
+      "access_token": token // 액세스 토큰을 사용하여 요청 본문을 만듭니다.
+    };
+    console.log(token);
+
+    try {
+      const response = await axios.post(`${url}`, {
+        "access_token" : token
+      }); // 비동기 POST 요청을 보냅니다.
+      console.log(response.data); // 서버에서 반환한 데이터를 출력합니다.
+    } catch (error) {
+      console.error(error); // 오류가 발생한 경우, 오류 메시지를 출력합니다.
+    }
+  };
+
   const doSignUp = () => {
     window.sessionStorage.setItem('profile', profile);
-    window.sessionStorage.setItem('name', name);
+    window.sessionStorage.setItem('name', userName);
   }
+
   
   const onLogout = () => {
     
@@ -64,7 +103,7 @@ function NavBar2() {
     window.sessionStorage.clear();
     window.localStorage.clear();
   }
-
+/*
   useEffect(() => {
     const name = window.sessionStorage.getItem('name');
     if(name) {
@@ -74,17 +113,7 @@ function NavBar2() {
       onLogout();
     }
   }, []);
-
-  
-    
-  /*
-    useEffect(() => {
-      setIsLogined(!!token);
-      if (token) {
-        setUserInfo(token);
-      }
-    }, []);
-*/
+  */
 
     
     
@@ -93,7 +122,7 @@ function NavBar2() {
     <>
       <Navbar expand="lg" style={{ backgroundColor: "yellow" }} className="bg-ffe34f">
         <Container fluid>
-          <Navbar.Brand onClick={() => { navigate('/') }}>Navbar scroll</Navbar.Brand>
+          <Navbar.Brand style={{backgroundImage: `url('${pic}')`, width: "100px", height: "30px"}} onClick={() => { navigate('/') }}></Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -104,25 +133,23 @@ function NavBar2() {
               <Nav.Link onClick={() => { navigate('/info') }}>봉사정보</Nav.Link>
               <Nav.Link onClick={() => { navigate('/review') }}>봉사후기</Nav.Link>
               <Nav.Link onClick={() => { navigate('/mypage') }}>마이페이지</Nav.Link>
+              <Button onClick={sendUserData}></Button>
             </Nav>
-            <Button variant="info" onClick={handleLogin} >
-                  로그아웃
-              </Button>
-            /*{isLogined ? (
+            
+
+            {isLogined ? (
               <div style={{ display: "flex", alignItems: "center" }}>
                 <div
                   style={{
-                    width: "20px",
-                    height: "20px",
+                    width: "40px",
+                    height: "40px",
                     borderRadius: "50%",
-                    background: `url('${userInfo.picture}')`,
+                    background: `url('${profile}')`,
                     backgroundSize: "cover",
                     marginRight: "8px",
                   }}
+                  onClick={onLogout}
                 ></div>
-                <Button onClick={onLogout}>
-                  로그아웃
-                </Button>
               </div>
             ) : (
               <GoogleLoginButton onSuccess={LoginSuccess} />
@@ -130,18 +157,11 @@ function NavBar2() {
 
 
 
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
             
+          
           </Navbar.Collapse>
         </Container>
+        
       </Navbar>
     </>
   );

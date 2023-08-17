@@ -7,9 +7,12 @@ import styled from 'styled-components';
 import InfoTitle from '../components/Home/InfoTitle';
 import InfoItem from '../components/Home/InfoItem';
 import { Wrapper } from '../styles/Common';
-import { SearchArea } from '../apis/Review/ScrapCheerSave';
+import { SearchArea, SearchAreaKeyword } from '../apis/Review/ScrapCheerSave';
+import { gugunCdMaker } from '../assets/Sidogugun';
+import { TagCodeMaker } from '../assets/TagCode';
 function Main(){
 
+  
   const content1Ref = useRef(null);
   const content2Ref = useRef(null);
   const content3Ref = useRef(null);
@@ -23,10 +26,27 @@ function Main(){
   const onContent3Click = () => {
     content3Ref.current?.scrollIntoView({ behavior: 'smooth' ,block :'center'});
   }
+
+  const callInfo = async() =>{
+    const gugunCd = gugunCdMaker("2","종로구");
+    const TagCd = TagCodeMaker("온라인자원봉사");
+    console.log(TagCd);
+    const arr1 = [];
+    const arr2 = [];
+    arr1.push(gugunCd);
+    arr2.push(TagCd);
+
+    const resopnse = SearchAreaKeyword(arr2,arr1);
+    console.log(resopnse);    
+
+  }
+  
   useEffect(() => {
     // accessToken 가져오기
-    
+    callInfo();  
   }, []);
+
+
 
 
 

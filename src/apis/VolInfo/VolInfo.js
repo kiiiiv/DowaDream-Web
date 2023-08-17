@@ -33,6 +33,8 @@ export const getVolDetail = async (pageNum) =>{
 //봉사 세부사항 내부에 리뷰 받기
 export const getVolReview = async (pageNum) =>{
 
+
+
     try{
         const response = await axios.get(`https://api.dowadream.site/review?progrmRegistNo=12345`);
         return response.data.data;
@@ -41,3 +43,4 @@ export const getVolReview = async (pageNum) =>{
     }
 
 }
+
