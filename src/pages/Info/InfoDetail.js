@@ -44,7 +44,7 @@ function InfoDetail (){
         fetchedInfo.TimeEnd = fetchedInfo.actEnd.slice(11);
         fetchedInfo.actStart = fetchedInfo.actStart.slice(0,10);
         fetchedInfo.actEnd = fetchedInfo.actEnd.slice(0,10);
-
+        console.log(fetchedInfo);
         setInfo(fetchedInfo);
       }
 
@@ -100,7 +100,7 @@ function InfoDetail (){
                 </TableWrapper>
             </InfoBox>
             <LikesScrapContainer>
-                <LikesandScrap></LikesandScrap>
+                <LikesandScrap num_cheer={info.num_cheer} num_clipped={info.num_clipped}></LikesandScrap>
             </LikesScrapContainer>
         <MainTextContainer>
             {info.content}
