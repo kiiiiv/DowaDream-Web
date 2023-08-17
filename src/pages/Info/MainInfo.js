@@ -182,10 +182,11 @@ const MainInfo = () => {
         setdivList(mainInfoVols);
         
     }
-    
+    const accessToken = localStorage.getItem("accessToken");
+    console.log(accessToken);
+
   return (
     <Wrapper>
-        
         <Title>봉사정보</Title>
         
         <InfoSelection>
@@ -242,6 +243,7 @@ const MainInfo = () => {
 }
 
 export default MainInfo
+
 
 const Title = styled.h3`
 

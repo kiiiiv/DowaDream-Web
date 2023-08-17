@@ -39,7 +39,7 @@ export const uploadUserVol = async() => {
         authorization : `Bearer ${token}`
       }
     })
-    console.log(response.data.data);
+    console.log(response);
     return response.data.data;
   }catch(error){
     return error;
