@@ -10,6 +10,7 @@ import { getVolInfo } from '../../apis/VolInfo/VolInfo';
 import { UserLocContext } from '../../contexts/UserInfo';
 import { gugunCdMaker } from '../../assets/Sidogugun';
 import { SearchAreaKeyword } from '../../apis/Review/ScrapCheerSave';
+import { getImageName } from '../../assets/태그사진/tagImage';
 
 const StArray= [
     "신규순",
@@ -59,6 +60,7 @@ const MainInfo = () => {
     const [infoList, setInfoList] = useState([]); // 상태 변수로 InfoList 관리
     const [divList, setdivList] = useState([]); // 상태 변수로 divList 관리
     const [infoCount, setInfoCount] = useState();
+    const [pic, setPic] = useState();
     const onToggle = () => setIsOpen(!isOpen);
 
 
@@ -68,6 +70,9 @@ const MainInfo = () => {
         setdivList([]);
         window.scrollTo(0, 0);
         onTotalInfoClicked(allInfo);
+        const imageName = getImageName("공익.인권");
+        console.log(imageName);
+        setPic(imageName);
     }, []); // 빈 배열을 전달하면 컴포넌트가 마운트될 때 한 번만 실행됨
     
     const onOptionClicked = (value, i) => () => {
@@ -185,11 +190,11 @@ const MainInfo = () => {
     }
     const accessToken = localStorage.getItem("accessToken");
     console.log(accessToken);
-
+    const imagePath = process.env.PUBLIC_URL + '/태그사진/';
     
   return (
     <Wrapper>
-        
+        <div style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/tagImage/${pic})`, backgroundSize: 'cover', backgroundPosition: 'center'}}/>
         <Title>봉사정보</Title>
         
         <InfoSelection>
@@ -246,6 +251,7 @@ const MainInfo = () => {
 }
 
 export default MainInfo
+
 
 const Title = styled.h3`
 
