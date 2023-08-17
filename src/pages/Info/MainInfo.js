@@ -56,12 +56,10 @@ const MainInfo = () => {
     const [allInfo, setAllInfo] = useState(filteredData);
     const [totalNum, setTotalNum] = useState(1);
 
-
-    const onToggle = () => setIsOpen(!isOpen);
-
     const [infoList, setInfoList] = useState([]); // 상태 변수로 InfoList 관리
     const [divList, setdivList] = useState([]); // 상태 변수로 divList 관리
     const [infoCount, setInfoCount] = useState();
+    const onToggle = () => setIsOpen(!isOpen);
 
 
 
@@ -76,7 +74,6 @@ const MainInfo = () => {
       console.log(value);
       if(value==="없음"){
         setName("정렬순");
-        
       }else{
       setName(value);
       }
@@ -119,32 +116,41 @@ const MainInfo = () => {
                 if(nonFalseValues!==[]){
                     for (const item of nonFalseValues) {
                         const num = gugunCdMaker(i,item);
-                        console.log(num);
-                        InfoList.push(num);
+                        InfoList.push(`${num}`);
                     }
                 }
 
             }
         
         }
-        const volInfo = await SearchAreaKeyword(null,InfoList);
+        let result1 = [...new Set(InfoList)];
 
+        const volInfo = await SearchAreaKeyword(null,result1);
         setInfoList(volInfo);
         setInfoCount(volInfo.length);
         setTotalNum(1);
+        const divdiv = generateMainInfoVols(volInfo)
         
-        const mainInfoVols = generateMainInfoVols(volInfo);
-        setdivList(mainInfoVols);
+        if(volInfo!==null){
+            setdivList(divdiv);
+        }
 
     }
 
-    const generateMainInfoVols = (infoList) => {
+    const generateMainInfoVols = (infoList=[]) => {
+
         const mainInfoVols = [];
-        console.log(infoList)
+        console.log(infoList);
+
         if(infoList!==[]){
         for (let i =0;i<20*totalNum;i++) {
+            if(mainInfoVols.length===infoList.length){
+                break;
+              }
             mainInfoVols.push(
+              
               <MainInfoVol
+
                 key={i}
                 ac={infoList[i].place}
                 title={infoList[i].title}
@@ -159,10 +165,9 @@ const MainInfo = () => {
                 actEnd={infoList[i].actEnd.slice(0,10)}
               
               />
+            
             );
-            if(mainInfoVols.length===infoList.length){
-                break;
-              }
+
         }
         return mainInfoVols;
         }

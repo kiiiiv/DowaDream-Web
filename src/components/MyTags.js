@@ -162,7 +162,7 @@ function MyTags(){
         console.log(InfoList);
         console.log(response);
       
-      }
+    }
 
   const toggleTagDetailButtonState = (index) => {
     const updatedStates = [...isTagDetailStates];
