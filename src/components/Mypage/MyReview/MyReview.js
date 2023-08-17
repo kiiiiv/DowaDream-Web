@@ -1,7 +1,9 @@
 import { Wrapper } from "../../../styles/Common";
 import ReviewItem from '../../Review/ReviewItem';
 import { styled } from "styled-components";
+import { ViewMyReview } from "../../../apis/Review/GetReview";
 function MyReview(){
+    const reviews = ViewMyReview();
     return (
       <>
         <ReviewInfoWrapper>
