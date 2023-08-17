@@ -16,6 +16,11 @@ function MyVolunteerScrap(){
           console.log(detailVolunteer);
           myScrapArr.push(
             <InfoItem
+
+            onClick={()=>{
+              window.location.href=`/info/${detailVolunteer.progrmRegistNo}`}} 
+
+
               key={i} style={{ width:'25%'}}
               rid={detailVolunteer.title}
               tag={detailVolunteer.tag}
