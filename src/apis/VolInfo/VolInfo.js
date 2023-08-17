@@ -18,7 +18,7 @@ export const getVolInfo = async (keyword)=>{
 export const getVolDetail = async (pageNum) =>{
 
     try {
-        const response = await axios.get(`${baseUrl}search/registno/?keyword=${pageNum}`);
+        const response = await axios.get(`${baseUrl}program/search/registno/?keyword=${pageNum}`);
         return response.data.data;
     } catch (error) {
         console.log(error);
