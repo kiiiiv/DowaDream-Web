@@ -50,3 +50,19 @@ export const writeReview = async (props) =>{
     return error;
   }
 }
+//나의 후기
+export const ViewMyReview = async () => {
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTA0ODk1LCJpYXQiOjE2OTIyNDU2OTUsImp0aSI6IjljYzY1MTE0ZTQwMzQ3NmU5ZjUwZTkzOTc3MjU4NWQ5IiwidXNlcl9pZCI6MTV9.nyAMpdAN_llQZwWuKExZhN3stnXcPR1CE5KA_BHAjUY"
+  try {
+    const response = await axios.get(`${baseUrl}user/`, {
+      headers: {
+        // 'Authorization' 헤더에 'Bearer' 토큰 포함
+        Authorization: `Bearer ${token}`
+      },
+    });
+    console.log(response.data.data);
+    return response.data.data;
+  } catch (error) {
+    return error;
+  }
+};

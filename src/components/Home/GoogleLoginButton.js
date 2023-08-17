@@ -4,16 +4,23 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 const clientId = '214705602138-tjmdhrgj1oq2ckdjcqo4njph250u5m0c.apps.googleusercontent.com'
 
+/*const onSuccess = (credentialResponse) => {
+  console.log(credentialResponse);
+  const token = jwtDecode(credentialResponse.credential);
+  console.log(1);
 
+  return token;
+}*/
 const token = ""; 
-export function GoogleLoginButton({LoginSuccess}) {
+export function GoogleLoginButton({onSuccess}) {
   return (
     <>
       <GoogleOAuthProvider clientId={clientId}>
         <GoogleLogin
-          onSuccess={LoginSuccess}
+          buttonText="Login"
+          onSuccess={onSuccess}
           onFailure={(err) => {
-            console.log("Login Failed");
+            console.log(err);
           }}
         />
       </GoogleOAuthProvider>
