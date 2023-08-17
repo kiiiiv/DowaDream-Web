@@ -24,13 +24,14 @@ function NavBar2() {
   // 구글 로그인 성공 시 이벤트 핸들러
 
   function handleLogin() {
+   
     const client_id = '594839259275-qangv0n8999qqgo12aofgtdko2socqmv.apps.googleusercontent.com';
     const redirect_uri = 'http://localhost:3000/';
     const scope = 'https://www.googleapis.com/auth/userinfo.email';
     const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&response_type=code&redirect_uri=${redirect_uri}&scope=${scope}`;
-    
     // URL 주소로 페이지 이동
     window.location.href = url;
+
   }
 
   const LoginSuccess = (credentialResponse) => {
@@ -39,7 +40,6 @@ function NavBar2() {
     setUserInfo(token);
     setName(token.name);
     setProfile(token.googleId);
-
     doSignUp();
   };
   const doSignUp = () => {
