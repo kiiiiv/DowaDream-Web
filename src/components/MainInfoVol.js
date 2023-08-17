@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 
-const MainInfoVol = ({ac,title,pagenum,time1,time2}) => {
+const MainInfoVol = ({ac,title,pagenum,recruitStart,recruitEnd, actStart,actEnd}) => {
 
 
     const navigate =useNavigate();
@@ -17,19 +17,19 @@ const MainInfoVol = ({ac,title,pagenum,time1,time2}) => {
         <Ac>{ac}</Ac>
         <Title>{title}</Title>
         <Time>
-            2023.05.06
+            {recruitStart}
             <br />
             -
             <br/>
-            2023.05.06
+            {recruitEnd}
      
         </Time>
         <Time>
-            2023.05.06
+            {actStart}
             <br />
             -
             <br/>
-            2023.05.06
+            {actEnd}
         </Time>
     </Wrapper>
   )

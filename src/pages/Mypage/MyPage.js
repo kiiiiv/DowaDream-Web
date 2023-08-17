@@ -8,6 +8,7 @@ import MyVolunteerNavbar from '../../components/Mypage/MyVolunteerNavbar';
 import MyReview from '../../components/Mypage/MyReview/MyReview';
 import MyTags from '../../components/MyTags';
 import ReviewWriteModal from '../../components/Mypage/ReviewWriteModal';
+import { uploadUserVol } from '../../apis/Program/ProgramInfo';
 
 function MyPage() {
   const { mypageLoc } = useParams();
@@ -58,6 +59,8 @@ function MyPage() {
     setIsEditing(false);
   };
 
+  const a = uploadUserVol();
+  console.log(a);
   return (
     <Wrapper>
       <Profile>

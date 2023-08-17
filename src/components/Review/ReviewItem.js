@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { styled } from 'styled-components'
-import Like from '../../../src/assets/말풍선.svg'
-import TextBol from '../../../src/assets/좋아요.svg'
-import TextBol2 from '../../assets/말풍선색변화.svg'
+import TextBol from '../../../src/assets/말풍선.svg'
+import Like from '../../../src/assets/좋아요.svg'
 import Like2 from '../../assets/좋아요색변화.svg'
 
 
@@ -14,17 +13,12 @@ const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,updated
     const navigate = useNavigate();
 
     const [likeClicked, setLikeClicked] = useState(false); // State to track like button click
-    const [textBolClicked, setTextBolClicked] = useState(false); // State to track like button click
     
 
     const handleLikeClick = () => {
         setLikeClicked(!likeClicked);
     };
 
-    
-    const handleBolClick = () => {
-        setTextBolClicked(!textBolClicked);
-    };
 
     return (
 
@@ -45,7 +39,7 @@ const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,updated
                     <ReviewEmotediv>
                         <ReviewEmoteImg>
                             <img 
-                                src={likeClicked ? TextBol2 : TextBol} // Toggle between Like and TextBol based on likeClicked state
+                                src={likeClicked ? Like2 : Like} // Toggle between Like and TextBol based on likeClicked state
                                 onClick={()=>handleLikeClick()} // Attach click event handler
                                 alt="Text"
                             ></img>
@@ -56,8 +50,7 @@ const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,updated
                     <ReviewEmotediv>
                         <ReviewEmoteImg>
                             <img 
-                                src={textBolClicked ? Like2 : Like} // Toggle between Like and TextBol based on likeClicked state
-                                onClick={()=>handleBolClick()} // Attach click event handler
+                                src={ TextBol} // Toggle between Like and TextBol based on likeClicked state
                                 alt="Like"
                             ></img>
                         </ReviewEmoteImg>                        
