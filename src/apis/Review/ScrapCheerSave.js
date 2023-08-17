@@ -14,11 +14,11 @@ export const FourMostCheered = async () => {
   
 }
 
-export const SearchAreaKeyword = async (keyword, actPlace, tagCode, areaCode) => {
-    try{
-      const response = await axios.get(`${baseUrl}search/keyword`,  {params: {
-        keyword: `${keyword}`,
-        actPlace: `${actPlace}`,
+export const SearchAreaKeyword = async (tagCode, areaCode) => {
+    
+  try{
+      const response = await axios.get(`${baseUrl}search/keyword/`,  {
+        params: {
         tagCode: `${tagCode}`,
         areaCode: `${areaCode}`
     }});

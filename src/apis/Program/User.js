@@ -11,8 +11,6 @@ export const userRegion = async (props) =>{
         }, {
           headers: {
             Authorization : `Bearer ${token}`
-          }, data : {
-            regions : regions
           }
         });
     
@@ -28,14 +26,15 @@ export const userTag = async (props) =>{
   const tags = props;
 
   try{
-    const response = await axios.post(`${baseUrl}tags/`,{
-      headers : {
-        Authorization : `Bearer ${token}`
-      },data: {
+    const response = await axios.post(`${baseUrl}tag/`,{
         "tags" : tags
+    },{ headers : {
+        Authorization : `Bearer ${token}`
       }
-    });
-    } catch (error) {
-      console.log(error);
-    }
+    })
+    console.log(response.data);
+  }catch(error){
+    console.log(error);
+  }
+
 }
