@@ -8,6 +8,7 @@ import InfoSelectionTagList from '../../components/Maininfo/InfoSelectionTagList
 import Search from '../../assets/Search.svg';
 import { getVolInfo } from '../../apis/VolInfo/VolInfo';
 import { UserLocContext } from '../../contexts/UserInfo';
+import { gugunCdMaker } from '../../assets/Sidogugun';
 
 const StArray= [
     "신규순",
@@ -47,6 +48,7 @@ const MainInfo = () => {
     const [isTag, setIsTag] = useState("Loc");
 
     const filteredData = useContext(UserLocContext);
+    console.log(filteredData)
 
     //지역 및 세부 주소
     const [isSelectLoc,setIsSelectLoc] = useState("1");
@@ -68,7 +70,7 @@ const MainInfo = () => {
     useEffect(() => {
         // 컴포넌트가 마운트되면 스크롤을 맨 위로 이동시킴
         window.scrollTo(0, 0);
-        onTotalInfoClicked(filteredData);
+        onTotalInfoClicked(allInfo);
     }, []); // 빈 배열을 전달하면 컴포넌트가 마운트될 때 한 번만 실행됨
     
     const onOptionClicked = (value, i) => () => {
@@ -101,15 +103,23 @@ const MainInfo = () => {
 
 
     const onTotalInfoClicked = async () => {
-
+        let i = 0;
         for (const info of allInfo) {
+            console.log(info);
+            i = i+1;
             if (info[1].length !== 1) {
                 const secondArray = info[1];
+                //index , indexof 함수 사용하기 
                 const nonFalseValues = secondArray.filter(value => value !== false);
-                for (const item of nonFalseValues) {
-                    const volInfo = await getVolInfo(item);
-                    InfoList.push(volInfo);
+                if(nonFalseValues!==[]){
+                    for (const item of nonFalseValues) {
+
+                        const num = gugunCdMaker(i,item);
+                        const volInfo = await getVolInfo(num);
+                        InfoList.push(volInfo);
+                    }
                 }
+
             }
         
         }

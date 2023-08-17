@@ -42,4 +42,3 @@ const Area = [
 
 
 export const UserLocContext = createContext(filteredData);
-

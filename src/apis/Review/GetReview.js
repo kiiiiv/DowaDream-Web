@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const baseUrl = "https://api.dowadream.site/review/";
 
-
+//리뷰 전체 정보 받기
 export const getAllReviewInfo = async () => {
 
   try{
@@ -14,6 +14,8 @@ export const getAllReviewInfo = async () => {
 
 }
 
+
+//리뷰 디테일 가져오기
 export const getReviewDetail = async (reviewNum) =>{
 
   try{
@@ -25,8 +27,10 @@ export const getReviewDetail = async (reviewNum) =>{
 
 }
 
+//리뷰 작성
 export const writeReview = async (props) =>{
   const [pageNum,title,content,is_public=true,tag="1",region="종로구"] = props;
+  
   try{
     const response = await axios.post(`${baseUrl}`,
     {
@@ -45,11 +49,4 @@ export const writeReview = async (props) =>{
     console.log(error);
     return error;
   }
-}
-
-export const upDateVolInfo = async(props) => {
-
-  const [progrmRegistNo,cheered=false,participated=false,clipped=false] = props;
-
-
 }

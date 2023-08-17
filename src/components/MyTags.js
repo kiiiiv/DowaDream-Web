@@ -48,8 +48,6 @@ function MyTags(){
 
 
 
-
-
   useEffect(() => {
     const [index,result] = findChangedData(siInfo);
     generateDeleteDiv(index, result);
@@ -64,7 +62,7 @@ function MyTags(){
   const onDeleteDivClicked = (loc,index)=>{
     let updatedAllInfo = [...allInfo];
     updatedAllInfo[loc][1][index] = false;
-    // setAllInfo(updatedAllInfo);
+    setAllInfo(updatedAllInfo);
 
   }
 
@@ -131,8 +129,7 @@ function MyTags(){
         const firstElement = info[0];
         if(info[1].length!==1){
           const secondArray = info[1];
-
-          const nonFalseValues = secondArray.filter(value => value !== false);
+          const nonFalseValues = secondArray.filter(value => value !== false);  
 
           console.log(`First Element: ${firstElement}`);
           console.log(`Non-False Values: ${nonFalseValues}`);

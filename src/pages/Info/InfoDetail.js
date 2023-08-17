@@ -9,12 +9,14 @@ import ReviewItem from '../../components/Review/ReviewItem';
 import InfoItem2 from '../../components/Maininfo/InfoItem2';
 
 import LikesandScrap from '../../components/Maininfo/LikesandScrap'
-import { getVolDetail } from '../../apis/VolInfo/VolInfo';
+import { getVolDetail, getVolReview } from '../../apis/VolInfo/VolInfo';
 
 function InfoDetail (){
 
     const array = ["태그","모집기관","장소","모집기간", "봉사기간","봉사시간","등록기관","성인 신청가능여부","청소년 신청가능여부",""];
     const infoId = useParams();
+
+    
 
     const [info, setInfo] = useState({
         title: "",
@@ -27,13 +29,23 @@ function InfoDetail (){
         recruitInstitute: "",
       });
 
+      const [reviewList, setReviewList] = useState([
+        
+      ]);
+
+      const fetchReview = async () => {
+          const fetchedReview = await getVolReview(infoId.infoId);
+          console.log(fetchedReview);
+      }
+      async function fetchInfo() {
+        const fetchedInfo = await getVolDetail(infoId.infoId);
+        setInfo(fetchedInfo);
+      }
+
 
       useEffect(() => {
-        async function fetchInfo() {
-          const fetchedInfo = await getVolDetail(infoId.infoId);
-          setInfo(fetchedInfo);
-        }
         fetchInfo();
+        fetchReview();
       }, [infoId]);
 
       const onClicked1365 = () =>{

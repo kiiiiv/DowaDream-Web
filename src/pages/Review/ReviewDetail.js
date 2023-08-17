@@ -9,10 +9,11 @@ import { Link, useParams } from "react-router-dom";
 import { Wrapper } from '../../styles/Common';
 import { getReviewDetail } from '../../apis/Review/GetReview';
 
+  
+
 function MyPageDetail(){
 
   const reviewId = useParams();
-
   
   const [numLikes, setNumLikes] = useState(0);
   const [numComments, setNumComments] = useState(0);
@@ -24,6 +25,7 @@ function MyPageDetail(){
     progrmRegistNo: "",
     title: "",
     content: "",
+    tag : "",
     is_public: "",
     writer: "",
     images:"",
@@ -61,8 +63,8 @@ function MyPageDetail(){
       <Wrapper>
         
           <Container1>
-            <HashTag text={'#해시태그'}></HashTag>
-            <Link to="/info">
+            <HashTag text={`${review.tag}`}></HashTag>
+            <Link to={`info/${review.progrmRegistNo}`}>
               <ViewInfoButton>봉사 정보 보러가기</ViewInfoButton>
             </Link>
           </Container1>

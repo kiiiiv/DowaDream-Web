@@ -1403,3 +1403,20 @@ export const SidoGugun = [
     ]
   ];
 
+    const newArray = [SidoGugun[0],SidoGugun[8],SidoGugun[3],SidoGugun[1],SidoGugun[2],SidoGugun[4],SidoGugun[5],SidoGugun[6],
+    SidoGugun[7],SidoGugun[9],SidoGugun[15],SidoGugun[14],SidoGugun[13],SidoGugun[12],SidoGugun[11],SidoGugun[10]];
+
+
+export const gugunCdMaker = (loc,detail) => {
+
+  const targetArray = newArray[loc - 2]; // 해당 loc 값에 해당하는 배열을 가져옴
+
+
+  for(let i = 0; i<targetArray.length; i++){
+    if(detail===targetArray[i].gugunName){
+      console.log(targetArray[i].gugunCd);
+      return targetArray[i].gugunCd;
+    }
+  }
+
+}

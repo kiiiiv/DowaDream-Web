@@ -27,9 +27,7 @@ function Main(){
     // accessToken 가져오기
     
   }, []);
-  SearchArea(3120000)
-  .then(result => console.log(result))
-  .catch(error => console.error(error));
+
 
 
     return(
