@@ -5,18 +5,18 @@ import { styled } from 'styled-components'
 // '구'를 파라미터로 넘겨서 검색
 
 const InfoItem = (props) => {
-  const {width=25, height=90, onClick=null,rid,tag,updated_at,progrmRegistNo,title,is_public,is_customized,writer,images,writer_profile_img,writer_username} = props;
+  const {width=25, height=90, onClick=null,tag,institute,place,actStart,progrmRegistNo,title,actEnd,recruitStart,recruitEnd,dday,writer,writer_profile_img,writer_username} = props;
   return (
     <Infodiv width={width} height={height} onClick={onClick}>
                 <InfoImg>
-                    <Ddaydiv><div>D-7</div></Ddaydiv>
+                    <Ddaydiv><div>D-{dday}</div></Ddaydiv>
                 </InfoImg>
                 <InfoTextDiv>
                   <InfoTextTag>{tag}</InfoTextTag>
                   <InfoTextTitle>{title}</InfoTextTitle>
-                  <InfoTextDetail>등록기관: 경상남도 창녕군</InfoTextDetail>
-                  <InfoTextDetail>모집기간: 10시 0분 ~ 16시 0분</InfoTextDetail>
-                  <InfoTextDetail>봉사기간 : 2023.05.02 ~ 2023.08.02</InfoTextDetail>
+                  <InfoTextDetail>등록기관: {institute}</InfoTextDetail>
+                  <InfoTextDetail>모집기간: {actStart}-{actEnd}</InfoTextDetail>
+                  <InfoTextDetail>봉사기간 : {actStart}-{actEnd}</InfoTextDetail>
                 </InfoTextDiv>
 
     </Infodiv>
@@ -43,7 +43,7 @@ const Ddaydiv = styled.div`
 
     opacity: 0.7;
     
-    width: 4.4em;
+    width: 5em;
     height: 3.7em;
 
     display: flex;
@@ -72,7 +72,7 @@ const InfoTextDiv = styled.div`
 
   background: var(--secondary-yellow-color, #FFFAC9);
   box-sizing: border-box;
-  padding: 0.8em 1.2em;
+  padding: 0 1.2em;
 
   display: flex;
   flex-direction: column;
@@ -90,6 +90,7 @@ const InfoTextDiv = styled.div`
 const InfoTextTag = styled.span`
 
   height : 17%;
+  
 
   color: var(--dark-color, #024959);
   font-size: 1.8em;
@@ -108,7 +109,7 @@ const InfoTextTitle = styled.span`
   color: #000;
   text-overflow: ellipsis;
   whitespace: nowrap;
-  font-size: 2em;
+  font-size: 1.8em;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
