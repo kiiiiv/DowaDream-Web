@@ -1,4 +1,4 @@
-import React,{ useRef } from 'react';
+import React,{ useRef, useEffect } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ControlledCarousel from '../components/Home/Carousel';
@@ -22,6 +22,10 @@ function Main(){
   const onContent3Click = () => {
     content3Ref.current?.scrollIntoView({ behavior: 'smooth' ,block :'center'});
   }
+  useEffect(() => {
+    // accessToken 가져오기
+    
+  }, []);
 
 
     return(

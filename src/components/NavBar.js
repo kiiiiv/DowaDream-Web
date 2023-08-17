@@ -5,9 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
-import LoginButtonPic from '../assets/로그인버튼2.png';
-import { Profile } from './Home/Profile';
-import GoogleLoginButton from './Home/GoogleLoginButton';
+import getAccessToken from '../apis/Login/login';
 
 
 function NavBar() {
@@ -68,7 +66,7 @@ function NavBar() {
               <Nav.Link onClick={() => { navigate('/mypage') }}>마이페이지</Nav.Link>
             </Nav>
              {/* onSuccess 핸들러를 props로 전달 */}
-            <GoogleLoginButton></GoogleLoginButton>
+            <Button onClick={getAccessToken}></Button>
 
 
             <Form className="d-flex">
