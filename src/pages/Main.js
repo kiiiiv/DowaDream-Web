@@ -1,4 +1,4 @@
-import React,{ useRef } from 'react';
+import React,{ useRef, useEffect } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ControlledCarousel from '../components/Home/Carousel';
@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import InfoTitle from '../components/Home/InfoTitle';
 import InfoItem from '../components/Home/InfoItem';
 import { Wrapper } from '../styles/Common';
+import { SearchArea } from '../apis/Review/ScrapCheerSave';
 function Main(){
 
   const content1Ref = useRef(null);
@@ -22,6 +23,13 @@ function Main(){
   const onContent3Click = () => {
     content3Ref.current?.scrollIntoView({ behavior: 'smooth' ,block :'center'});
   }
+  useEffect(() => {
+    // accessToken 가져오기
+    
+  }, []);
+  SearchArea(3120000)
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
 
 
     return(
