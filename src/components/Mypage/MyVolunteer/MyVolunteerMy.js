@@ -12,6 +12,7 @@ function MyVolunteerMy(){
     async function fetchData() {
       try {
         const abc = await uploadUserVol();
+        console.log(abc)
         const myVolunteerArr = [];
         for (let i = 0; i < abc.length; i++) {
           const detailVolunteer = await getVolDetail(abc[i]);
@@ -42,6 +43,7 @@ function MyVolunteerMy(){
         console.error(error);
       }
     }
+    console.log(1)
     fetchData();
   }, []);
     return (

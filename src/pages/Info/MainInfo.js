@@ -175,6 +175,9 @@ const MainInfo = () => {
         setdivList(mainInfoVols);
         
     }
+    const accessToken = localStorage.getItem("accessToken");
+    console.log(accessToken);
+
     
   return (
     <Wrapper>
