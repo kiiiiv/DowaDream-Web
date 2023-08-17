@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import loginButton from '../../assets/로그인후버튼.png';
-import Illust from '../../assets/일러스트.jpg';
+import logo from '../../assets/로고/도와드림로고.png';
 import { Wrapper } from '../../styles/Common';
 import {GoogleLoginButton} from '../../components/Home/GoogleLoginButton';
 function LoginPage(){
@@ -47,15 +47,12 @@ box-sizing: border-box;
 display: flex;
 flex-direction: row;
 align-items: center;
-padding: 10px;
 gap: 10px;
-
-width: 240px;
-height: 174px;
-background: url(${Illust});
+width: 280px;
+height: 204px;
+background: url(${logo});
 background-size: cover;
 background-position: center;
-border: 1px solid #000000;
 `;
 const Greetings = styled.div`
 display: flex;
