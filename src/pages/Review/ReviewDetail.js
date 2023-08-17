@@ -153,7 +153,6 @@ let ViewInfoButton = styled.button`
   font-size: 19px;
   line-height: 29px;
 `;
-
 let Container2 = styled.div`
   box-sizing: border-box;
   display: flex;
@@ -376,9 +375,11 @@ background-color: white;
 `;
 let Container8 = styled.div`
 display: flex;
+width: 100%;
 flex-direction: column;
 align-items: flex-start;
 padding: 0px 0px 16px;
+justify-
 `;
 /*padding-top, padding-right, padding-bottom, padding-left*/ 
 let Container9 = styled.button`
@@ -387,4 +388,6 @@ flex-direction: column;
 align-items: flex-start;
 padding: 30px 0px 100px 0px;
 background-color: transparent;
+margin-bottom: 50px;
+border-radius: 10px;
 `;
