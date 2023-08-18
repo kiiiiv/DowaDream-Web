@@ -5,6 +5,7 @@ import { styled } from 'styled-components'
 import TextBol from '../../../src/assets/말풍선.svg'
 import Like from '../../../src/assets/좋아요.svg'
 import Like2 from '../../assets/좋아요색변화.svg'
+import { TagNameMaker } from '../../assets/TagCode'
 
 
 
@@ -13,7 +14,7 @@ const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,num_che
     const navigate = useNavigate();
 
     const [likeClicked, setLikeClicked] = useState(false); // State to track like button click
-    
+    const tagTitle = TagNameMaker(tag);
 
     const handleLikeClick = () => {
         setLikeClicked(!likeClicked);
@@ -62,7 +63,7 @@ const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,num_che
             </ReviewNameWrapper>
             <ReviewTextdiv>
                     <ReviewTextTitle>{title}</ReviewTextTitle>
-                    <ReviewTextTag>{tag}</ReviewTextTag>
+                    <ReviewTextTag>{tagTitle}</ReviewTextTag>
             </ReviewTextdiv>
             <ReviewDetaildiv>
                 <ReviewDetailText>{content}</ReviewDetailText>

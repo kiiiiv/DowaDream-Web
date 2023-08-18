@@ -22,7 +22,7 @@ export const SearchAreaKeyword = async (tagCode, areaCode) => {
     const areaCodeQuery = areaCodeArray.map(code => `areaCode=${code}`).join('&');
     const tagCodeQuery = tagCodeArray.map(code => `tagCode=${code}`).join('&');
 
-    console.log(`${baseUrl}search/keyword/?${areaCodeQuery}&${tagCodeQuery}`);
+    console.log(`${baseUrl}search/keyword/?${areaCodeQuery}${tagCodeQuery}`);
 
     const response = await axios.get(`${baseUrl}search/keyword/?${areaCodeQuery}${tagCodeQuery}`);
     console.log(response.data.data);

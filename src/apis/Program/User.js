@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getUserInfo } from "../Login/UserInfo";
 const accessToken = localStorage.getItem("accessToken");
 export const baseUrl = "https://api.dowadream.site/user/";
 
@@ -16,6 +17,7 @@ export const userRegion = async (props) =>{
         });
     
         console.log(response.data);
+        await getUserInfo();
       } catch (error) {
         console.log(error);
       }
