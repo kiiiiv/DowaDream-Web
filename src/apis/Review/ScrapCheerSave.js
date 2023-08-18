@@ -25,7 +25,7 @@ export const SearchAreaKeyword = async (tagCode, areaCode) => {
     console.log(`${baseUrl}search/keyword/?${areaCodeQuery}&${tagCodeQuery}`);
 
     const response = await axios.get(`${baseUrl}search/keyword/?${areaCodeQuery}${tagCodeQuery}`);
-    
+    console.log(response.data.data);
     return response.data.data;
     
   } catch (error) {

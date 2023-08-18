@@ -12,6 +12,8 @@ import LikesandScrap from '../../components/Maininfo/LikesandScrap'
 import { getVolDetail, getVolReview } from '../../apis/VolInfo/VolInfo';
 import { TagNameMaker } from '../../assets/TagCode';
 import { getImageName } from '../../assets/태그사진/tagImage';
+import { SearchAreaKeyword } from '../../apis/Review/ScrapCheerSave';
+import InfoItem from '../../components/Home/InfoItem';
 
 function InfoDetail (){
 
@@ -31,9 +33,8 @@ function InfoDetail (){
         recruitInstitute: "",
       });
 
-      const [reviewList, setReviewList] = useState([
-        
-      ]);
+      const [reviewList, setReviewList] = useState([]);
+      const [volList,setVoList] = useState();
 
       const fetchReview = async () => {
           console.log(infoId.infoId)
@@ -42,13 +43,21 @@ function InfoDetail (){
       }
       async function fetchInfo() {
         var fetchedInfo = await getVolDetail(infoId.infoId);
+        const tagcd = [fetchedInfo.tagCode];
         fetchedInfo.tagCode = await TagNameMaker(fetchedInfo.tagCode);
         fetchedInfo.TimeStart = fetchedInfo.actStart.slice(11);
         fetchedInfo.TimeEnd = fetchedInfo.actEnd.slice(11);
         fetchedInfo.actStart = fetchedInfo.actStart.slice(0,10);
         fetchedInfo.actEnd = fetchedInfo.actEnd.slice(0,10);
         fetchedInfo.url = getImageName(fetchedInfo.tagCode);
-        console.log(fetchedInfo);
+        console.log(tagcd);
+        
+        let fetchVol = await SearchAreaKeyword(tagcd,null);
+        fetchVol = fetchVol.slice(0,4);
+        console.log(fetchVol);
+        setVoList(fetchVol);
+
+
         setInfo(fetchedInfo);
       }
 
@@ -128,10 +137,36 @@ function InfoDetail (){
             <ReviewTitle>현재 보고 있는 봉사와 유사해요!</ReviewTitle>
             <Infoitem>
                 <Iteminfo>
-                    <InfoItem2></InfoItem2>
-                    <InfoItem2></InfoItem2>
-                    <InfoItem2></InfoItem2>
-                    <InfoItem2></InfoItem2>
+                {
+                  volList && volList.map((item,index)=>{
+                    return(
+                      <InfoItem
+                        onClick={()=>{
+                          window.location.href=`/info/${item.progrmRegistNo}`}} 
+                          key={index} 
+                          style={{ width:'25%'}}
+                          // rid={item.title}
+                          tag={item.tagCode}
+                          progrmRegistNo={item.progrmRegistNo}
+                          title={item.title}
+                          institute={item.recruitInstitute}
+                          recruitStart={item.recruitStart}
+                          recruitEnd={item.recruitEnd}
+                          actStart={item.actStart}
+                          actEnd={item.actSEnd}
+                          dday ={item.dday}
+                          place={item.place}
+                          // num_cheer={item.num_cheer}
+                          // num_comment={item.num_comment}
+                          // writer={item.writer}
+                          // writer_profile_img={item.writer_profile_img}
+                          // writer_username={item.writer_username}
+                        >
+
+                      </InfoItem>
+                    )
+                  })
+                }
                 </Iteminfo>
             </Infoitem>
           

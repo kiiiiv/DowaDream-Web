@@ -1,13 +1,15 @@
 import React from 'react'
 import { styled } from 'styled-components'
 import { getImageName } from '../../assets/태그사진/tagImage';
+import { TagNameMaker } from '../../assets/TagCode';
 
 
 // '구'를 파라미터로 넘겨서 검색
 
 const InfoItem = (props) => {
   const {width=25, height=90, onClick=null,tag,institute,place,actStart,progrmRegistNo,title,actEnd,recruitStart,recruitEnd,dday,writer,writer_profile_img,writer_username} = props;
-  const url = getImageName(tag);
+  const num = TagNameMaker(tag)
+  const url = getImageName(num);
 
   return (
     <Infodiv width={width} height={height} onClick={onClick}>
@@ -16,7 +18,7 @@ const InfoItem = (props) => {
                     <Ddaydiv><div>D-{dday}</div></Ddaydiv>
                 </InfoImg>
                 <InfoTextDiv>
-                  <InfoTextTag>{tag}</InfoTextTag>
+                  <InfoTextTag>{num}</InfoTextTag>
                   <InfoTextTitle>{title}</InfoTextTitle>
                   <InfoTextDetail>등록기관: {institute}</InfoTextDetail>
                   <InfoTextDetail>모집기간: {actStart}-{actEnd}</InfoTextDetail>
