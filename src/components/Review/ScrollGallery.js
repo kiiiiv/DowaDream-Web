@@ -35,11 +35,13 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
-const images = [image1, image2, image3, image4, image5];
+const defaultImages = [image1, image2, image3, image4, image5];
 
-function ScrollGallery() {
+function ScrollGallery({ images }) {
+  // images의 길이가 0이면 기본 이미지를 사용합니다.
+  const displayImages = !images || images.length === 0 ? defaultImages : images;
+
   const galleryRef = useRef(null);
-
   useEffect(() => {
     function handleScroll() {
       if (galleryRef.current) {
@@ -62,7 +64,7 @@ function ScrollGallery() {
 
   return (
     <Gallery ref={galleryRef}>
-      {images.map((image, index) => (
+      {displayImages.map((image, index) => (
         <Image key={index} src={image} alt={`Image ${index}`} />
       ))}
     </Gallery>
