@@ -1,6 +1,5 @@
 import axios from "axios";
 const accessToken = localStorage.getItem("accessToken");
-
 export const baseUrl = "https://api.dowadream.site/review/";
 
 //리뷰 전체 정보 받기
@@ -86,32 +85,37 @@ export const ViewMyReview = async () => {
     return error;
   }
 };
-
-async function cheerClick(rid) {
-  const token =accessToken;
-  const url = `${baseUrl}/user/cheer/${rid}`;
-  const headers = {
-    Authorization: `Bearer ${token}`
-  };
+//응원하기 설정, 취소
+export const cheerClick = async (rid) => {
+  const token = accessToken;
+  const url = `${baseUrl}user/cheer/${rid}/`;
+  console.log(url);
+  const headers = { Authorization: `Bearer ${token}` };
   
   try {
-    const response = await axios.post(url, { headers });
+    const response = await axios.post(url, '', { headers });
     console.log(response.data); // POST 요청 결과 출력
   } catch (error) {
-    console.error(error); // 오류 처리
+    console.log(error); // 오류 처리
   }
-}
-async function cheerCancel(rid) {
-  const token =accessToken;
-  const url = `${baseUrl}/user/cheer/${rid}`;
-  const headers = {
-    Authorization: `Bearer ${token}`
-  };
+};
+export const cheerCancel = async (rid) => {
+  const token = accessToken;
+  const url = `${baseUrl}user/cheer/${rid}/`;
+  console.log(url);
+  const headers = { Authorization: `Bearer ${token}`};
   try {
     const response = await axios.delete(url, { headers });
-    console.log(response.data); // DELETE 요청 결과 출력
+    return response; // DELETE 요청 결과 출력
   } catch (error) {
-    console.error(error); // 오류 처리
+    const errorCode = error.response.status;
+    console.log(errorCode);
+    if (errorCode === "400") {
+      return errorCode;
+    } else {
+      console.error(error);
+    }
   }
-}
+};
+
 

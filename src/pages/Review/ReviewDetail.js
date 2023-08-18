@@ -17,7 +17,7 @@ function MyPageDetail(){
   
   const [numLikes, setNumLikes] = useState(0);
   const [numComments, setNumComments] = useState(0);
-
+//url로 옴
   const [review, setReview] = useState({
     rid: "",
     created_at: "",
@@ -28,7 +28,7 @@ function MyPageDetail(){
     tag : "",
     is_public: "",
     writer: "",
-    images:"",
+    images:"", 
     updated_at:"",
 
   });
@@ -102,7 +102,7 @@ function MyPageDetail(){
             </CommentsLikes>
           </Container4>
           <Container5>
-            <ScrollGallery></ScrollGallery>
+            <ScrollGallery  images={review.images}></ScrollGallery>
           </Container5>
           <Container6>{review.content}</Container6> 
           <Container7>
