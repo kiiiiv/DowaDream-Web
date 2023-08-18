@@ -6,58 +6,56 @@ import Scrap from '../../assets/스크랩.svg'
 import Scrap2 from '../../assets/스크랩색변화.svg'
 import { upDateScrapInfo } from '../../apis/Program/ProgramInfo'
 
-const LikesandScrap = ({num_cheer=0,num_clipped=0}) => {
+const LikesandScrap = ({num_cheer=0, num_clipped=0}) => {
     const [likeClicked, setLikeClicked] = useState(false); // State to track like button click
-    const [scrapClicked, setScrapClicked] = useState(false); // State to track like button click
-    async function updateScrap() {
-        try {
-          const response = await upDateScrapInfo("123445");
-          console.log(response.data);
-        } catch (error) {
-          console.log(error);
-        }
-      }
+    const [scrapClicked, setScrapClicked] = useState(false); // State to track scrap button click
+    const [numCheer, setNumCheer] = useState(num_cheer);
+    const [numClipped, setNumClipped] = useState(num_clipped);
+
+
     const handleLikeClick = () => {
         setLikeClicked(!likeClicked);
+        if (!likeClicked) setNumCheer(numCheer + 1);
+        else setNumCheer(numCheer - 1);
     };
+
     const handleScrapClick = () => {
         setScrapClicked(!scrapClicked);
+        if (!scrapClicked) setNumClipped(numClipped + 1);
+        else setNumClipped(numClipped - 1);
     };
-  return (
-    <>
-        <LikesScrapContainer2>
+
+    return (
+        <>
+            <LikesScrapContainer2>
                 <LikesContainer>
                     <img 
                         src={likeClicked ? Like2 : Like} // Toggle between Like and TextBol based on likeClicked state
-                        onClick={()=>handleLikeClick()} // Attach click event handler
+                        onClick={handleLikeClick} // Attach click event handler
                         alt="Like"
-                    ></img>
+                    />
                     응원하기
                 </LikesContainer>
-                <button onClick={updateScrap}></button>
-    
                 <LikesContainer>
                     <img 
-                        src={scrapClicked ? Scrap2 : Scrap} // Toggle between Like and TextBol based on likeClicked state
-                        onClick={()=>handleScrapClick()} // Attach click event handler
+                        src={scrapClicked ? Scrap2 : Scrap} // Toggle between Scrap and TextBol based on scrapClicked state
+                        onClick={handleScrapClick} // Attach click event handler
                         alt="Scrap"
-                    ></img>
+                    />
                     스크랩
                 </LikesContainer>
-        </LikesScrapContainer2>
-                <LikesScrapText>
-                    <TextContainer>
-                        응원수 <span style={{color: "#F74E43"}}>{num_cheer}</span>회
-                    </TextContainer>
-                    <TextContainer>
-                        스크랩 <span style={{color: "#F74E43"}}>{num_clipped}</span>개
-                    </TextContainer>
-                </LikesScrapText>
-                </>
-
-            
-  )
-}
+            </LikesScrapContainer2>
+            <LikesScrapText>
+                <TextContainer>
+                    응원수 <span style={{color: "#F74E43"}}>{numCheer}</span>회
+                </TextContainer>
+                <TextContainer>
+                    스크랩 <span style={{color: "#F74E43"}}>{numClipped}</span>개
+                </TextContainer>
+            </LikesScrapText>
+        </>
+    );
+};
 
 export default LikesandScrap;
 const LikesScrapContainer2 = styled.div`
