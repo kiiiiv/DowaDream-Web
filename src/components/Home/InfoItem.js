@@ -8,7 +8,7 @@ import { TagNameMaker } from '../../assets/TagCode';
 
 const InfoItem = (props) => {
   const {width=25, height=90, onClick=null,tag,institute,place,actStart,progrmRegistNo,title,actEnd,recruitStart,recruitEnd,dday,writer,writer_profile_img,writer_username} = props;
-  const num = TagNameMaker(tag)
+  const num = TagNameMaker(tag);
   const url = getImageName(num);
 
   return (

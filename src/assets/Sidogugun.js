@@ -1420,3 +1420,13 @@ export const gugunCdMaker = (loc,detail) => {
   }
 
 }
+
+export const gugunNameMaker = (cd) =>{
+  for(let i = 0; i<SidoGugun.length; i++){
+    const local = SidoGugun[i].find(local=>local.gugunCd ===cd)
+    if(local!==undefined){
+      return [local.sidoName, local.gugunName];
+    }
+  }
+  return undefined;
+}

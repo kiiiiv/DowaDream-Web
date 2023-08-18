@@ -124,6 +124,8 @@ const MainInfo = () => {
         }
         
         let result1 = [...new Set(InfoList)];
+        console.log(result1)
+
         const volInfo = await SearchAreaKeyword(null,result1);
 
         setInfoList(volInfo);
