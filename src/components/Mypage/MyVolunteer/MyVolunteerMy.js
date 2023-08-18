@@ -20,12 +20,12 @@ function MyVolunteerMy(){
           myVolunteerArr.push(
             <InfoItem
 
-            onClick={() => {
-              // progrmRegistNo 값이 없다면 '/info/default'로, 값이 있다면 `/info/${detailVolunteer.progrmRegistNo}`로 이동
-              const targetPath = detailVolunteer.progrmRegistNo
-                ? `/info/${detailVolunteer.progrmRegistNo}`
-                : '/info/default';
-            window.location.href = targetPath;
+              onClick={() => {
+                // progrmRegistNo 값이 없다면 '/info/default'로, 값이 있다면 `/info/${detailVolunteer.progrmRegistNo}`로 이동
+                const targetPath = detailVolunteer.progrmRegistNo
+                  ? `/info/${detailVolunteer.progrmRegistNo}`
+                  : '/info/default';
+              window.location.href = targetPath;
             }}
 
               key={i} style={{ width:'25%'}}

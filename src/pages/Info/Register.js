@@ -4,9 +4,13 @@ import { upDateVolInfo } from '../../apis/Program/ProgramInfo';
 function Register(){
     const infoId = useParams();
 
-    const onClicked = async()=>{
-        const response = await upDateVolInfo(infoId.infoId);
+
+    
+    const onSaveInfo = async ()=>{  
+
+        const response = await upDateVolInfo([infoId.infoId,"True"]);
         console.log(response);
+    
     }
     
     return (
@@ -15,7 +19,7 @@ function Register(){
                 <TextContainer>지금 본 봉사를 ‘내가 한 봉사'로 추가하시겠습니까?</TextContainer>
                 <YesNo>
                 <StyledLink to="/mypage">
-                    <FirstButton onClick={onClicked}>네! (마이페이지에서 확인가능해요)</FirstButton>
+                    <FirstButton onClick={onSaveInfo}>네! (마이페이지에서 확인가능해요)</FirstButton>
                 </StyledLink>
                 <StyledLink to="/mypage">
                     <SecondButton>아니요! 다른 봉사 더 볼래요</SecondButton>
