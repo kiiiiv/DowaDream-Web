@@ -29,6 +29,32 @@ export const upDateVolInfo = async(props) => {
   
   
   }
+  //스크랩한 봉사정보
+  export const upDateScrapInfo = async(props) => {
+
+    const [progrmRegistNo,cheered=false,clipped=false] = props;
+    const token = accessToken;
+    try{
+
+      const response = await axios.put(baseUrl,
+        {
+          "progrmRegistNo" : `${progrmRegistNo}`,
+          "cheered" : `False`,
+          "participated" : `True`,
+          "clipped" : `False`,
+        },
+        {
+        headers: {
+            Authorization: `Bearer ${token}` 
+         }
+      })
+      return response;
+    }catch(error){
+        return error;
+    }
+  
+  
+  }
 //마이페이지 내가 한 봉사
 export const uploadUserVol = async() => {
 
