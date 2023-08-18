@@ -1,14 +1,18 @@
 import React from 'react'
 import { styled } from 'styled-components'
+import { getImageName } from '../../assets/태그사진/tagImage';
 
 
 // '구'를 파라미터로 넘겨서 검색
 
 const InfoItem = (props) => {
   const {width=25, height=90, onClick=null,tag,institute,place,actStart,progrmRegistNo,title,actEnd,recruitStart,recruitEnd,dday,writer,writer_profile_img,writer_username} = props;
+  const url = getImageName(tag);
+
   return (
     <Infodiv width={width} height={height} onClick={onClick}>
-                <InfoImg>
+                <InfoImg style={                
+{                  backgroundImage: `url(${process.env.PUBLIC_URL}/tagImage/${url})`}                  }>
                     <Ddaydiv><div>D-{dday}</div></Ddaydiv>
                 </InfoImg>
                 <InfoTextDiv>
@@ -57,10 +61,13 @@ const Ddaydiv = styled.div`
 
 const InfoImg = styled.div`
 
-  background-color : purple;
+
   width : 100%;
   height : 55%;
   border-radius: 2em 2em 0 0;
+  
+  background-size: cover; /* 이미지를 컨테이너에 맞게 늘립니다 */
+  background-position: center; /* 이미지를 중앙으로 정렬합니다 */ 
 
 `
 

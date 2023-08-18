@@ -480,3 +480,10 @@ const Tags = [
     const tag = Tags.find(tag => tag.hignClsNm === name);
     return tag ? tag.highClsCd : null;
 }
+
+
+export const TagNameMaker = (cd) => {
+
+  const tag = Tags.find(tag => tag.highClsCd === cd);
+  return tag ? tag.hignClsNm : null;
+}

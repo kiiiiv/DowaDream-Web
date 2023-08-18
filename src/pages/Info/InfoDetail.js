@@ -10,6 +10,8 @@ import InfoItem2 from '../../components/Maininfo/InfoItem2';
 
 import LikesandScrap from '../../components/Maininfo/LikesandScrap'
 import { getVolDetail, getVolReview } from '../../apis/VolInfo/VolInfo';
+import { TagNameMaker } from '../../assets/TagCode';
+import { getImageName } from '../../assets/태그사진/tagImage';
 
 function InfoDetail (){
 
@@ -40,10 +42,12 @@ function InfoDetail (){
       }
       async function fetchInfo() {
         var fetchedInfo = await getVolDetail(infoId.infoId);
+        fetchedInfo.tagCode = await TagNameMaker(fetchedInfo.tagCode);
         fetchedInfo.TimeStart = fetchedInfo.actStart.slice(11);
         fetchedInfo.TimeEnd = fetchedInfo.actEnd.slice(11);
         fetchedInfo.actStart = fetchedInfo.actStart.slice(0,10);
         fetchedInfo.actEnd = fetchedInfo.actEnd.slice(0,10);
+        fetchedInfo.url = getImageName(fetchedInfo.tagCode);
         console.log(fetchedInfo);
         setInfo(fetchedInfo);
       }
@@ -61,7 +65,7 @@ function InfoDetail (){
   return (
     <>
     <Wrapper>
-        <Image></Image>
+        <Image style={{backgroundImage :`url(${process.env.PUBLIC_URL}/tagImage/${info.url}`}}></Image>
         <InfoContainer>
             <InfoTitleContainer>
                 <InfoTitleButtonBox>
@@ -154,6 +158,8 @@ const Image = styled.div`
 width: 100%;
 height: 500px;
 background: url(${illust});
+background-size: cover; /* 이미지를 컨테이너에 맞게 늘립니다 */
+background-position: center; /* 이미지를 중앙으로 정렬합니다 */ 
 `
 const InfoContainer = styled.div`
 display: flex;
