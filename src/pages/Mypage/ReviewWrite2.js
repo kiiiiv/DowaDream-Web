@@ -65,7 +65,7 @@ function ReviewWrite2(){
         if(title!==""){
           if(content!==""){
             const pageNum = infoId.infoId;
-            const response = await writeReview(pageNum,"False","True","False");
+            const response = await writeReview([pageNum,title,content,"True",imageFiles]);
             console.log(response)
           }
         }

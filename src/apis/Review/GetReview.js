@@ -22,14 +22,15 @@ export const getReviewDetail = async (reviewNum) =>{
 }
 //리뷰 작성
 export const writeReview = async (props) =>{
-  const [pageNum=3019635,title="1",content="1",is_public=true,images] = props;
+  const [pageNum=3019635,title="1",content="1",is_public=true,images=null] = props;
     const token =accessToken;
     const formData = new FormData();
     formData.append('progrmRegistNo', `${pageNum}`);
     formData.append('title', title);
     formData.append('content', content);
     formData.append('is_public', "True");
-    formData.append('images', images); // 파일 업로드를 위한 부분
+    // formData.append('images', images); // 파일 업로드를 위한 부분
+    
     for (let value of formData.values()) {
       console.log(value);
     }
@@ -38,7 +39,6 @@ export const writeReview = async (props) =>{
     formData
     ,{
       headers : {
-        "Content-Type": "multipart/form-data",
         Authorization : `Bearer ${token}`
       },
       transformRequest: [
