@@ -6,18 +6,17 @@ import Scrap from '../../assets/스크랩.svg'
 import Scrap2 from '../../assets/스크랩색변화.svg'
 import { upDateScrapInfo } from '../../apis/Program/ProgramInfo'
 
-async function updateScrap() {
-    try {
-      const response = await upDateScrapInfo("123445");
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
 const LikesandScrap = ({num_cheer=0,num_clipped=0}) => {
     const [likeClicked, setLikeClicked] = useState(false); // State to track like button click
     const [scrapClicked, setScrapClicked] = useState(false); // State to track like button click
+    async function updateScrap() {
+        try {
+          const response = await upDateScrapInfo("123445");
+          console.log(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
     const handleLikeClick = () => {
         setLikeClicked(!likeClicked);
     };
@@ -35,7 +34,7 @@ const LikesandScrap = ({num_cheer=0,num_clipped=0}) => {
                     ></img>
                     응원하기
                 </LikesContainer>
-                <button onClick={LikesandScrap}></button>
+                <button onClick={updateScrap}></button>
     
                 <LikesContainer>
                     <img 
@@ -60,7 +59,7 @@ const LikesandScrap = ({num_cheer=0,num_clipped=0}) => {
   )
 }
 
-export default LikesandScrap
+export default LikesandScrap;
 const LikesScrapContainer2 = styled.div`
 display: flex;
 flex-direction: row;

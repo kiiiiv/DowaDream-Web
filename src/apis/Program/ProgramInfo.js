@@ -48,9 +48,10 @@ export const upDateVolInfo = async(props) => {
             Authorization: `Bearer ${token}` 
          }
       })
+      console.log(response);
       return response;
     }catch(error){
-        return error;
+        console.log(error) ;
     }
   }
 //마이페이지 내가 한 봉사
