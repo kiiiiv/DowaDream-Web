@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import MyPage from './MyPage';
+import { upDateVolInfo } from '../../apis/Program/ProgramInfo';
 function Save(){
+
     return (
         <Container20>
             <ButtonContainer>

@@ -31,14 +31,14 @@ function ReviewWrite2(){
 
 
       
-      const handleImageClick = (index) => {
+    const handleImageClick = (index) => {
         if (fileInputRef.current) {
           fileInputRef.current.click();
-        }
-      };
+      }
+    };
 
-      const handleImageUpload = (event) => {
-        if (event.target.files) {
+    const handleImageUpload = (event) => {
+      if (event.target.files) {
           const file = event.target.files[0];
 
           const fileURL = URL.createObjectURL(file);
@@ -65,7 +65,7 @@ function ReviewWrite2(){
         if(title!==""){
           if(content!==""){
             const pageNum = infoId.infoId;
-            const response = await writeReview(pageNum,title,content,"True",imageFiles);
+            const response = await writeReview(pageNum,"False","True","False");
             console.log(response)
           }
         }
