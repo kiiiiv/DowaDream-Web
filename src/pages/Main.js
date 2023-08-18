@@ -9,7 +9,8 @@ import InfoItem from '../components/Home/InfoItem';
 import { Wrapper } from '../styles/Common';
 import { SearchArea, SearchAreaKeyword, SearchCheer, SearchDday } from '../apis/Review/ScrapCheerSave';
 import { gugunCdMaker } from '../assets/Sidogugun';
-import { TagCodeMaker } from '../assets/TagCode';
+import { TagCodeMaker, TagNameMaker } from '../assets/TagCode';
+import { getVolDetail } from '../apis/VolInfo/VolInfo';
 function Main(){
 
   
@@ -48,8 +49,24 @@ function Main(){
     resopnse2 = resopnse2.slice(0,4);
     response3 = response3.slice(0,4);
 
+    const real1 = []
+    const real2 = []
+    const real3 = []
+    resopnse.map(async (item)=>{
+      let fetchedInfo = await getVolDetail(item.progrmRegistNo);
+      fetchedInfo.progrmRegistNo = TagNameMaker(fetchedInfo.progrmRegistNo);
+      real1.push(fetchedInfo);
+    })
 
-    console.log(resopnse);
+    resopnse2.map(async (item)=>{
+      let fetchedInfo = await getVolDetail(item.progrmRegistNo);
+      fetchedInfo.tagCode = TagNameMaker(fetchedInfo.progrmRegistNo);
+      console.log(fetchedInfo);
+
+      real2.push(fetchedInfo);
+    })
+
+
     await SetArea(resopnse);
     await SetDday(resopnse2);
     await SetCheer(response3);
@@ -129,8 +146,8 @@ function Main(){
             </Itemtitle>
               <Iteminfo>
                 {
-                Dday && Dday.map((item,index)=>{
                   
+                Dday && Dday.map((item,index)=>{
                     return(<InfoItem
                     onClick={()=>{
                       window.location.href=`/info/${item.progrmRegistNo}`}} 
@@ -166,7 +183,6 @@ function Main(){
             <Iteminfo>
                 {
                 Cheer && Cheer.map((item,index)=>{
-                  console.log(item);
                   return(<InfoItem
                   onClick={()=>{
                     window.location.href=`/info/${item.progrmRegistNo}`}} 

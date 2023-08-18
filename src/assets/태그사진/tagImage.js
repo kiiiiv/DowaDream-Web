@@ -1,7 +1,5 @@
-import {Info} from '../../../public/tagImage/공익인권.svg'
 
 export const getImageName = (tag) => {
-    console.log(tag);
   switch(tag) {
     case "공익.인권":
         console.log("공익인권.svg");
