@@ -12,9 +12,10 @@ const closing = [
 
 
 function ReviewWrite2(){
+
+    const infoId = useParams();
     const [name,setName] = useState("전체 보기");
     const [isOpen, setIsOpen] = useState(false);
-    const infoId = useParams();
 
     const onToggle = () => setIsOpen(!isOpen);
 
@@ -63,7 +64,8 @@ function ReviewWrite2(){
 
         if(title!==""){
           if(content!==""){
-            const response = await writeReview("3019635",title,content,"True",imageFiles);
+            const pageNum = infoId.infoId;
+            const response = await writeReview(pageNum,title,content,"True",imageFiles);
             console.log(response)
           }
         }
