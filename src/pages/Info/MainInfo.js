@@ -188,16 +188,11 @@ const MainInfo = () => {
     }
     const accessToken = localStorage.getItem("accessToken");
     console.log(accessToken);
-    const imagePath = process.env.PUBLIC_URL + '/태그사진/';
     //수정by 예원
-    const pic = '농어촌.svg'; 
-    console.log(`url(${process.env.PUBLIC_URL}/tagImage/${pic})`);
+
   return (
     <Wrapper>
-        <Title onClick={()=>{
-                console.log(1); 
-                console.log(`url(${process.env.PUBLIC_URL}/tagImage/${pic})`);
-        }}>봉사정보</Title>
+        <Title>봉사정보</Title>
         
         <InfoSelection>
             <SeloectTag onClick={() => setIsTag("Loc")} color={("Loc" === isTag).toString()}>지역</SeloectTag>
