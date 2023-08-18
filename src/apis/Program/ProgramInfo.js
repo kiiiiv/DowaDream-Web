@@ -6,22 +6,22 @@ const accessToken = localStorage.getItem("accessToken");
 //내가 한 봉사, 스크랩한봉사, 응원한봉사, 추가하기
 export const upDateVolInfo = async(props) => {
 
-    const [progrmRegistNo,cheered=false,participated=false,clipped=false] = props;
+    const [progrmRegistNo,participated="False"] = props;
     const token = accessToken;
+    console.log(progrmRegistNo)
+    console.log(participated)
+
     try{
 
       const response = await axios.put(baseUrl,
         {
           "progrmRegistNo" : `${progrmRegistNo}`,
-          "cheered" : `False`,
-          "participated" : `True`,
-          "clipped" : `False`,
+          "participated" : `${participated}`,
         },
         {
         headers: {
-            Authorization: `Bearer ${token}` 
-         }
-      })
+          "Authorization": `Bearer ${token}` 
+         }})
       return response;
     }catch(error){
         return error;
@@ -41,7 +41,7 @@ export const uploadUserVol = async() => {
     })
     console.log(response);
     return response.data.data;
-  }catch(error){
+  } catch(error){
     return error;
   }
 

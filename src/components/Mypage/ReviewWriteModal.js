@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 import InfoItem from '../Home/InfoItem'
 import { useNavigate } from 'react-router-dom'
 import { ViewMyReview } from '../../apis/Review/GetReview'
+import { uploadUserVol } from '../../apis/Program/ProgramInfo'
 
 const ReviewWriteModal = () => {
 
@@ -11,7 +12,7 @@ const ReviewWriteModal = () => {
 
     
   const reviews = async()=>{
-      const abc= await ViewMyReview();
+      const abc= await uploadUserVol();
       generateWriteDiv(abc);
       console.log(abc);
   } 
@@ -26,7 +27,7 @@ const ReviewWriteModal = () => {
                width={30} 
                height={80} 
                onClick={()=>{
-                window.location.href=`/review/write/${List[i].rid}`}} 
+                  window.location.href=`/review/write/${List[i].rid}`}} 
                   key={i}
                   rid={List[i].rid}
                   tag = {List[i].tag}
