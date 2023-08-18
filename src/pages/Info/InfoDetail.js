@@ -124,10 +124,10 @@ function InfoDetail (){
         <ReviewInfodiv>
           <ReviewInfoWrapper>
 
-            <ReviewItem width={'475px'}></ReviewItem>
-            <ReviewItem width={'475px'}></ReviewItem>
-            <ReviewItem width={'475px'}></ReviewItem>
-            <ReviewItem width={'475px'}></ReviewItem>
+            <ReviewItem width={'400px'}></ReviewItem>
+            <ReviewItem width={'400px'}></ReviewItem>
+            <ReviewItem width={'400px'}></ReviewItem>
+            <ReviewItem width={'400px'}></ReviewItem>
 
           </ReviewInfoWrapper>
         </ReviewInfodiv>
@@ -221,14 +221,13 @@ const Trashdiv = styled.div`
 const MainTextContainer = styled.div`
 
 box-sizing: border-box;
-
-/* Auto layout */
 display: flex;
 flex-direction: row;
 align-items: flex-start;
 padding: 20px;
 width: 100%;
-height: 439px;
+max-height: 439px;
+overflow: auto;
 /* Dark Gray Color */
 border-width: 1px 0px;
 border-style: solid;
@@ -396,7 +395,7 @@ height: 49px;
 font-family: 'Pretendard Variable';
 font-style: normal;
 font-weight: 700;
-font-size: 32px;
+font-size: 28px;
 line-height: 38px;
 
 color: #000000;
@@ -429,7 +428,7 @@ const Td = styled.td`
   padding: 12px 0;
   color: #7e8181;
   font-family: Pretendard Variable;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 21px;
     letter-spacing: 0em;

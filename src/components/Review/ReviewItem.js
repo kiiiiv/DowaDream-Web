@@ -6,6 +6,8 @@ import TextBol from '../../../src/assets/말풍선.svg'
 import Like from '../../../src/assets/좋아요.svg'
 import Like2 from '../../assets/좋아요색변화.svg'
 import { TagNameMaker } from '../../assets/TagCode'
+import environ from "../../assets/tagImage/봉사.png"
+
 
 
 
@@ -32,7 +34,7 @@ const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,num_che
         window.location.href = targetPath;        
     }}
     >
-        <ReviewCardImg url={images}></ReviewCardImg>
+        <ReviewCardImg></ReviewCardImg>
         <ReviewCardInfodiv>
             <ReviewNameWrapper>
                 <ReviewNamediv>
@@ -106,14 +108,14 @@ const ReviewCardImg = styled.div`
     height: 73%;
 
     margin-bottom : 12px;
-    
+    background-image: url(${environ});
     padding-bottom: 0px;
     align-items: flex-start;
     gap: 10px;
     align-self: stretch;
 
     border-radius: 20px;
-    background: url(${props=>props.url || '../../1ogo192.png'}) , lightgray 50% / cover no-repeat;
+    
 
     background-size: cover; /* 이미지를 컨테이너에 맞게 늘립니다 */
     background-position: center; /* 이미지를 중앙으로 정렬합니다 */ 
