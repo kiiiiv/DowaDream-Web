@@ -33,7 +33,6 @@ const Area = [
     }else{
       Locs="3000000";
     }
-    console.log(Locs[0])
     let tags = localStorage.getItem("user_tags");
 
     if(tags!==undefined){
