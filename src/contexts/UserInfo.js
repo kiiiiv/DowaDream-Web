@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { gugunNameMaker } from "../assets/Sidogugun";
 
 const Area = [
     ["전국"],
@@ -20,24 +21,69 @@ const Area = [
     ["충북", "청주시", "충주시", "제천시", "보은군", "옥천군", "영동군", "증평군", "진천군", "괴산군", "음성군", "단양군"],
     ["제주", "제주시", "서귀포시"],
   ];
+  
 
   export function prepareFilterData() {
-    
-    const filteredArea = Area.map((subArray) => {
-      if (subArray[0] === "서울") {
-        // 서울의 경우 나머지 값을 첫 번째 값으로 설정
-        return [subArray[0],[ false,subArray[1],...subArray.slice(2).map(()=>false),...Array(34 - subArray.length).fill(false)]];
-      } else {
-        // 다른 지역의 경우 나머지 값을 모두 false로 설정
-        return [subArray[0], [...subArray.slice(1).map(() => false),...Array(34 - subArray.length).fill(false)]];
-      }
-    });
-  
-    return filteredArea;
-  }
 
+    
+    let Locs = localStorage.getItem("user_regions");
+    if(Locs!==undefined){
+      Locs= JSON.parse(Locs);
+
+    }else{
+      Locs="3000000";
+    }
+    console.log(Locs[0])
+    let tags = localStorage.getItem("user_tags");
+
+    if(tags!==undefined){
+      tags= JSON.parse(tags);
+    }else{
+      tags="공익.인권";
+    }
+
+
+    const Loc = [];
+    Locs.map((item)=>{
+      const num = gugunNameMaker(item);
+      if(num !== undefined){
+        Loc.push(num);
+      } 
+    })
+
+    let returnList = [];
+
+    const filteredArea = Area.map((subArray) => {
+
+      returnList.push([subArray[0],[...Array(34).fill(false)]]);
+      // if (subArray[0] === "서울") {
+      //     // 서울의 경우 나머지 값을 첫 번째 값으로 설정
+      //     return [subArray[0],[ false,subArray[1],...subArray.slice(2).map(()=>false),...Array(34 - subArray.length).fill(false)]];
+      //   } else {
+      //     // 다른 지역의 경우 나머지 값을 모두 false로 설정
+      //     return [subArray[0], [...subArray.slice(1).map(() => false),...Array(34 - subArray.length).fill(false)]];
+      //   }
+      });
+      // console.log(filteredArea);
+      console.log(returnList);
+
+      Loc.map((item)=>{
+        console.log(item[0].slice(0,2));
+        for(let i=0; i<Area.length; i++){ 
+          if(Area[i][0]==item[0].slice(0,2)){
+
+            const num = Area[i].indexOf(item[1])
+            console.log(num);
+            returnList[i][1][num] = item[1];
+          }
+        }
+      })
+
+
+
+    return returnList;
+}
   const filteredData = prepareFilterData();
-  console.log(filteredData);
     
 
 

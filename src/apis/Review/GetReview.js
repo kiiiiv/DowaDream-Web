@@ -4,49 +4,39 @@ export const baseUrl = "https://api.dowadream.site/review/";
 
 //리뷰 전체 정보 받기
 export const getAllReviewInfo = async () => {
-
   try{
       const response = await axios.get(`${baseUrl}`);
       return response.data.data;
   }catch(error){
     return error;
   }
-
 }
-
-
 //리뷰 디테일 가져오기
 export const getReviewDetail = async (reviewNum) =>{
-
   try{
     const response = await axios.get(`${baseUrl}${reviewNum}/`);
     return response.data.data;
   }catch(error){
     return error;
   }
-
 }
-
 //리뷰 작성
 export const writeReview = async (props) =>{
   const [pageNum=3019635,title="1",content="1",is_public=true,images] = props;
     const token =accessToken;
     const formData = new FormData();
-    formData.append('progrmRegistNo', 3019635);
-    formData.append('title', "111");
-    formData.append('content', "111");
+    formData.append('progrmRegistNo', `${pageNum}`);
+    formData.append('title', title);
+    formData.append('content', content);
     formData.append('is_public', "True");
     formData.append('images', images); // 파일 업로드를 위한 부분
-
     for (let value of formData.values()) {
       console.log(value);
     }
-    
-
   try{
     const response = await axios.post(`${baseUrl}`,
     formData
-    ,{ 
+    ,{
       headers : {
         "Content-Type": "multipart/form-data",
         Authorization : `Bearer ${token}`
@@ -58,7 +48,6 @@ export const writeReview = async (props) =>{
       ],
     });
     alert("성공");
-
     console.log(response)
     return response;
   }catch(error){
@@ -67,7 +56,6 @@ export const writeReview = async (props) =>{
     return error;
   }
 }
-
 //나의 후기
 export const ViewMyReview = async () => {
   const token =accessToken;
@@ -117,5 +105,3 @@ export const cheerCancel = async (rid) => {
     }
   }
 };
-
-

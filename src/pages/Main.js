@@ -8,7 +8,7 @@ import InfoTitle from '../components/Home/InfoTitle';
 import InfoItem from '../components/Home/InfoItem';
 import { Wrapper } from '../styles/Common';
 import { SearchArea, SearchAreaKeyword, SearchCheer, SearchDday } from '../apis/Review/ScrapCheerSave';
-import { gugunCdMaker } from '../assets/Sidogugun';
+import { gugunCdMaker, gugunNameMaker } from '../assets/Sidogugun';
 import { TagCodeMaker, TagNameMaker } from '../assets/TagCode';
 import { getVolDetail } from '../apis/VolInfo/VolInfo';
 function Main(){
@@ -33,15 +33,14 @@ function Main(){
   }
 
   const callInfo = async() =>{
-    const gugunCd = gugunCdMaker("2","종로구");
-    const TagCd = TagCodeMaker("온라인자원봉사");
+    let gugunCd = localStorage.getItem("user_regions");
+    let TagCd = localStorage.getItem("user_tags");
     const arr1 = [];
     const arr2 = [];
-    arr1.push(gugunCd);
-    arr2.push(TagCd);
+    arr1.push(JSON.parse(gugunCd));
+    console.log(arr1[0]);
 
-
-    let resopnse = await SearchAreaKeyword(null,arr1);
+    let resopnse = await SearchAreaKeyword(null,arr1[0]);
     let resopnse2 = await SearchDday();
     let resopnse3 = await SearchCheer();
 
@@ -86,7 +85,8 @@ function Main(){
 
   
   useEffect(() => {
-    // accessToken 가져오기
+
+
     callInfo();  
   }, []);
 
