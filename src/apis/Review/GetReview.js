@@ -1,6 +1,7 @@
 import axios from "axios";
 const accessToken = localStorage.getItem("accessToken");
 export const baseUrl = "https://api.dowadream.site/review/";
+
 //리뷰 전체 정보 받기
 export const getAllReviewInfo = async () => {
   try{
