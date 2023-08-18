@@ -36,6 +36,7 @@ function App() {
         
         <Route path="/info" element={<MainInfo></MainInfo>}></Route>
         <Route path="/info/:infoId" element={<InfoDetail></InfoDetail>}></Route>
+        <Route path="/info/default" element={<InfoDetail></InfoDetail>}></Route>
         <Route path='/infodetail/save/:infoId' element={<Register/>}></Route>
         
         <Route path='/review' element={<MainReview/>}></Route>

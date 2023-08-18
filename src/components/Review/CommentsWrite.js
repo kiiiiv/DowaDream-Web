@@ -2,17 +2,38 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import GoogleProfilePic from '../Mypage/GoogleProfilePic';
+import { cheerClick } from '../../apis/Review/GetReview';
+import { cheerCancel} from '../../apis/Review/GetReview';
 
 function CommentsWrite({ onCommentSubmit, onLikeSubmit, numLikes, numComments }){
   const [inputText, setInputText] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);//true:응원하기 버튼이 눌러짐
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   }
+  const reviewIdObj = useParams();
   const handleLikeSubmit = (e) => {
     e.preventDefault();
-    onLikeSubmit(numLikes + 1);
-  } 
+    const rid = reviewIdObj.reviewId;
+    if (!isLiked) {
+      onLikeSubmit(numLikes + 1);
+      console.log(numLikes);
+      console.log(isLiked);
+      cheerClick(rid); // 이미 async 함수로 선언되어 있기 때문에 별도 처리가 필요 없습니다.
+    } else {
+      const code = cheerCancel(rid);      
+      if (code === 400){
+        onLikeSubmit(numLikes + 1);  
+        console.log(numLikes);     
+      } else {
+        onLikeSubmit(numLikes - 1);
+        console.log(numLikes);
+        console.log(isLiked);       
+      } 
+    }
+    setIsLiked(!isLiked);
+  }; 
   const handleSubmit = (e) => {
     e.preventDefault();
     // 작성된 글 등록 처리
@@ -20,9 +41,7 @@ function CommentsWrite({ onCommentSubmit, onLikeSubmit, numLikes, numComments })
     onCommentSubmit(inputText);
     setInputText('');
   }
-
     return (
-
       <Container70>
           <GoogleProfilePic size={60}></GoogleProfilePic>
           <CommentsWriteContainer2>
@@ -31,7 +50,6 @@ function CommentsWrite({ onCommentSubmit, onLikeSubmit, numLikes, numComments })
                 <CommentsButton color="#F79999" onClick={handleLikeSubmit}>응원하기</CommentsButton>
                 <CommentsButton color="#2A2A2A" type="submit" onClick={handleSubmit}>등록하기</CommentsButton>
               </CommentsButtonContainer>
-
           </CommentsWriteContainer2>
       </Container70>
     );
@@ -63,7 +81,7 @@ gap: 20px;
 }
 
 @media only screen and (min-width: 1200px) {
-  width: 1200px;
+  width: 100%;
 }
 
 

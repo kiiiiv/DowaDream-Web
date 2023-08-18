@@ -74,36 +74,33 @@ export const ViewMyReview = async () => {
 };
 //응원하기 설정, 취소
 export const cheerClick = async (rid) => {
-  const token =accessToken;
+  const token = accessToken;
   const url = `${baseUrl}user/cheer/${rid}/`;
   console.log(url);
-  const headers = {
-    Authorization: `Bearer ${token}`
-  };
+  const headers = { Authorization: `Bearer ${token}` };
+  
   try {
-    const response = await axios.post(url,{
-      headers : {
-        Authorization: `Bearer ${token}`
-              }
-    });
+    const response = await axios.post(url, '', { headers });
     console.log(response.data); // POST 요청 결과 출력
   } catch (error) {
-    console.error(error); // 오류 처리
+    console.log(error); // 오류 처리
   }
-}
+};
 export const cheerCancel = async (rid) => {
-  const token =accessToken;
+  const token = accessToken;
   const url = `${baseUrl}user/cheer/${rid}/`;
   console.log(url);
-  const headers = {
-    Authorization: `Bearer ${token}`
-  };
+  const headers = { Authorization: `Bearer ${token}`};
   try {
-    const response = await axios.delete(url, {       headers : {
-      Authorization: `Bearer ${token}`
-            } });
-    console.log(response.data); // DELETE 요청 결과 출력
+    const response = await axios.delete(url, { headers });
+    return response; // DELETE 요청 결과 출력
   } catch (error) {
-    console.error(error); // 오류 처리
+    const errorCode = error.response.status;
+    console.log(errorCode);
+    if (errorCode === "400") {
+      return errorCode;
+    } else {
+      console.error(error);
+    }
   }
-}
+};

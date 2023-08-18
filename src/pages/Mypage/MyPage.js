@@ -287,7 +287,10 @@ font-size: 2em;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
-
+&:hover {
+  text-decoration: underline;
+  cursor: pointer; // 마우스 올리면 밑줄이 생기도록 추가
+}
 `
 
 const ModalOverlay = styled.div`
