@@ -27,21 +27,20 @@ const Area = [
 
     
     let Locs = localStorage.getItem("user_regions");
-    if(Locs!==undefined){
+    if(Locs!==null){
       Locs= JSON.parse(Locs);
-
     }else{
-      Locs="3000000";
+      Locs=["3000000","3010000"];
     }
     let tags = localStorage.getItem("user_tags");
 
     if(tags!==undefined){
       tags= JSON.parse(tags);
     }else{
-      tags="공익.인권";
+      tags=["공익.인권"];
     }
 
-
+    console.log()
     const Loc = [];
     Locs.map((item)=>{
       const num = gugunNameMaker(item);
