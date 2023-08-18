@@ -86,3 +86,32 @@ export const ViewMyReview = async () => {
     return error;
   }
 };
+
+async function cheerClick(rid) {
+  const token =accessToken;
+  const url = `${baseUrl}/user/cheer/${rid}`;
+  const headers = {
+    Authorization: `Bearer ${token}`
+  };
+  
+  try {
+    const response = await axios.post(url, { headers });
+    console.log(response.data); // POST 요청 결과 출력
+  } catch (error) {
+    console.error(error); // 오류 처리
+  }
+}
+async function cheerCancel(rid) {
+  const token =accessToken;
+  const url = `${baseUrl}/user/cheer/${rid}`;
+  const headers = {
+    Authorization: `Bearer ${token}`
+  };
+  try {
+    const response = await axios.delete(url, { headers });
+    console.log(response.data); // DELETE 요청 결과 출력
+  } catch (error) {
+    console.error(error); // 오류 처리
+  }
+}
+
