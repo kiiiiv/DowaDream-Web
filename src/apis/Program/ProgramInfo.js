@@ -52,8 +52,6 @@ export const upDateVolInfo = async(props) => {
     }catch(error){
         return error;
     }
-  
-  
   }
 //마이페이지 내가 한 봉사
 export const uploadUserVol = async() => {

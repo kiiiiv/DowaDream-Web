@@ -4,8 +4,16 @@ import Like from '../../assets/좋아요.svg'
 import Like2 from '../../assets/좋아요색변화.svg'
 import Scrap from '../../assets/스크랩.svg'
 import Scrap2 from '../../assets/스크랩색변화.svg'
+import { upDateScrapInfo } from '../../apis/Program/ProgramInfo'
 
-
+async function updateScrap() {
+    try {
+      const response = await upDateScrapInfo("123445");
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 const LikesandScrap = ({num_cheer=0,num_clipped=0}) => {
     const [likeClicked, setLikeClicked] = useState(false); // State to track like button click
@@ -27,6 +35,7 @@ const LikesandScrap = ({num_cheer=0,num_clipped=0}) => {
                     ></img>
                     응원하기
                 </LikesContainer>
+                <button onClick={LikesandScrap}></button>
     
                 <LikesContainer>
                     <img 
