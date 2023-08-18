@@ -43,33 +43,41 @@ function Main(){
 
     let resopnse = await SearchAreaKeyword(null,arr1);
     let resopnse2 = await SearchDday();
-    let response3 = await SearchCheer();
+    let resopnse3 = await SearchCheer();
 
     resopnse = resopnse.slice(0,4);
     resopnse2 = resopnse2.slice(0,4);
-    response3 = response3.slice(0,4);
+    resopnse3 = resopnse3.slice(0,4);
 
     const real1 = []
     const real2 = []
     const real3 = []
-    resopnse.map(async (item)=>{
-      let fetchedInfo = await getVolDetail(item.progrmRegistNo);
-      fetchedInfo.progrmRegistNo = TagNameMaker(fetchedInfo.progrmRegistNo);
-      real1.push(fetchedInfo);
-    })
+    await Promise.all(
+      resopnse.map(async (item) => {
+          let fetchedInfo = await getVolDetail(item.progrmRegistNo);
+          real1.push(fetchedInfo);
+      })
+  );
+  await SetArea(real1);
+
+  await Promise.all(
 
     resopnse2.map(async (item)=>{
       let fetchedInfo = await getVolDetail(item.progrmRegistNo);
-      fetchedInfo.tagCode = TagNameMaker(fetchedInfo.progrmRegistNo);
-      console.log(fetchedInfo);
-
       real2.push(fetchedInfo);
     })
+  );
+  await SetDday(real2);
 
+  await Promise.all(
 
-    await SetArea(resopnse);
-    await SetDday(resopnse2);
-    await SetCheer(response3);
+    resopnse3.map(async (item)=>{
+      let fetchedInfo = item;
+      fetchedInfo.tag = TagCodeMaker(item.tag);
+      real3.push(fetchedInfo);
+    })
+  );
+  await SetCheer(real3);
 
 
 
@@ -118,7 +126,7 @@ function Main(){
                       key={index} 
                       style={{ width:'25%'}}
                       // rid={item.title}
-                      tag={item.tag}
+                      tag={item.tagCode}
                       progrmRegistNo={item.progrmRegistNo}
                       title={item.title}
                       institute={item.recruitInstitute}
@@ -154,7 +162,7 @@ function Main(){
                       key={index} 
                       style={{ width:'25%'}}
                       // rid={item.title}
-                      tag={item.tag}
+                      tag={item.tagCode}
                       progrmRegistNo={item.progrmRegistNo}
                       title={item.title}
                       institute={item.recruitInstitute}
