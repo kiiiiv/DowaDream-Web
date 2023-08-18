@@ -5,6 +5,7 @@ import InfoItem from '../Home/InfoItem'
 import { useNavigate } from 'react-router-dom'
 import { ViewMyReview } from '../../apis/Review/GetReview'
 import { uploadUserVol } from '../../apis/Program/ProgramInfo'
+import { getVolDetail } from '../../apis/VolInfo/VolInfo'
 
 const ReviewWriteModal = () => {
 
@@ -17,29 +18,31 @@ const ReviewWriteModal = () => {
       console.log(abc);
   } 
   
-  const generateWriteDiv = (List)=>{
+  const generateWriteDiv = async (List)=>{
       console.log(List);
       const writeDiv = [];
 
       for(let i  =0; i<List.length; i++){
+
+        const detailVolunteer = await getVolDetail(List[i]);
+        console.log(detailVolunteer)
           writeDiv.push(
               <InfoItem
-               width={30} 
-               height={80} 
-               onClick={()=>{
-                  window.location.href=`/review/write/${List[i].rid}`}} 
-                  key={i}
-                  rid={List[i].rid}
-                  tag = {List[i].tag}
-                  updated_at={List[i].updated_at}
-                  progrmRegistNo={List[i].progrmRegistNo}
-                  title={List[i].title}
-                  is_public={List[i].is_public}
-                  is_customized={List[i].is_customized}
-                  writer={List[i].writer}
-                  images={List[i].images}
-                  writer_profile_img={List[i].writer_profile_img}
-                  writer_username={List[i].writer_username}
+                width={30} 
+                height={80} 
+                onClick={()=>{
+                  window.location.href=`/review/write/${detailVolunteer.progrmRegistNo}`}} 
+                  key={i+50000}
+                  tag = {detailVolunteer.tagCode}
+                  progrmRegistNo={detailVolunteer.progrmRegistNo}
+                  title={detailVolunteer.title}
+                  institute={detailVolunteer.recruitInstitute}
+                  actStart={detailVolunteer.actStart.slice(0,10)}
+                  actEnd={detailVolunteer.actEnd.slice(0,10)}
+
+                  writer={detailVolunteer.writer}
+                  images={detailVolunteer.images}
+                  dday={detailVolunteer.dday}
                >
               </InfoItem>           
           )
