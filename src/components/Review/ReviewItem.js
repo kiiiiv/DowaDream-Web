@@ -26,8 +26,11 @@ const ReviewItem = ({width='30%' ,height=670,url='../../1ogo192.png',rid,num_che
 
     <ReviewCardWrapper width={width} height={height} 
         onClick={()=>{
-            navigate(`${rid}`);
-        }}
+            const targetPath = rid
+            ? `/review/${rid}`
+            : '/review/default';
+        window.location.href = targetPath;        
+    }}
     >
         <ReviewCardImg url={images}></ReviewCardImg>
         <ReviewCardInfodiv>
