@@ -19,12 +19,19 @@ function MyReview(){
         for(let i  =0; i<List.length; i++){
             writeDiv.push(
                 <ReviewItem
-                    key={i}
+                    onClick={() => {
+                        // progrmRegistNo 값이 없다면 '/info/default'로, 값이 있다면 `/info/${detailVolunteer.progrmRegistNo}`로 이동
+                        const targetPath = List[i].rid
+                        ? `/review/${List[i].rid}`
+                        : '/review/default';
+                    window.location.href = targetPath;
+                    }}
+                      key={i}
                     
-                    rid={List[i].rid}
-                    tag ={List[i].tag}
-                    updated_at={List[i].updated_at}
-                    progrmRegistNo={List[i].progrmRegistNo}
+                        rid={List[i].rid}
+                        tag ={List[i].tag}
+                        updated_at={List[i].updated_at}
+                        progrmRegistNo={List[i].progrmRegistNo}
                     
                     title={List[i].title}
                     content={List[i].content}
@@ -39,7 +46,7 @@ function MyReview(){
                     writer_profile_img={List[i].writer_profile_img}
                     writer_username={List[i].writer_username}
 
-        >
+                >
 
                 </ReviewItem>           
             )
@@ -80,11 +87,17 @@ const ReviewInfoWrapper = styled.div`
 `;
 const ReviewItemWrapper = styled.div`
 
+
+
     display: flex;
-    justify-content : space-between;
+    justify-content :flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 64px;
+
 
     width: 100%;
     height : auto;
-    align-items: center;
 
 `;

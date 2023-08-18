@@ -51,6 +51,7 @@ const MainReview = () => {
             reviewList.map((item,index)=>{
                 mainReviews.push(
                     <ReviewItem
+                    
                         key={index}
                         
                         rid={item.rid}

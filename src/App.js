@@ -25,6 +25,7 @@ function App() {
     <div className="App">      
       <NavBar2></NavBar2>
       <Routes>
+
         <Route path='/' element={<Main/>}></Route>
 
         <Route path='/login' element={<LoginPage/>}></Route>
