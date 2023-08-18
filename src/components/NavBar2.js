@@ -9,6 +9,7 @@ import {GoogleLoginButton} from './Home/GoogleLoginButton';
 import jwtDecode from "jwt-decode";
 import logo from '../assets/로고/도와드림로고.png';
 import axios from 'axios';
+const accessToken = localStorage.getItem("accessToken");
 //버튼을 눌러서 url로 이동하게..!
 // redirect url 을 프론트 url로 ,
 // 그 url에서 code(인가코드)만 파싱해서 빼옴
@@ -27,7 +28,7 @@ function NavBar2() {
   
 
   const LoginSuccess = (credentialResponse) => {
-    setIsLogined(true);
+    
     console.log(credentialResponse);
     const token = credentialResponse.credential;
     const token2 = jwtDecode(credentialResponse.credential);
@@ -44,6 +45,7 @@ function NavBar2() {
 
     doSignUp();
     sendUserData(userEmail, profile, userEmail);
+    setIsLogined(true);
     
   };
   
@@ -91,17 +93,17 @@ function NavBar2() {
     window.sessionStorage.clear();
     window.localStorage.clear();
   }
-/*
+
   useEffect(() => {
-    const name = window.sessionStorage.getItem('name');
-    if(name) {
+    const accessToken = window.sessionStorage.getItem('accessToken');
+    if(accessToken) {
       LoginSuccess();
     }
     else {
       onLogout();
     }
   }, []);
-  */
+  
 
     
     
@@ -136,7 +138,7 @@ function NavBar2() {
                     backgroundSize: "cover",
                     marginRight: "8px",
                   }}
-                  onClick={onLogout}
+                  //onClick={onLogout}
                 ></div>
               </div>
             ) : (

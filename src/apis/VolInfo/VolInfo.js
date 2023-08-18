@@ -37,11 +37,8 @@ export const getVolReview = async (pageNum) =>{
 
 
     try{
-        const response = await axios.get(`https://api.dowadream.site/review`,{
-            params : {
-                "progrmRegistNo" : `${pageNum}`
-            }
-        });
+        const response = await axios.get(`https://api.dowadream.site/review?progrmRegistNo=${pageNum}`);
+        console.log(response.data.data);
         return response.data.data;
     } catch(error){
         return error;
