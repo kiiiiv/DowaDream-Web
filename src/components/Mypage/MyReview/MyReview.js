@@ -19,13 +19,8 @@ function MyReview(){
         for(let i  =0; i<List.length; i++){
             writeDiv.push(
                 <ReviewItem
-                    onClick={() => {
-                        // progrmRegistNo 값이 없다면 '/info/default'로, 값이 있다면 `/info/${detailVolunteer.progrmRegistNo}`로 이동
-                        const targetPath = List[i].rid
-                        ? `/review/${List[i].rid}`
-                        : '/review/default';
-                    window.location.href = targetPath;
-                    }}
+
+                
                       key={i}
                     
                         rid={List[i].rid}
